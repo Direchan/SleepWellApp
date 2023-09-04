@@ -13,6 +13,13 @@
 		7FC778722AA5C61B00A5CE0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FC778702AA5C61B00A5CE0F /* Main.storyboard */; };
 		7FC778742AA5C61C00A5CE0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FC778732AA5C61C00A5CE0F /* Assets.xcassets */; };
 		7FC778772AA5C61C00A5CE0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FC778752AA5C61C00A5CE0F /* LaunchScreen.storyboard */; };
+		7FC92CEB2AA5FC2C000C4B2E /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CEA2AA5FC2C000C4B2E /* HomePageViewController.swift */; };
+		7FC92CED2AA5FC52000C4B2E /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CEC2AA5FC52000C4B2E /* LoginPageViewController.swift */; };
+		7FC92CEF2AA5FC62000C4B2E /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CEE2AA5FC62000C4B2E /* SignUpPageViewController.swift */; };
+		7FC92CF12AA5FC6E000C4B2E /* TimerPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CF02AA5FC6E000C4B2E /* TimerPageViewController.swift */; };
+		7FC92CF32AA5FC77000C4B2E /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CF22AA5FC77000C4B2E /* MyPageViewController.swift */; };
+		7FC92CF52AA5FC80000C4B2E /* LikePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CF42AA5FC80000C4B2E /* LikePageViewController.swift */; };
+		7FC92CF72AA5FC8A000C4B2E /* DetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CF62AA5FC8A000C4B2E /* DetailPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		7FC778732AA5C61C00A5CE0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7FC778762AA5C61C00A5CE0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7FC778782AA5C61C00A5CE0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7FC92CEA2AA5FC2C000C4B2E /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		7FC92CEC2AA5FC52000C4B2E /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
+		7FC92CEE2AA5FC62000C4B2E /* SignUpPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
+		7FC92CF02AA5FC6E000C4B2E /* TimerPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPageViewController.swift; sourceTree = "<group>"; };
+		7FC92CF22AA5FC77000C4B2E /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		7FC92CF42AA5FC80000C4B2E /* LikePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePageViewController.swift; sourceTree = "<group>"; };
+		7FC92CF62AA5FC8A000C4B2E /* DetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,13 @@
 		7FC778692AA5C61B00A5CE0F /* SleepWellApp */ = {
 			isa = PBXGroup;
 			children = (
+				7FC92CE42AA5FB69000C4B2E /* LikePage */,
+				7FC92CE62AA5FB71000C4B2E /* MyPage */,
+				7FC92CE52AA5FB6E000C4B2E /* TimerPage */,
+				7FC92CE92AA5FB78000C4B2E /* SignUpPage */,
+				7FC92CE82AA5FB75000C4B2E /* LoginPage */,
+				7FC92CE72AA5FB73000C4B2E /* HomePage */,
+				7FC92CE32AA5FB60000C4B2E /* DetailPage */,
 				7FC7786A2AA5C61B00A5CE0F /* AppDelegate.swift */,
 				7FC7786C2AA5C61B00A5CE0F /* SceneDelegate.swift */,
 				7FC7786E2AA5C61B00A5CE0F /* ViewController.swift */,
@@ -65,6 +86,62 @@
 				7FC778782AA5C61C00A5CE0F /* Info.plist */,
 			);
 			path = SleepWellApp;
+			sourceTree = "<group>";
+		};
+		7FC92CE32AA5FB60000C4B2E /* DetailPage */ = {
+			isa = PBXGroup;
+			children = (
+				7FC92CF62AA5FC8A000C4B2E /* DetailPageViewController.swift */,
+			);
+			path = DetailPage;
+			sourceTree = "<group>";
+		};
+		7FC92CE42AA5FB69000C4B2E /* LikePage */ = {
+			isa = PBXGroup;
+			children = (
+				7FC92CF42AA5FC80000C4B2E /* LikePageViewController.swift */,
+			);
+			path = LikePage;
+			sourceTree = "<group>";
+		};
+		7FC92CE52AA5FB6E000C4B2E /* TimerPage */ = {
+			isa = PBXGroup;
+			children = (
+				7FC92CF02AA5FC6E000C4B2E /* TimerPageViewController.swift */,
+			);
+			path = TimerPage;
+			sourceTree = "<group>";
+		};
+		7FC92CE62AA5FB71000C4B2E /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				7FC92CF22AA5FC77000C4B2E /* MyPageViewController.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		7FC92CE72AA5FB73000C4B2E /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				7FC92CEA2AA5FC2C000C4B2E /* HomePageViewController.swift */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		7FC92CE82AA5FB75000C4B2E /* LoginPage */ = {
+			isa = PBXGroup;
+			children = (
+				7FC92CEC2AA5FC52000C4B2E /* LoginPageViewController.swift */,
+			);
+			path = LoginPage;
+			sourceTree = "<group>";
+		};
+		7FC92CE92AA5FB78000C4B2E /* SignUpPage */ = {
+			isa = PBXGroup;
+			children = (
+				7FC92CEE2AA5FC62000C4B2E /* SignUpPageViewController.swift */,
+			);
+			path = SignUpPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +215,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FC92CF72AA5FC8A000C4B2E /* DetailPageViewController.swift in Sources */,
+				7FC92CF12AA5FC6E000C4B2E /* TimerPageViewController.swift in Sources */,
+				7FC92CEB2AA5FC2C000C4B2E /* HomePageViewController.swift in Sources */,
 				7FC7786F2AA5C61B00A5CE0F /* ViewController.swift in Sources */,
 				7FC7786B2AA5C61B00A5CE0F /* AppDelegate.swift in Sources */,
+				7FC92CF52AA5FC80000C4B2E /* LikePageViewController.swift in Sources */,
+				7FC92CEF2AA5FC62000C4B2E /* SignUpPageViewController.swift in Sources */,
+				7FC92CED2AA5FC52000C4B2E /* LoginPageViewController.swift in Sources */,
 				7FC7786D2AA5C61B00A5CE0F /* SceneDelegate.swift in Sources */,
+				7FC92CF32AA5FC77000C4B2E /* MyPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +379,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,9 +387,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = direchan.SleepWellApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -323,6 +411,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,9 +419,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = direchan.SleepWellApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
