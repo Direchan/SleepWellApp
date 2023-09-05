@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F3E999F2AA6BD24004F1617 /* setBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E999E2AA6BD24004F1617 /* setBackground.swift */; };
+		7F3E99A12AA6BD45004F1617 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E99A02AA6BD45004F1617 /* ThemeColor.swift */; };
 		7FC7786B2AA5C61B00A5CE0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC7786A2AA5C61B00A5CE0F /* AppDelegate.swift */; };
 		7FC7786D2AA5C61B00A5CE0F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC7786C2AA5C61B00A5CE0F /* SceneDelegate.swift */; };
 		7FC7786F2AA5C61B00A5CE0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC7786E2AA5C61B00A5CE0F /* ViewController.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7F3E999E2AA6BD24004F1617 /* setBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setBackground.swift; sourceTree = "<group>"; };
+		7F3E99A02AA6BD45004F1617 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		7FC778672AA5C61B00A5CE0F /* SleepWellApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepWellApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FC7786A2AA5C61B00A5CE0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FC7786C2AA5C61B00A5CE0F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +55,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F3E999C2AA6BCDA004F1617 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7F3E99A02AA6BD45004F1617 /* ThemeColor.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7F3E999D2AA6BCE2004F1617 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7F3E999E2AA6BD24004F1617 /* setBackground.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		7FC7785E2AA5C61B00A5CE0F = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +90,8 @@
 		7FC778692AA5C61B00A5CE0F /* SleepWellApp */ = {
 			isa = PBXGroup;
 			children = (
+				7F3E999D2AA6BCE2004F1617 /* Utils */,
+				7F3E999C2AA6BCDA004F1617 /* Models */,
 				7FC92CE42AA5FB69000C4B2E /* LikePage */,
 				7FC92CE62AA5FB71000C4B2E /* MyPage */,
 				7FC92CE52AA5FB6E000C4B2E /* TimerPage */,
@@ -220,11 +242,13 @@
 				7FC92CEB2AA5FC2C000C4B2E /* HomePageViewController.swift in Sources */,
 				7FC7786F2AA5C61B00A5CE0F /* ViewController.swift in Sources */,
 				7FC7786B2AA5C61B00A5CE0F /* AppDelegate.swift in Sources */,
+				7F3E99A12AA6BD45004F1617 /* ThemeColor.swift in Sources */,
 				7FC92CF52AA5FC80000C4B2E /* LikePageViewController.swift in Sources */,
 				7FC92CEF2AA5FC62000C4B2E /* SignUpPageViewController.swift in Sources */,
 				7FC92CED2AA5FC52000C4B2E /* LoginPageViewController.swift in Sources */,
 				7FC7786D2AA5C61B00A5CE0F /* SceneDelegate.swift in Sources */,
 				7FC92CF32AA5FC77000C4B2E /* MyPageViewController.swift in Sources */,
+				7F3E999F2AA6BD24004F1617 /* setBackground.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
