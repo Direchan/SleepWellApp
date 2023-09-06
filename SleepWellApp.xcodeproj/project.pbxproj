@@ -22,6 +22,7 @@
 		7FC92CF52AA5FC80000C4B2E /* LikePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CF42AA5FC80000C4B2E /* LikePageViewController.swift */; };
 		7FC92CF72AA5FC8A000C4B2E /* DetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CF62AA5FC8A000C4B2E /* DetailPageViewController.swift */; };
 		D80BAAF52AA82C0C00B49628 /* BackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF42AA82C0C00B49628 /* BackgroundViewController.swift */; };
+		D80BAAF72AA864E400B49628 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF62AA864E400B49628 /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		7FC92CF42AA5FC80000C4B2E /* LikePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePageViewController.swift; sourceTree = "<group>"; };
 		7FC92CF62AA5FC8A000C4B2E /* DetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageViewController.swift; sourceTree = "<group>"; };
 		D80BAAF42AA82C0C00B49628 /* BackgroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundViewController.swift; sourceTree = "<group>"; };
+		D80BAAF62AA864E400B49628 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				7FC7786A2AA5C61B00A5CE0F /* AppDelegate.swift */,
 				7FC7786C2AA5C61B00A5CE0F /* SceneDelegate.swift */,
 				7FC7786E2AA5C61B00A5CE0F /* ViewController.swift */,
+				D80BAAF62AA864E400B49628 /* MainTabBarController.swift */,
 				7FC778732AA5C61C00A5CE0F /* Assets.xcassets */,
 				7FC778752AA5C61C00A5CE0F /* LaunchScreen.storyboard */,
 				7FC778782AA5C61C00A5CE0F /* Info.plist */,
@@ -246,6 +249,7 @@
 				7FC92CEF2AA5FC62000C4B2E /* SignUpPageViewController.swift in Sources */,
 				7FC92CED2AA5FC52000C4B2E /* LoginPageViewController.swift in Sources */,
 				7FC7786D2AA5C61B00A5CE0F /* SceneDelegate.swift in Sources */,
+				D80BAAF72AA864E400B49628 /* MainTabBarController.swift in Sources */,
 				D80BAAF52AA82C0C00B49628 /* BackgroundViewController.swift in Sources */,
 				7FC92CF32AA5FC77000C4B2E /* MyPageViewController.swift in Sources */,
 				7F3E999F2AA6BD24004F1617 /* setBackground.swift in Sources */,
