@@ -7,13 +7,14 @@
 
 import UIKit
 
-class TimerPageViewController: UIViewController {
+class TimerViewController: UIViewController {
     
     // MARK: - UI Elements
     private lazy var timerLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 48)
+        label.font = UIFont.systemFont(ofSize: 29)
         label.textAlignment = .center
+        label.textColor = UIColor(named: "pointColor")
         label.text = "00:00:00"
         return label
     }()
@@ -22,9 +23,10 @@ class TimerPageViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("시간 설정", for: .normal)
         button.addTarget(self, action: #selector(setTime), for: .touchUpInside)
-        button.backgroundColor = UIColor.yellow.withAlphaComponent(1.0)
-        button.setTitleColor(UIColor.blue, for: .normal)
-        button.layer.cornerRadius = 17.5 // 알약 모양
+        button.backgroundColor = UIColor(named: "pointColor")?.withAlphaComponent(1.0)
+        button.setTitleColor(UIColor(named: "backgroundColor"), for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.layer.cornerRadius = 12.5 // 알약 모양
         return button
     }()
     
@@ -32,8 +34,9 @@ class TimerPageViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("START", for: .normal)
         button.addTarget(self, action: #selector(startTimer), for: .touchUpInside)
-        button.backgroundColor = UIColor.blue.withAlphaComponent(1.0)
-        button.setTitleColor(UIColor.yellow, for: .normal)
+        button.backgroundColor = UIColor(named: "tabbarColor")
+        button.setTitleColor(UIColor(named: "pointColor"), for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.layer.cornerRadius = 17.5 // 알약 모양
         return button
     }()
@@ -42,8 +45,9 @@ class TimerPageViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("STOP", for: .normal)
         button.addTarget(self, action: #selector(stopTimer), for: .touchUpInside)
-        button.backgroundColor = UIColor.blue.withAlphaComponent(1.0)
-        button.setTitleColor(UIColor.yellow, for: .normal)
+        button.backgroundColor = UIColor(named: "tabbarColor")
+        button.setTitleColor(UIColor(named: "pointColor"), for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.layer.cornerRadius = 17.5 // 알약 모양
         return button
     }()
@@ -57,15 +61,15 @@ class TimerPageViewController: UIViewController {
     
     private lazy var timerHeadView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.yellow.withAlphaComponent(0.4)
-        view.layer.cornerRadius = 8  // half of height to make it pill-shaped
+        view.backgroundColor = UIColor(named: "pointColor")
+        view.layer.cornerRadius = 8
         return view
     }()
     
     private lazy var circleView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.yellow.withAlphaComponent(0.4)
-        view.layer.borderColor = UIColor.blue.cgColor
+        view.backgroundColor = UIColor(named: "pointColor")?.withAlphaComponent(0.1)
+        view.layer.borderColor = UIColor(named: "pointColor")?.cgColor
         view.layer.borderWidth = 2.0
         view.layer.cornerRadius = 150
         return view
@@ -79,7 +83,8 @@ class TimerPageViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = UIColor(named: "backgroundColor")
+
         
         // Set up UI elements
         setupConstraint()
@@ -105,8 +110,8 @@ class TimerPageViewController: UIViewController {
         
         
         NSLayoutConstraint.activate([
-            timeSetButton.widthAnchor.constraint(equalToConstant: 100),
-            timeSetButton.heightAnchor.constraint(equalToConstant: 35),
+            timeSetButton.widthAnchor.constraint(equalToConstant: 80),
+            timeSetButton.heightAnchor.constraint(equalToConstant: 25),
             
             startButton.widthAnchor.constraint(equalToConstant: 90),
             startButton.heightAnchor.constraint(equalToConstant: 35),
@@ -120,7 +125,7 @@ class TimerPageViewController: UIViewController {
             timerLabel.centerYAnchor.constraint(equalTo: circleView.centerYAnchor),
             
             timeSetButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            timeSetButton.topAnchor.constraint(equalTo: timerLabel.bottomAnchor, constant: 20),
+            timeSetButton.topAnchor.constraint(equalTo: timerLabel.bottomAnchor, constant: 10),
             
             circleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             circleView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -146,7 +151,7 @@ class TimerPageViewController: UIViewController {
     @objc private func setTime() {
         timePicker.addTarget(self, action: #selector(timeChanged(_:)), for: .valueChanged)
         
-        let alert = UIAlertController(title: "Set Timer", message: "\n\n\n\n\n\n", preferredStyle: .alert)
+        let alert = UIAlertController(title: "타이머 시간 설정", message: "\n\n\n\n\n\n", preferredStyle: .alert)
         
         alert.view.addSubview(timePicker)
         
