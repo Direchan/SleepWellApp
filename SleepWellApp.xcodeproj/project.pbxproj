@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F3E999F2AA6BD24004F1617 /* setBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E999E2AA6BD24004F1617 /* setBackground.swift */; };
-		7F3E99A12AA6BD45004F1617 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E99A02AA6BD45004F1617 /* ThemeColor.swift */; };
 		7FC7786B2AA5C61B00A5CE0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC7786A2AA5C61B00A5CE0F /* AppDelegate.swift */; };
 		7FC7786D2AA5C61B00A5CE0F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC7786C2AA5C61B00A5CE0F /* SceneDelegate.swift */; };
-		7FC7786F2AA5C61B00A5CE0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC7786E2AA5C61B00A5CE0F /* ViewController.swift */; };
 		7FC778742AA5C61C00A5CE0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FC778732AA5C61C00A5CE0F /* Assets.xcassets */; };
 		7FC778772AA5C61C00A5CE0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FC778752AA5C61C00A5CE0F /* LaunchScreen.storyboard */; };
 		7FC92CEB2AA5FC2C000C4B2E /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CEA2AA5FC2C000C4B2E /* HomePageViewController.swift */; };
@@ -23,15 +20,13 @@
 		7FC92CF72AA5FC8A000C4B2E /* DetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CF62AA5FC8A000C4B2E /* DetailPageViewController.swift */; };
 		D80BAAF72AA864E400B49628 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF62AA864E400B49628 /* MainTabBarController.swift */; };
 		D80BAAF92AA880FF00B49628 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */; };
+		E22A50CF2AA8984900092365 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A50CE2AA8984900092365 /* UIColor+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7F3E999E2AA6BD24004F1617 /* setBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setBackground.swift; sourceTree = "<group>"; };
-		7F3E99A02AA6BD45004F1617 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		7FC778672AA5C61B00A5CE0F /* SleepWellApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepWellApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FC7786A2AA5C61B00A5CE0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FC7786C2AA5C61B00A5CE0F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7FC7786E2AA5C61B00A5CE0F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7FC778732AA5C61C00A5CE0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7FC778762AA5C61C00A5CE0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7FC778782AA5C61C00A5CE0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -44,6 +39,7 @@
 		7FC92CF62AA5FC8A000C4B2E /* DetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageViewController.swift; sourceTree = "<group>"; };
 		D80BAAF62AA864E400B49628 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		E22A50CE2AA8984900092365 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +56,6 @@
 		7F3E999C2AA6BCDA004F1617 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7F3E99A02AA6BD45004F1617 /* ThemeColor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -68,8 +63,8 @@
 		7F3E999D2AA6BCE2004F1617 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				7F3E999E2AA6BD24004F1617 /* setBackground.swift */,
-				D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */,
+				E22A50D42AA8996000092365 /* Cell */,
+				E22A50CD2AA8980900092365 /* Extension */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -93,22 +88,8 @@
 		7FC778692AA5C61B00A5CE0F /* SleepWellApp */ = {
 			isa = PBXGroup;
 			children = (
-				7F3E999D2AA6BCE2004F1617 /* Utils */,
-				7F3E999C2AA6BCDA004F1617 /* Models */,
-				7FC92CE42AA5FB69000C4B2E /* LikePage */,
-				7FC92CE62AA5FB71000C4B2E /* MyPage */,
-				7FC92CE52AA5FB6E000C4B2E /* TimerPage */,
-				7FC92CE92AA5FB78000C4B2E /* SignUpPage */,
-				7FC92CE82AA5FB75000C4B2E /* LoginPage */,
-				7FC92CE72AA5FB73000C4B2E /* HomePage */,
-				7FC92CE32AA5FB60000C4B2E /* DetailPage */,
-				7FC7786A2AA5C61B00A5CE0F /* AppDelegate.swift */,
-				7FC7786C2AA5C61B00A5CE0F /* SceneDelegate.swift */,
-				7FC7786E2AA5C61B00A5CE0F /* ViewController.swift */,
-				D80BAAF62AA864E400B49628 /* MainTabBarController.swift */,
-				7FC778732AA5C61C00A5CE0F /* Assets.xcassets */,
-				7FC778752AA5C61C00A5CE0F /* LaunchScreen.storyboard */,
-				7FC778782AA5C61C00A5CE0F /* Info.plist */,
+				E22A50D22AA898F500092365 /* Resource */,
+				E22A50D12AA898C400092365 /* Screen */,
 			);
 			path = SleepWellApp;
 			sourceTree = "<group>";
@@ -167,6 +148,59 @@
 				7FC92CEE2AA5FC62000C4B2E /* SignUpPageViewController.swift */,
 			);
 			path = SignUpPage;
+			sourceTree = "<group>";
+		};
+		E22A50CD2AA8980900092365 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E22A50CE2AA8984900092365 /* UIColor+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		E22A50D12AA898C400092365 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				7F3E999D2AA6BCE2004F1617 /* Utils */,
+				7F3E999C2AA6BCDA004F1617 /* Models */,
+				E22A50D32AA8994200092365 /* TabBar */,
+				7FC92CE32AA5FB60000C4B2E /* DetailPage */,
+				7FC92CE72AA5FB73000C4B2E /* HomePage */,
+				7FC92CE82AA5FB75000C4B2E /* LoginPage */,
+				7FC92CE92AA5FB78000C4B2E /* SignUpPage */,
+				7FC92CE52AA5FB6E000C4B2E /* TimerPage */,
+				7FC92CE62AA5FB71000C4B2E /* MyPage */,
+				7FC92CE42AA5FB69000C4B2E /* LikePage */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		E22A50D22AA898F500092365 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				7FC7786A2AA5C61B00A5CE0F /* AppDelegate.swift */,
+				7FC7786C2AA5C61B00A5CE0F /* SceneDelegate.swift */,
+				7FC778732AA5C61C00A5CE0F /* Assets.xcassets */,
+				7FC778752AA5C61C00A5CE0F /* LaunchScreen.storyboard */,
+				7FC778782AA5C61C00A5CE0F /* Info.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		E22A50D32AA8994200092365 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				D80BAAF62AA864E400B49628 /* MainTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		E22A50D42AA8996000092365 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,9 +276,7 @@
 				7FC92CF72AA5FC8A000C4B2E /* DetailPageViewController.swift in Sources */,
 				7FC92CF12AA5FC6E000C4B2E /* TimerPageViewController.swift in Sources */,
 				7FC92CEB2AA5FC2C000C4B2E /* HomePageViewController.swift in Sources */,
-				7FC7786F2AA5C61B00A5CE0F /* ViewController.swift in Sources */,
 				7FC7786B2AA5C61B00A5CE0F /* AppDelegate.swift in Sources */,
-				7F3E99A12AA6BD45004F1617 /* ThemeColor.swift in Sources */,
 				7FC92CF52AA5FC80000C4B2E /* LikePageViewController.swift in Sources */,
 				7FC92CEF2AA5FC62000C4B2E /* SignUpPageViewController.swift in Sources */,
 				7FC92CED2AA5FC52000C4B2E /* LoginPageViewController.swift in Sources */,
@@ -252,7 +284,7 @@
 				D80BAAF92AA880FF00B49628 /* CustomTableViewCell.swift in Sources */,
 				D80BAAF72AA864E400B49628 /* MainTabBarController.swift in Sources */,
 				7FC92CF32AA5FC77000C4B2E /* MyPageViewController.swift in Sources */,
-				7F3E999F2AA6BD24004F1617 /* setBackground.swift in Sources */,
+				E22A50CF2AA8984900092365 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,7 +425,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RVG276WKQ2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SleepWellApp/Info.plist;
+				INFOPLIST_FILE = SleepWellApp/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -424,7 +456,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RVG276WKQ2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SleepWellApp/Info.plist;
+				INFOPLIST_FILE = SleepWellApp/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
