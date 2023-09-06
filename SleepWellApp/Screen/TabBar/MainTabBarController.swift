@@ -9,38 +9,50 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupTabBarAppearance()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupViewControllers()
+        setupInitialTab()
+        setupTabBarItemAppearance()
+    }
+    
+    
+    private func setupTabBarAppearance() {
+        tabBar.isTranslucent = false
+        tabBar.barTintColor = .deepIndigo?.withAlphaComponent(1.0)
+        tabBar.tintColor = .pastelYellow
+    }
+    
+    private func setupViewControllers() {
         let homePageViewController = HomePageViewController()
-        let timerViewController = TimerViewController()
+        let timerPageViewController = TimerPageViewController()
         let likePageViewController = LikePageViewController()
         
         homePageViewController.tabBarItem = UITabBarItem(title: "홈", image: UIImage(systemName: "house.fill"), tag: 0)
-        timerViewController.tabBarItem = UITabBarItem(title: "타이머", image: UIImage(systemName: "clock.fill"), tag: 1)
+        timerPageViewController.tabBarItem = UITabBarItem(title: "타이머", image: UIImage(systemName: "clock.fill"), tag: 1)
         likePageViewController.tabBarItem = UITabBarItem(title: "찜", image: UIImage(systemName: "heart.fill"), tag: 2)
         
-        let tabBarList = [homePageViewController, timerViewController, likePageViewController]
-        
+        let tabBarList = [homePageViewController, timerPageViewController, likePageViewController]
         viewControllers = tabBarList
-                
-        tabBar.isTranslucent = false
-
-        
-        // 탭바 배경색 설정
-        tabBar.barTintColor = .deepIndigo?.withAlphaComponent(1.0)
-        
-        // 탭바 아이템 노랑색으로 활성화
-        tabBar.tintColor = .pastelYellow
-        
-        // 글자 크기 조정
-        let appearance = UITabBarItem.appearance()
+    }
+    
+    private func setupInitialTab() {
+        self.selectedIndex = 1
+    }
+    
+    private func setupTabBarItemAppearance() {
         let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
-        appearance.setTitleTextAttributes(attributes, for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .normal)
     }
 }
 
-// UIColor를 UIImage로 변환하는 유틸리티
+
 extension UIImage {
     static func from(color: UIColor) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
