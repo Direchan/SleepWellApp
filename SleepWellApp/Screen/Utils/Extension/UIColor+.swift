@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    class var deppIndigo: UIColor? { return UIColor(named: "deppIndigo") }
+    class var deepIndigo: UIColor? { return UIColor(named: "deepIndigo") }
     class var indigo: UIColor? { return UIColor(named: "indigo") }
     class var pastelYellow: UIColor? { return UIColor(named: "pastelYellow") }
 }
