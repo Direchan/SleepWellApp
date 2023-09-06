@@ -28,7 +28,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
     let nicknameLabel: UILabel = {
         let label = UILabel()
         label.text = "닉네임"
-        label.textColor = UIColor(named: "pointColor")
+        label.textColor = .pastelYellow
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -52,7 +52,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
     let idLabel: UILabel = {
         let label = UILabel()
         label.text = "아이디"
-        label.textColor = UIColor(named: "pointColor")
+        label.textColor = .pastelYellow
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -77,7 +77,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
     let passwordLabel: UILabel = {
         let label = UILabel()
         label.text = "비밀번호"
-        label.textColor = UIColor(named: "pointColor")
+        label.textColor = .pastelYellow
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -126,7 +126,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
     func configureTextField(for textField: UITextField) {
         textField.textColor = .white
         textField.font = UIFont.systemFont(ofSize: 14)
-        textField.backgroundColor = UIColor(named: "tabbarColor")
+        textField.backgroundColor = .deepIndigo
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -151,7 +151,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         passwordField.delegate = self
 
     
-        view.backgroundColor = UIColor(named: "backgroundColor")
+        view.backgroundColor = .indigo
         view.addSubview(logoImageView)
         
         NSLayoutConstraint.activate([
