@@ -21,6 +21,7 @@
 		D80BAAF72AA864E400B49628 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF62AA864E400B49628 /* MainTabBarController.swift */; };
 		D80BAAF92AA880FF00B49628 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */; };
 		E22A50CF2AA8984900092365 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A50CE2AA8984900092365 /* UIColor+.swift */; };
+		E2DD3D8D2AA8A35F00198F04 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD3D8C2AA8A35F00198F04 /* VideoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		D80BAAF62AA864E400B49628 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		E22A50CE2AA8984900092365 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		E2DD3D8C2AA8A35F00198F04 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				7FC92CEA2AA5FC2C000C4B2E /* HomePageViewController.swift */,
+				E2DD3D8C2AA8A35F00198F04 /* VideoCollectionViewCell.swift */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			files = (
 				7FC92CF72AA5FC8A000C4B2E /* DetailPageViewController.swift in Sources */,
 				7FC92CF12AA5FC6E000C4B2E /* TimerPageViewController.swift in Sources */,
+				E2DD3D8D2AA8A35F00198F04 /* VideoCollectionViewCell.swift in Sources */,
 				7FC92CEB2AA5FC2C000C4B2E /* HomePageViewController.swift in Sources */,
 				7FC7786B2AA5C61B00A5CE0F /* AppDelegate.swift in Sources */,
 				7FC92CF52AA5FC80000C4B2E /* LikePageViewController.swift in Sources */,
