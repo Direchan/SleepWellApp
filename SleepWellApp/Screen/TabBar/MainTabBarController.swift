@@ -24,8 +24,11 @@ class MainTabBarController: UITabBarController {
         
         viewControllers = tabBarList
                 
+        tabBar.isTranslucent = false
+
+        
         // 탭바 배경색 설정
-        tabBar.barTintColor = .deepIndigo
+        tabBar.barTintColor = .deepIndigo?.withAlphaComponent(1.0)
         
         // 탭바 아이템 노랑색으로 활성화
         tabBar.tintColor = .pastelYellow
