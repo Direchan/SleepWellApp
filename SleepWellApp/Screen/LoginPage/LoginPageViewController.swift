@@ -12,7 +12,7 @@ class LoginPageViewController: UIViewController {
     // 아이디 입력 텍스트 뷰
     private lazy var 아이디텍스트뷰 :UIView = {
         let view  = UIView()
-        view.backgroundColor = UIColor(named: "tabbarColor")
+        view.backgroundColor = .deepIndigo
         view.layer.cornerRadius = 5
         view.clipsToBounds = true
         view.addSubview(아이디입력필드)
@@ -24,7 +24,7 @@ class LoginPageViewController: UIViewController {
         let label = UILabel()
         label.text = "아이디"
         label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = UIColor(named: "backgroundColor")
+        label.textColor = .indigo
         return label
     }()
     
@@ -33,8 +33,8 @@ class LoginPageViewController: UIViewController {
         var tf = UITextField()
         tf.frame.size.height = 48
         tf.backgroundColor = .clear
-        tf.textColor = UIColor(named: "pointColor")
-        tf.tintColor = UIColor(named: "pointColor")
+        tf.textColor = .pastelYellow
+        tf.tintColor = .pastelYellow
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
         tf.spellCheckingType = .no
@@ -46,7 +46,7 @@ class LoginPageViewController: UIViewController {
     
     private lazy var 비밀번호텍스트뷰 :UIView = {
         let view  = UIView()
-        view.backgroundColor = UIColor(named: "tabbarColor")
+        view.backgroundColor = .deepIndigo
         view.layer.cornerRadius = 5
         view.clipsToBounds = true
         view.addSubview(비밀번호안내문구)
@@ -60,7 +60,7 @@ class LoginPageViewController: UIViewController {
         let label = UILabel()
         label.text = "비밀번호"
         label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = UIColor(named: "backgroundColor")
+        label.textColor = .indigo
         return label
     }()
     
@@ -68,8 +68,8 @@ class LoginPageViewController: UIViewController {
         var tf = UITextField()
         tf.frame.size.height = 48
         tf.backgroundColor = .clear
-        tf.textColor = UIColor(named: "pointColor")
-        tf.tintColor = UIColor(named: "pointColor")
+        tf.textColor = .pastelYellow
+        tf.tintColor = .pastelYellow
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
         tf.spellCheckingType = .no
@@ -83,7 +83,7 @@ class LoginPageViewController: UIViewController {
     private let 비밀번호표시버튼: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("표시", for: .normal)
-        button.setTitleColor(UIColor(named: "backgroundColor"), for: .normal)
+        button.setTitleColor(.indigo, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .light)
         //        button.addTarget(self, action: #selector(passwordSecureModeSetting), for: .touchUpInside)
         return button
@@ -91,12 +91,12 @@ class LoginPageViewController: UIViewController {
     
     private lazy var 로그인버튼: UIButton = {
         let button = UIButton(type: .custom)
-        button.backgroundColor = UIColor(named: "pointColor")
+        button.backgroundColor = .pastelYellow
         button.layer.cornerRadius = 5
         button.clipsToBounds = true
         button.setTitle("로그인", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.titleLabel?.textColor = UIColor(named: "backgroundColor")
+        button.titleLabel?.textColor = .indigo
         button.isEnabled = true
         button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         return button
@@ -120,7 +120,7 @@ class LoginPageViewController: UIViewController {
         button.layer.cornerRadius = 5
         button.clipsToBounds = true
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor(named: "pointColor")?.cgColor
+        button.layer.borderColor = UIColor.pastelYellow?.cgColor
         button.setTitle("회원가입", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         
@@ -142,7 +142,7 @@ class LoginPageViewController: UIViewController {
     
     func ui만들기() {
         
-        view.backgroundColor = UIColor(named: "backgroundColor")
+        view.backgroundColor = .indigo
         view.addSubview(스택뷰)
         view.addSubview(회원가입버튼)
         
