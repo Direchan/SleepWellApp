@@ -14,7 +14,7 @@ class TimerViewController: UIViewController {
         let label = UILabel()
         label.text = "슬립웰 타이머"
         label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
-        label.textColor = UIColor(named: "pointColor")
+        label.textColor = .pastelYellow
         return label
     }()
     
@@ -22,7 +22,7 @@ class TimerViewController: UIViewController {
         let label = UILabel()
         label.text = "정해진 시간이 되면 자동으로 앱을 종료해드려요"
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(named: "pointColor")
+        label.textColor = .pastelYellow
         return label
     }()
     
@@ -30,7 +30,7 @@ class TimerViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 29)
         label.textAlignment = .center
-        label.textColor = UIColor(named: "pointColor")
+        label.textColor = .pastelYellow
         label.text = "00:00:00"
         return label
     }()
@@ -39,8 +39,8 @@ class TimerViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("시간 설정", for: .normal)
         button.addTarget(self, action: #selector(setTime), for: .touchUpInside)
-        button.backgroundColor = UIColor(named: "pointColor")?.withAlphaComponent(1.0)
-        button.setTitleColor(UIColor(named: "backgroundColor"), for: .normal)
+        button.backgroundColor = .pastelYellow?.withAlphaComponent(1.0)
+        button.setTitleColor(.indigo, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.layer.cornerRadius = 12.5 // 알약 모양
         return button
@@ -50,8 +50,8 @@ class TimerViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("START", for: .normal)
         button.addTarget(self, action: #selector(startTimer), for: .touchUpInside)
-        button.backgroundColor = UIColor(named: "tabbarColor")
-        button.setTitleColor(UIColor(named: "pointColor"), for: .normal)
+        button.backgroundColor = .deepIndigo
+        button.setTitleColor(.pastelYellow, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.layer.cornerRadius = 17.5 // 알약 모양
         return button
@@ -61,8 +61,8 @@ class TimerViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("STOP", for: .normal)
         button.addTarget(self, action: #selector(stopTimer), for: .touchUpInside)
-        button.backgroundColor = UIColor(named: "tabbarColor")
-        button.setTitleColor(UIColor(named: "pointColor"), for: .normal)
+        button.backgroundColor = .deepIndigo
+        button.setTitleColor(.pastelYellow, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.layer.cornerRadius = 17.5 // 알약 모양
         return button
@@ -77,15 +77,15 @@ class TimerViewController: UIViewController {
     
     private lazy var timerHeadView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "pointColor")
+        view.backgroundColor = .pastelYellow
         view.layer.cornerRadius = 8
         return view
     }()
     
     private lazy var circleView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "pointColor")?.withAlphaComponent(0.1)
-        view.layer.borderColor = UIColor(named: "pointColor")?.cgColor
+        view.backgroundColor = .pastelYellow?.withAlphaComponent(0.1)
+        view.layer.borderColor = UIColor.pastelYellow?.cgColor
         view.layer.borderWidth = 2.0
         view.layer.cornerRadius = 150
         return view
@@ -99,7 +99,7 @@ class TimerViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(named: "backgroundColor")
+        self.view.backgroundColor = .indigo
 
         
         // Set up UI elements

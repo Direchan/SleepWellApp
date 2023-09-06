@@ -13,7 +13,7 @@ class LikePageViewController: UIViewController {
         let label = UILabel()
         label.text = "좋아요 목록"
         label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
-        label.textColor = UIColor(named: "pointColor")
+        label.textColor = .pastelYellow
         return label
     }()
     
@@ -22,7 +22,7 @@ class LikePageViewController: UIViewController {
         let label = UILabel()
         label.text = "n개"
         label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        label.textColor = UIColor(named: "pointColor")?.withAlphaComponent(0.6)
+        label.textColor = .pastelYellow?.withAlphaComponent(0.6)
         return label
     }()
     
@@ -36,12 +36,11 @@ class LikePageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(named: "backgroundColor")
+        self.view.backgroundColor = .indigo
         tableView.delegate = self
         tableView.dataSource = self
         
         setupConstraint()
-        // Do any additional setup after loading the view.
     }
     
     
@@ -61,9 +60,9 @@ class LikePageViewController: UIViewController {
             
             countListLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-                        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             
         ])
     }
