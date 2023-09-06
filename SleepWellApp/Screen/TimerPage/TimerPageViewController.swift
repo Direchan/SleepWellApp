@@ -127,7 +127,7 @@ class TimerViewController: UIViewController {
         timerHeadView.translatesAutoresizingMaskIntoConstraints = false
         
         
-        
+
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
