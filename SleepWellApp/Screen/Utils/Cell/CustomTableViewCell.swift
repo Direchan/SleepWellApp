@@ -18,7 +18,7 @@ class CustomTableViewCell: UITableViewCell {
     
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = UIColor(named: "tabbarColor")
+        imageView.backgroundColor = .deepIndigo
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 5
         return imageView
@@ -27,7 +27,7 @@ class CustomTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        label.textColor = UIColor(named: "pointColor")
+        label.textColor = .pastelYellow
         label.font = UIFont.systemFont(ofSize: 15)
         
         let paragraphStyle = NSMutableParagraphStyle()
@@ -44,7 +44,7 @@ class CustomTableViewCell: UITableViewCell {
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.text = "조회수 16만회"
-        label.textColor = UIColor(named: "pointColor")?.withAlphaComponent(0.6)
+        label.textColor = .pastelYellow?.withAlphaComponent(0.6)
         label.font = UIFont.systemFont(ofSize: 12)
         
         

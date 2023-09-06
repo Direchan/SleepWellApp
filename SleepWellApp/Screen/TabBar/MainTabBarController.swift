@@ -25,10 +25,10 @@ class MainTabBarController: UITabBarController {
         viewControllers = tabBarList
                 
         // 탭바 배경색 설정
-        tabBar.barTintColor = UIColor(named: "tabbarColor")
+        tabBar.barTintColor = .deepIndigo
         
         // 탭바 아이템 노랑색으로 활성화
-        tabBar.tintColor = UIColor(named: "pointColor")
+        tabBar.tintColor = .pastelYellow
         
         // 글자 크기 조정
         let appearance = UITabBarItem.appearance()
