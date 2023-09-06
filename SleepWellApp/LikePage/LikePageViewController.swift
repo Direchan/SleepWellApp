@@ -55,7 +55,7 @@ class LikePageViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             countListLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 10),
             
