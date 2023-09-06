@@ -9,21 +9,33 @@ import UIKit
 
 class LoginPageViewController: UIViewController {
 
+    lazy var loginButton: UIButton = {
+            let button = UIButton()
+            button.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
+            button.center = view.center
+            button.backgroundColor = .blue
+            button.setTitle("Login", for: .normal)
+            
+            // loginButtonTapped 함수와 연결
+            button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+            
+            return button
+        }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.addSubview(loginButton)
         // Do any additional setup after loading the view.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func loginButtonTapped() {
+        // 로그인 로직 (성공 시)
+        let mainTabBarController = MainTabBarController()
+                UIApplication.shared.windows.first?.rootViewController = mainTabBarController
+                UIApplication.shared.windows.first?.makeKeyAndVisible()
+        
     }
-    */
-
 }
