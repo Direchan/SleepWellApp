@@ -10,6 +10,22 @@ import UIKit
 class TimerViewController: UIViewController {
     
     // MARK: - UI Elements
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "슬립웰 타이머"
+        label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        label.textColor = UIColor(named: "pointColor")
+        return label
+    }()
+    
+    private lazy var subTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "정해진 시간이 되면 자동으로 앱을 종료해드려요"
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor(named: "pointColor")
+        return label
+    }()
+    
     private lazy var timerLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 29)
@@ -91,6 +107,8 @@ class TimerViewController: UIViewController {
     }
     
     private func setupConstraint() {
+        view.addSubview(titleLabel)
+        view.addSubview(subTitleLabel)
         view.addSubview(circleView)
         view.addSubview(timerHeadView)
         view.addSubview(timerLabel)
@@ -99,7 +117,8 @@ class TimerViewController: UIViewController {
         view.addSubview(stopButton)
         
         
-        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         timerLabel.translatesAutoresizingMaskIntoConstraints = false
         timeSetButton.translatesAutoresizingMaskIntoConstraints = false
         startButton.translatesAutoresizingMaskIntoConstraints = false
@@ -110,6 +129,12 @@ class TimerViewController: UIViewController {
         
         
         NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 130),
+            
+            subTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            
             timeSetButton.widthAnchor.constraint(equalToConstant: 80),
             timeSetButton.heightAnchor.constraint(equalToConstant: 25),
             
@@ -120,7 +145,6 @@ class TimerViewController: UIViewController {
             stopButton.heightAnchor.constraint(equalToConstant: 35),
             
             
-            // Center timerLabel within circleView
             timerLabel.centerXAnchor.constraint(equalTo: circleView.centerXAnchor),
             timerLabel.centerYAnchor.constraint(equalTo: circleView.centerYAnchor),
             
@@ -135,15 +159,13 @@ class TimerViewController: UIViewController {
             timerHeadView.widthAnchor.constraint(equalToConstant: 80),
             timerHeadView.heightAnchor.constraint(equalToConstant: 16),
             timerHeadView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            timerHeadView.bottomAnchor.constraint(equalTo: circleView.topAnchor, constant: -15),
+            timerHeadView.bottomAnchor.constraint(equalTo: circleView.topAnchor, constant: -10),
             
-            // Place startButton and stopButton next to each other
             startButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -10),
             stopButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 10),
             
-            // Align these buttons vertically below the circleView
-            startButton.topAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 20),
-            stopButton.topAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 20)
+            startButton.topAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 30),
+            stopButton.topAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 30)
         ])
     }
     
