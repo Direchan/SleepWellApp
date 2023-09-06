@@ -130,10 +130,10 @@ class TimerViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 130),
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
             
             subTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             
             timeSetButton.widthAnchor.constraint(equalToConstant: 80),
             timeSetButton.heightAnchor.constraint(equalToConstant: 25),
