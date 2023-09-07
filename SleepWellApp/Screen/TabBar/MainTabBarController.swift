@@ -14,7 +14,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         
         let homePageViewController = HomePageViewController()
-        let timerViewController = TimerViewController()
+        let timerViewController = TimerPageViewController()
         let likePageViewController = LikePageViewController()
         
         homePageViewController.tabBarItem = UITabBarItem(title: "홈", image: UIImage(systemName: "house.fill"), tag: 0)
@@ -36,7 +36,7 @@ class MainTabBarController: UITabBarController {
         let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
         appearance.setTitleTextAttributes(attributes, for: .normal)
     }
-}
+
 
 // UIColor를 UIImage로 변환하는 유틸리티
 extension UIImage {
@@ -49,7 +49,7 @@ extension UIImage {
         let img = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return img!
-=======
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -57,11 +57,11 @@ extension UIImage {
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupTabBarAppearance()
-    }
-    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        setupTabBarAppearance()
+//    }
+//
     
     //탭바 모양과 색 설정
     private func setupTabBarAppearance() {
