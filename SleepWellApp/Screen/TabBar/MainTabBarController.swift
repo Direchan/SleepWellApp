@@ -40,7 +40,7 @@ class MainTabBarController: UITabBarController {
     
     // 초기 화면 설정
     private func setupInitialTab() {
-        self.selectedIndex = 1
+        self.selectedIndex = 0
     }
     
     
@@ -50,12 +50,21 @@ class MainTabBarController: UITabBarController {
         let timerPageViewController = TimerPageViewController()
         let likePageViewController = LikePageViewController()
         
+        let naviHomePageVC = UINavigationController(rootViewController: homePageViewController)
+        let naviTimerPageVC = UINavigationController(rootViewController: timerPageViewController)
+        let naviLikePageVC = UINavigationController(rootViewController: likePageViewController)
+
+        
+        
         homePageViewController.tabBarItem = UITabBarItem(title: "홈", image: UIImage(systemName: "house.fill"), tag: 0)
         timerPageViewController.tabBarItem = UITabBarItem(title: "타이머", image: UIImage(systemName: "clock.fill"), tag: 1)
         likePageViewController.tabBarItem = UITabBarItem(title: "찜", image: UIImage(systemName: "heart.fill"), tag: 2)
         
-        let tabBarList = [homePageViewController, timerPageViewController, likePageViewController]
+        let tabBarList = [naviHomePageVC, naviTimerPageVC, naviLikePageVC]
         viewControllers = tabBarList
+        
+        
+        
     }
     
 

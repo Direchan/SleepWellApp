@@ -36,13 +36,15 @@ class LikePageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NavigationUtil.setupNavigationBar(for: self)
+
         self.view.backgroundColor = .indigo
         tableView.delegate = self
         tableView.dataSource = self
         
         setupConstraint()
     }
-    
+
     
     private func setupConstraint() {
         view.addSubview(tableView)
@@ -54,7 +56,7 @@ class LikePageViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             countListLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 10),
             
