@@ -7,7 +7,9 @@
 
 import UIKit
 
-class TimerViewController: UIViewController {
+
+class TimerPageViewController: UIViewController {
+
     
     // MARK: - UI Elements
     private lazy var titleLabel: UILabel = {
@@ -126,6 +128,8 @@ class TimerViewController: UIViewController {
         circleView.translatesAutoresizingMaskIntoConstraints = false
         timerHeadView.translatesAutoresizingMaskIntoConstraints = false
         
+        
+
         
 
         NSLayoutConstraint.activate([
