@@ -198,7 +198,28 @@ class LoginPageViewController: UIViewController {
         ])
     }
     
-    
+    // 미래님이 노션에 작성해주신 추가요청 코드
+//    @objc func loginButtonTapped() {
+//        // 입력한 아이디와 비밀번호
+//        guard let enteredUserId = 아이디입력필드.text, let enteredPassword = 비밀번호입력필드.text else {
+//            // 에러 메시지 표시
+//            return
+//        }
+//
+//        // 아이디와 비밀번호 검증
+//        if DataManager.shared.validateUser(userId: enteredUserId, password: enteredPassword) {
+//            // 로그인 성공, 현재 사용자 설정
+//            DataManager.shared.setCurrentUser(userId: enteredUserId)
+//
+//            // 로그인 성공 후 동작 (MainTabBarController로 이동 등)
+//            let tabBarVC = MainTabBarController()
+//            tabBarVC.modalPresentationStyle = .fullScreen
+//            present(tabBarVC, animated: true)
+//        } else {
+//            // 로그인 실패, 에러 메시지 표시
+//        }
+//    }
+//
     
     @objc func loginButtonTapped() {
         // 로그인 로직 (성공 시)
