@@ -9,8 +9,7 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-
-    
+  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupTabBarAppearance()
@@ -21,7 +20,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         setupTabBarAppearance()
     }
-    
+
     
     //탭바 모양과 색 설정
     private func setupTabBarAppearance() {
