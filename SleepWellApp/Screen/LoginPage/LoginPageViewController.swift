@@ -7,7 +7,14 @@
 
 import UIKit
 
-class LoginPageViewController: UIViewController {
+final class LoginPageViewController: UIViewController {
+    
+    private let 이미지뷰 : UIImageView = {
+        let view = UIImageView(image: UIImage(named: "Logo"))
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
     
     // 아이디 입력 텍스트 뷰
     private lazy var 아이디텍스트뷰 :UIView = {
@@ -15,23 +22,25 @@ class LoginPageViewController: UIViewController {
         view.backgroundColor = .deepIndigo
         view.layer.cornerRadius = 5
         view.clipsToBounds = true
-        view.addSubview(아이디입력필드)
         view.addSubview(아이디안내문구)
+        view.addSubview(아이디입력필드)
         return view
     }()
+    
     
     private var 아이디안내문구: UILabel = {
         let label = UILabel()
         label.text = "아이디"
         label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = .indigo
+        label.textColor = .pastelYellow
         return label
     }()
     
+
     
     private lazy var 아이디입력필드 : UITextField = {
         var tf = UITextField()
-        tf.frame.size.height = 48
+        tf.frame.size.height = 53
         tf.backgroundColor = .clear
         tf.textColor = .pastelYellow
         tf.tintColor = .pastelYellow
@@ -60,13 +69,13 @@ class LoginPageViewController: UIViewController {
         let label = UILabel()
         label.text = "비밀번호"
         label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = .indigo
+        label.textColor = .pastelYellow
         return label
     }()
     
     private lazy var 비밀번호입력필드 : UITextField = {
         var tf = UITextField()
-        tf.frame.size.height = 48
+        tf.frame.size.height = 53
         tf.backgroundColor = .clear
         tf.textColor = .pastelYellow
         tf.tintColor = .pastelYellow
@@ -89,21 +98,52 @@ class LoginPageViewController: UIViewController {
         return button
     }()
     
+//    private lazy var 로그인버튼: UIButton = {
+//        let button = UIButton(type: .custom)
+//        button.backgroundColor = .pastelYellow
+//        button.layer.cornerRadius = 20
+//        button.clipsToBounds = true
+//        button.setTitle("로그인", for: .normal)
+//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+//        button.titleLabel?.textColor = .indigo
+//        button.isEnabled = true
+//        button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+//        return button
+//    }()
+//
+    lazy var 아이디스택뷰: UIStackView = {
+        let st = UIStackView(arrangedSubviews: [아이디안내문구, 아이디텍스트뷰, 아이디입력필드])
+        st.spacing = 5
+        st.axis = .vertical
+        st.distribution = .fillEqually
+        st.alignment = .fill
+        
+        return st
+    }()
+    
+    lazy var 비밀번호스택뷰: UIStackView = {
+        let st = UIStackView(arrangedSubviews: [비밀번호안내문구, 비밀번호텍스트뷰, 비밀번호입력필드])
+        st.spacing = 5
+        st.axis = .vertical
+        st.distribution = .fillEqually
+        st.alignment = .fill
+        
+        return st
+    }()
+    
     private lazy var 로그인버튼: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = .pastelYellow
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = 20
         button.clipsToBounds = true
         button.setTitle("로그인", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.titleLabel?.textColor = .indigo
         button.isEnabled = true
         button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         return button
     }()
     
     lazy var 스택뷰: UIStackView = {
-        let st = UIStackView(arrangedSubviews: [아이디텍스트뷰, 비밀번호텍스트뷰, 로그인버튼])
+        let st = UIStackView(arrangedSubviews: [아이디스택뷰, 비밀번호스택뷰, 로그인버튼])
         st.spacing = 18
         st.axis = .vertical
         st.distribution = .fillEqually
@@ -113,11 +153,24 @@ class LoginPageViewController: UIViewController {
     }()
     
     
+    
+    
+    private var 회원가입안내문구: UILabel = {
+        let label = UILabel()
+        label.text = "\"아직 회원이 아니신가요?\""
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .pastelYellow
+        return label
+    }()
+    
+    
+    
+    
     // 회원가입 버튼
     private lazy var 회원가입버튼: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = 20
         button.clipsToBounds = true
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.pastelYellow?.cgColor
@@ -134,6 +187,9 @@ class LoginPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(이미지뷰)
+        view.addSubview(아이디스택뷰)
+        view.addSubview(비밀번호스택뷰)
         view.addSubview(로그인버튼)
         
         ui만들기()
@@ -144,61 +200,63 @@ class LoginPageViewController: UIViewController {
         
         view.backgroundColor = .indigo
         view.addSubview(스택뷰)
+        
+        view.addSubview(회원가입안내문구)
         view.addSubview(회원가입버튼)
         
         
-        아이디안내문구.translatesAutoresizingMaskIntoConstraints = false
-        아이디입력필드.translatesAutoresizingMaskIntoConstraints = false
-        비밀번호안내문구.translatesAutoresizingMaskIntoConstraints = false
-        비밀번호입력필드.translatesAutoresizingMaskIntoConstraints = false
+        이미지뷰.translatesAutoresizingMaskIntoConstraints = false
+        아이디스택뷰.translatesAutoresizingMaskIntoConstraints = false
+        비밀번호스택뷰.translatesAutoresizingMaskIntoConstraints = false
         비밀번호표시버튼.translatesAutoresizingMaskIntoConstraints = false
         스택뷰.translatesAutoresizingMaskIntoConstraints = false
+        로그인버튼.translatesAutoresizingMaskIntoConstraints = false
+        회원가입안내문구.translatesAutoresizingMaskIntoConstraints = false
         회원가입버튼.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
-            아이디안내문구.leadingAnchor.constraint(equalTo: 아이디입력필드.leadingAnchor, constant: 8),
-            아이디안내문구.trailingAnchor.constraint(equalTo: 아이디입력필드.trailingAnchor, constant: 8),
-            아이디안내문구.centerYAnchor.constraint(equalTo: 아이디입력필드.centerYAnchor, constant: 0),
+            이미지뷰.centerXAnchor.constraint(equalTo: view.centerXAnchor), //가로위치
+            이미지뷰.topAnchor.constraint(equalTo: view.topAnchor, constant: 150), //위에서부터 떨어지는 위치
+            이미지뷰.widthAnchor.constraint(equalToConstant: 132),
+            이미지뷰.heightAnchor.constraint(equalToConstant: 45),
+        
+            아이디스택뷰.topAnchor.constraint(equalTo: 이미지뷰.bottomAnchor, constant: 15),
+            아이디스택뷰.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
+//            아이디입력필드.leadingAnchor.constraint(equalTo: 아이디텍스트뷰.leadingAnchor, constant: 8),
+//            아이디입력필드.trailingAnchor.constraint(equalTo: 아이디텍스트뷰.trailingAnchor, constant: 8),
+//            아이디입력필드.topAnchor.constraint(equalTo: 아이디텍스트뷰.topAnchor, constant: 8),
+//            아이디입력필드.bottomAnchor.constraint(equalTo: 아이디텍스트뷰.bottomAnchor, constant: 2),
+//
+//            비밀번호안내문구.leadingAnchor.constraint(equalTo: 비밀번호텍스트뷰.leadingAnchor, constant: 8),
+//            비밀번호안내문구.trailingAnchor.constraint(equalTo: 비밀번호텍스트뷰.trailingAnchor, constant: 8),
+//            비밀번호안내문구.centerYAnchor.constraint(equalTo: 비밀번호텍스트뷰.centerYAnchor),
             
-            아이디입력필드.leadingAnchor.constraint(equalTo: 아이디텍스트뷰.leadingAnchor, constant: 8),
-            아이디입력필드.trailingAnchor.constraint(equalTo: 아이디텍스트뷰.trailingAnchor, constant: 8),
-            아이디입력필드.topAnchor.constraint(equalTo: 아이디텍스트뷰.topAnchor, constant: 15),
-            아이디입력필드.bottomAnchor.constraint(equalTo: 아이디텍스트뷰.bottomAnchor, constant: 2),
-            
-            
-            비밀번호안내문구.leadingAnchor.constraint(equalTo: 비밀번호텍스트뷰.leadingAnchor, constant: 8),
-            비밀번호안내문구.trailingAnchor.constraint(equalTo: 비밀번호텍스트뷰.trailingAnchor, constant: 8),
-            비밀번호안내문구.centerYAnchor.constraint(equalTo: 비밀번호텍스트뷰.centerYAnchor),
-            
-            
-            비밀번호입력필드.topAnchor.constraint(equalTo: 비밀번호텍스트뷰.topAnchor, constant: 15),
-            비밀번호입력필드.bottomAnchor.constraint(equalTo: 비밀번호텍스트뷰.bottomAnchor, constant: 2),
-            비밀번호입력필드.leadingAnchor.constraint(equalTo: 비밀번호텍스트뷰.leadingAnchor, constant: 8),
-            비밀번호입력필드.trailingAnchor.constraint(equalTo: 비밀번호텍스트뷰.trailingAnchor, constant: 8),
-            
+            비밀번호스택뷰.topAnchor.constraint(equalTo: 아이디스택뷰.bottomAnchor, constant: 1),
+            비밀번호스택뷰.centerXAnchor.constraint(equalTo: 아이디스택뷰.centerXAnchor),
             
             비밀번호표시버튼.topAnchor.constraint(equalTo: 비밀번호텍스트뷰.topAnchor, constant: 15),
             비밀번호표시버튼.bottomAnchor.constraint(equalTo: 비밀번호텍스트뷰.bottomAnchor, constant: -15),
             비밀번호표시버튼.trailingAnchor.constraint(equalTo: 비밀번호텍스트뷰.trailingAnchor, constant: -8),
             
-            
+
             스택뷰.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             스택뷰.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             스택뷰.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             스택뷰.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            스택뷰.heightAnchor.constraint(equalToConstant: 입력창높이*3 + 36),
+            스택뷰.heightAnchor.constraint(equalToConstant: 입력창높이*2 + 36),
+            
+        
+            회원가입안내문구.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            회원가입안내문구.bottomAnchor.constraint(equalTo: 회원가입버튼.topAnchor, constant: -15),
             
             
-            회원가입버튼.topAnchor.constraint(equalTo: 스택뷰.bottomAnchor, constant: 10),
-            회원가입버튼.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            회원가입버튼.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            회원가입버튼.topAnchor.constraint(equalTo: 스택뷰.bottomAnchor, constant: 150),
+            회원가입버튼.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
+            회원가입버튼.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
             회원가입버튼.heightAnchor.constraint(equalToConstant: 입력창높이)
         ])
-        
-        
-        
         
     }
     
@@ -209,6 +267,11 @@ class LoginPageViewController: UIViewController {
         let mainTabBarController = MainTabBarController()
         UIApplication.shared.windows.first?.rootViewController = mainTabBarController
         UIApplication.shared.windows.first?.makeKeyAndVisible()
-        
+    }
+    
+    @objc func SignUpButtonTapped() {
+        let signUpPageViewController = SignUpPageViewController()
+        UIApplication.shared.windows.first?.rootViewController = signUpPageViewController
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
 }
