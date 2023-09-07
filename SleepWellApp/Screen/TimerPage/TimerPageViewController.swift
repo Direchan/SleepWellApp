@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TimerViewController: UIViewController {
+class TimerPageViewController: UIViewController {
     
     // MARK: - UI Elements
     private lazy var titleLabel: UILabel = {
