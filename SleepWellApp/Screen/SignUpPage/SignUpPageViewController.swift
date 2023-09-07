@@ -33,7 +33,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     let nicknameRuleLabel: UILabel = {
         let label = UILabel()
         label.text = "5글자 이내"
