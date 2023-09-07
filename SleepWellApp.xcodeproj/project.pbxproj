@@ -20,6 +20,10 @@
 		7FC92CF72AA5FC8A000C4B2E /* DetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CF62AA5FC8A000C4B2E /* DetailPageViewController.swift */; };
 		D80BAAF72AA864E400B49628 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF62AA864E400B49628 /* MainTabBarController.swift */; };
 		D80BAAF92AA880FF00B49628 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */; };
+		D87C7EE82AA95CD200BA51C0 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EE72AA95CD200BA51C0 /* DataManager.swift */; };
+		D87C7EEA2AA95F2300BA51C0 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EE92AA95F2300BA51C0 /* user.swift */; };
+		D87C7EEC2AA9699A00BA51C0 /* video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EEB2AA9699A00BA51C0 /* video.swift */; };
+		D87C7EEF2AA9832600BA51C0 /* NavigationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EEE2AA9832600BA51C0 /* NavigationUtil.swift */; };
 		E22A50CF2AA8984900092365 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A50CE2AA8984900092365 /* UIColor+.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +43,10 @@
 		7FC92CF62AA5FC8A000C4B2E /* DetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageViewController.swift; sourceTree = "<group>"; };
 		D80BAAF62AA864E400B49628 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		D87C7EE72AA95CD200BA51C0 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataManager.swift; path = SleepWellApp/DataManager.swift; sourceTree = SOURCE_ROOT; };
+		D87C7EE92AA95F2300BA51C0 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = user.swift; path = SleepWellApp/user.swift; sourceTree = SOURCE_ROOT; };
+		D87C7EEB2AA9699A00BA51C0 /* video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = video.swift; path = SleepWellApp/video.swift; sourceTree = SOURCE_ROOT; };
+		D87C7EEE2AA9832600BA51C0 /* NavigationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUtil.swift; sourceTree = "<group>"; };
 		E22A50CE2AA8984900092365 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +64,9 @@
 		7F3E999C2AA6BCDA004F1617 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D87C7EE72AA95CD200BA51C0 /* DataManager.swift */,
+				D87C7EE92AA95F2300BA51C0 /* user.swift */,
+				D87C7EEB2AA9699A00BA51C0 /* video.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -63,6 +74,7 @@
 		7F3E999D2AA6BCE2004F1617 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D87C7EED2AA9830C00BA51C0 /* NavigationBar */,
 				E22A50D42AA8996000092365 /* Cell */,
 				E22A50CD2AA8980900092365 /* Extension */,
 			);
@@ -148,6 +160,14 @@
 				7FC92CEE2AA5FC62000C4B2E /* SignUpPageViewController.swift */,
 			);
 			path = SignUpPage;
+			sourceTree = "<group>";
+		};
+		D87C7EED2AA9830C00BA51C0 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				D87C7EEE2AA9832600BA51C0 /* NavigationUtil.swift */,
+			);
+			path = NavigationBar;
 			sourceTree = "<group>";
 		};
 		E22A50CD2AA8980900092365 /* Extension */ = {
@@ -277,13 +297,17 @@
 				7FC92CF12AA5FC6E000C4B2E /* TimerPageViewController.swift in Sources */,
 				7FC92CEB2AA5FC2C000C4B2E /* HomePageViewController.swift in Sources */,
 				7FC7786B2AA5C61B00A5CE0F /* AppDelegate.swift in Sources */,
+				D87C7EEA2AA95F2300BA51C0 /* user.swift in Sources */,
 				7FC92CF52AA5FC80000C4B2E /* LikePageViewController.swift in Sources */,
 				7FC92CEF2AA5FC62000C4B2E /* SignUpPageViewController.swift in Sources */,
 				7FC92CED2AA5FC52000C4B2E /* LoginPageViewController.swift in Sources */,
 				7FC7786D2AA5C61B00A5CE0F /* SceneDelegate.swift in Sources */,
 				D80BAAF92AA880FF00B49628 /* CustomTableViewCell.swift in Sources */,
+				D87C7EEC2AA9699A00BA51C0 /* video.swift in Sources */,
 				D80BAAF72AA864E400B49628 /* MainTabBarController.swift in Sources */,
+				D87C7EE82AA95CD200BA51C0 /* DataManager.swift in Sources */,
 				7FC92CF32AA5FC77000C4B2E /* MyPageViewController.swift in Sources */,
+				D87C7EEF2AA9832600BA51C0 /* NavigationUtil.swift in Sources */,
 				E22A50CF2AA8984900092365 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

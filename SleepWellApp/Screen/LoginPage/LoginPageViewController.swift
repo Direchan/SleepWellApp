@@ -196,19 +196,14 @@ class LoginPageViewController: UIViewController {
             회원가입버튼.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             회원가입버튼.heightAnchor.constraint(equalToConstant: 입력창높이)
         ])
-        
-        
-        
-        
     }
     
     
     
     @objc func loginButtonTapped() {
         // 로그인 로직 (성공 시)
-        let mainTabBarController = MainTabBarController()
-        UIApplication.shared.windows.first?.rootViewController = mainTabBarController
-        UIApplication.shared.windows.first?.makeKeyAndVisible()
-        
+        let tabBarVC = MainTabBarController()
+        tabBarVC.modalPresentationStyle = .fullScreen
+        present(tabBarVC, animated: true)
     }
 }
