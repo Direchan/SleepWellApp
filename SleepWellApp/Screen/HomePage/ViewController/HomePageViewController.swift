@@ -140,7 +140,7 @@ class HomePageViewController: UIViewController {
         segmentedControl.setTitleTextAttributes(
           [
             NSAttributedString.Key.foregroundColor: UIColor.pastelYellow  ?? UIColor(),
-            .font: UIFont.systemFont(ofSize: 12, weight: .bold)
+            .font: UIFont.systemFont(ofSize: 13, weight: .bold)
           ],
           for: .selected
         )
