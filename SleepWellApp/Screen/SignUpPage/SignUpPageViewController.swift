@@ -25,6 +25,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
+    
     let nicknameLabel: UILabel = {
         let label = UILabel()
         label.text = "닉네임"

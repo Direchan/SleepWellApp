@@ -18,12 +18,14 @@
 		7FC92CF32AA5FC77000C4B2E /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CF22AA5FC77000C4B2E /* MyPageViewController.swift */; };
 		7FC92CF52AA5FC80000C4B2E /* LikePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CF42AA5FC80000C4B2E /* LikePageViewController.swift */; };
 		7FC92CF72AA5FC8A000C4B2E /* DetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CF62AA5FC8A000C4B2E /* DetailPageViewController.swift */; };
+		8E5757F00FCCC0EF31AC7A8D /* Pods_SleepWellApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD5FA1450780331446E2F7F /* Pods_SleepWellApp.framework */; };
 		D80BAAF72AA864E400B49628 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF62AA864E400B49628 /* MainTabBarController.swift */; };
 		D80BAAF92AA880FF00B49628 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */; };
 		E22A50CF2AA8984900092365 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A50CE2AA8984900092365 /* UIColor+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		770FAF36F1641ECBB0611757 /* Pods-SleepWellApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWellApp.release.xcconfig"; path = "Target Support Files/Pods-SleepWellApp/Pods-SleepWellApp.release.xcconfig"; sourceTree = "<group>"; };
 		7FC778672AA5C61B00A5CE0F /* SleepWellApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepWellApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FC7786A2AA5C61B00A5CE0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FC7786C2AA5C61B00A5CE0F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,8 +39,10 @@
 		7FC92CF22AA5FC77000C4B2E /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		7FC92CF42AA5FC80000C4B2E /* LikePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePageViewController.swift; sourceTree = "<group>"; };
 		7FC92CF62AA5FC8A000C4B2E /* DetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageViewController.swift; sourceTree = "<group>"; };
+		BDD5FA1450780331446E2F7F /* Pods_SleepWellApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWellApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80BAAF62AA864E400B49628 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		DB74C7C44FD272586BCB4B57 /* Pods-SleepWellApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWellApp.debug.xcconfig"; path = "Target Support Files/Pods-SleepWellApp/Pods-SleepWellApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E22A50CE2AA8984900092365 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -47,12 +51,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E5757F00FCCC0EF31AC7A8D /* Pods_SleepWellApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		084F503B5D6B929D444108AF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DB74C7C44FD272586BCB4B57 /* Pods-SleepWellApp.debug.xcconfig */,
+				770FAF36F1641ECBB0611757 /* Pods-SleepWellApp.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		531C5601657A29696F1DA570 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BDD5FA1450780331446E2F7F /* Pods_SleepWellApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7F3E999C2AA6BCDA004F1617 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +97,8 @@
 			children = (
 				7FC778692AA5C61B00A5CE0F /* SleepWellApp */,
 				7FC778682AA5C61B00A5CE0F /* Products */,
+				084F503B5D6B929D444108AF /* Pods */,
+				531C5601657A29696F1DA570 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -210,9 +235,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7FC7787B2AA5C61C00A5CE0F /* Build configuration list for PBXNativeTarget "SleepWellApp" */;
 			buildPhases = (
+				32A15D9F37FE295A16C18E1B /* [CP] Check Pods Manifest.lock */,
 				7FC778632AA5C61B00A5CE0F /* Sources */,
 				7FC778642AA5C61B00A5CE0F /* Frameworks */,
 				7FC778652AA5C61B00A5CE0F /* Resources */,
+				E2B1E7399765A734963A09A9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -267,6 +294,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		32A15D9F37FE295A16C18E1B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SleepWellApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2B1E7399765A734963A09A9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SleepWellApp/Pods-SleepWellApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SleepWellApp/Pods-SleepWellApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SleepWellApp/Pods-SleepWellApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7FC778632AA5C61B00A5CE0F /* Sources */ = {
@@ -418,6 +487,7 @@
 		};
 		7FC7787C2AA5C61C00A5CE0F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB74C7C44FD272586BCB4B57 /* Pods-SleepWellApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -449,6 +519,7 @@
 		};
 		7FC7787D2AA5C61C00A5CE0F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 770FAF36F1641ECBB0611757 /* Pods-SleepWellApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
