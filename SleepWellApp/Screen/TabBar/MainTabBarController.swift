@@ -15,20 +15,35 @@ class MainTabBarController: UITabBarController {
         setupTabBarAppearance()
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewControllers()
-        setupInitialTab()
-        setupTabBarItemAppearance()
+        setupTabBarAppearance()
     }
     
     
+    //탭바 모양과 색 설정
     private func setupTabBarAppearance() {
-        tabBar.isTranslucent = false
-        tabBar.barTintColor = .deepIndigo?.withAlphaComponent(1.0)
-        tabBar.tintColor = .pastelYellow
+        let appearance = UITabBarAppearance()
+//        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .deepIndigo //배경색 설정
+        tabBar.standardAppearance = appearance //기본 모양 설정
+        tabBar.scrollEdgeAppearance = appearance //스크롤시 모양 설정
+        tabBar.tintColor = .pastelYellow //아이콘 색
+
+        setupInitialTab() // 초기 화면 설정
+        setupViewControllers() //탭바 아이템 설정
+        setupTabBarItemAppearance() //탭바 폰트
     }
     
+    
+    // 초기 화면 설정
+    private func setupInitialTab() {
+        self.selectedIndex = 1
+    }
+    
+    
+    //탭바 아이템 설정
     private func setupViewControllers() {
         let homePageViewController = HomePageViewController()
         let timerPageViewController = TimerPageViewController()
@@ -42,26 +57,11 @@ class MainTabBarController: UITabBarController {
         viewControllers = tabBarList
     }
     
-    private func setupInitialTab() {
-        self.selectedIndex = 1
-    }
+
     
+    //탭바 폰트
     private func setupTabBarItemAppearance() {
         let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
         UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .normal)
-    }
-}
-
-
-extension UIImage {
-    static func from(color: UIColor) -> UIImage {
-        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-        context?.setFillColor(color.cgColor)
-        context?.fill(rect)
-        let img = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return img!
     }
 }
