@@ -22,6 +22,7 @@
 		D80BAAF92AA880FF00B49628 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */; };
 		E22A50CF2AA8984900092365 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A50CE2AA8984900092365 /* UIColor+.swift */; };
 		E2DD3D8D2AA8A35F00198F04 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD3D8C2AA8A35F00198F04 /* VideoCollectionViewCell.swift */; };
+		E2DD3D922AA9BE2400198F04 /* VideoLengthSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD3D912AA9BE2400198F04 /* VideoLengthSegmentedControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		E22A50CE2AA8984900092365 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		E2DD3D8C2AA8A35F00198F04 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		E2DD3D912AA9BE2400198F04 /* VideoLengthSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoLengthSegmentedControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,8 +133,8 @@
 		7FC92CE72AA5FB73000C4B2E /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
-				7FC92CEA2AA5FC2C000C4B2E /* HomePageViewController.swift */,
-				E2DD3D8C2AA8A35F00198F04 /* VideoCollectionViewCell.swift */,
+				E2DD3D8F2AA9BDEA00198F04 /* View */,
+				E2DD3D8E2AA9BDD900198F04 /* ViewController */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -202,6 +204,31 @@
 			isa = PBXGroup;
 			children = (
 				D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E2DD3D8E2AA9BDD900198F04 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7FC92CEA2AA5FC2C000C4B2E /* HomePageViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E2DD3D8F2AA9BDEA00198F04 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E2DD3D912AA9BE2400198F04 /* VideoLengthSegmentedControl.swift */,
+				E2DD3D902AA9BDF000198F04 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E2DD3D902AA9BDF000198F04 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E2DD3D8C2AA8A35F00198F04 /* VideoCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -286,6 +313,7 @@
 				7FC92CED2AA5FC52000C4B2E /* LoginPageViewController.swift in Sources */,
 				7FC7786D2AA5C61B00A5CE0F /* SceneDelegate.swift in Sources */,
 				D80BAAF92AA880FF00B49628 /* CustomTableViewCell.swift in Sources */,
+				E2DD3D922AA9BE2400198F04 /* VideoLengthSegmentedControl.swift in Sources */,
 				D80BAAF72AA864E400B49628 /* MainTabBarController.swift in Sources */,
 				7FC92CF32AA5FC77000C4B2E /* MyPageViewController.swift in Sources */,
 				E22A50CF2AA8984900092365 /* UIColor+.swift in Sources */,
