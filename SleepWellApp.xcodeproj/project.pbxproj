@@ -21,7 +21,17 @@
 		8E5757F00FCCC0EF31AC7A8D /* Pods_SleepWellApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD5FA1450780331446E2F7F /* Pods_SleepWellApp.framework */; };
 		D80BAAF72AA864E400B49628 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF62AA864E400B49628 /* MainTabBarController.swift */; };
 		D80BAAF92AA880FF00B49628 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */; };
+		D87C7EE82AA95CD200BA51C0 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EE72AA95CD200BA51C0 /* DataManager.swift */; };
+		D87C7EEF2AA9832600BA51C0 /* NavigationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EEE2AA9832600BA51C0 /* NavigationUtil.swift */; };
+		D87C7EF12AA9BFA300BA51C0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EF02AA9BFA300BA51C0 /* User.swift */; };
+		D87C7EF32AA9BFAE00BA51C0 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EF22AA9BFAE00BA51C0 /* Video.swift */; };
+		D87C7EF52AA9C6FC00BA51C0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EF42AA9C6FC00BA51C0 /* UserModel.swift */; };
+		D87C7EF82AA9C72100BA51C0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EF72AA9C72100BA51C0 /* User.swift */; };
+		D87C7EFA2AA9C77000BA51C0 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EF92AA9C77000BA51C0 /* Video.swift */; };
+		D87C7EFC2AA9C87300BA51C0 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EFB2AA9C87300BA51C0 /* DataManager.swift */; };
 		E22A50CF2AA8984900092365 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A50CE2AA8984900092365 /* UIColor+.swift */; };
+		E2DD3D8D2AA8A35F00198F04 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD3D8C2AA8A35F00198F04 /* VideoCollectionViewCell.swift */; };
+		E2DD3D922AA9BE2400198F04 /* VideoLengthSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD3D912AA9BE2400198F04 /* VideoLengthSegmentedControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,8 +52,21 @@
 		BDD5FA1450780331446E2F7F /* Pods_SleepWellApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWellApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80BAAF62AA864E400B49628 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		DB74C7C44FD272586BCB4B57 /* Pods-SleepWellApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWellApp.debug.xcconfig"; path = "Target Support Files/Pods-SleepWellApp/Pods-SleepWellApp.debug.xcconfig"; sourceTree = "<group>"; };
+=======
+		D87C7EE72AA95CD200BA51C0 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataManager.swift; path = SleepWellApp/DataManager.swift; sourceTree = SOURCE_ROOT; };
+		D87C7EEE2AA9832600BA51C0 /* NavigationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUtil.swift; sourceTree = "<group>"; };
+		D87C7EF02AA9BFA300BA51C0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../../../User.swift; sourceTree = "<group>"; };
+		D87C7EF22AA9BFAE00BA51C0 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Video.swift; path = ../../../../Video.swift; sourceTree = "<group>"; };
+		D87C7EF42AA9C6FC00BA51C0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserModel.swift; path = ../../../../UserModel.swift; sourceTree = "<group>"; };
+		D87C7EF72AA9C72100BA51C0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D87C7EF92AA9C77000BA51C0 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		D87C7EFB2AA9C87300BA51C0 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+>>>>>>> fcb9682c5e49facf725ec35657ef157e4706399f
 		E22A50CE2AA8984900092365 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		E2DD3D8C2AA8A35F00198F04 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		E2DD3D912AA9BE2400198F04 /* VideoLengthSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoLengthSegmentedControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +102,10 @@
 		7F3E999C2AA6BCDA004F1617 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D87C7EE72AA95CD200BA51C0 /* DataManager.swift */,
+				D87C7EF02AA9BFA300BA51C0 /* User.swift */,
+				D87C7EF22AA9BFAE00BA51C0 /* Video.swift */,
+				D87C7EF42AA9C6FC00BA51C0 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -86,6 +113,7 @@
 		7F3E999D2AA6BCE2004F1617 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D87C7EED2AA9830C00BA51C0 /* NavigationBar */,
 				E22A50D42AA8996000092365 /* Cell */,
 				E22A50CD2AA8980900092365 /* Extension */,
 			);
@@ -154,7 +182,8 @@
 		7FC92CE72AA5FB73000C4B2E /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
-				7FC92CEA2AA5FC2C000C4B2E /* HomePageViewController.swift */,
+				E2DD3D8F2AA9BDEA00198F04 /* View */,
+				E2DD3D8E2AA9BDD900198F04 /* ViewController */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -175,6 +204,24 @@
 			path = SignUpPage;
 			sourceTree = "<group>";
 		};
+		D87C7EED2AA9830C00BA51C0 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				D87C7EEE2AA9832600BA51C0 /* NavigationUtil.swift */,
+			);
+			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		D87C7EF62AA9C70800BA51C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D87C7EF72AA9C72100BA51C0 /* User.swift */,
+				D87C7EF92AA9C77000BA51C0 /* Video.swift */,
+				D87C7EFB2AA9C87300BA51C0 /* DataManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E22A50CD2AA8980900092365 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +233,7 @@
 		E22A50D12AA898C400092365 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				D87C7EF62AA9C70800BA51C0 /* Model */,
 				7F3E999D2AA6BCE2004F1617 /* Utils */,
 				7F3E999C2AA6BCDA004F1617 /* Models */,
 				E22A50D32AA8994200092365 /* TabBar */,
@@ -224,6 +272,31 @@
 			isa = PBXGroup;
 			children = (
 				D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E2DD3D8E2AA9BDD900198F04 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7FC92CEA2AA5FC2C000C4B2E /* HomePageViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E2DD3D8F2AA9BDEA00198F04 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E2DD3D912AA9BE2400198F04 /* VideoLengthSegmentedControl.swift */,
+				E2DD3D902AA9BDF000198F04 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E2DD3D902AA9BDF000198F04 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E2DD3D8C2AA8A35F00198F04 /* VideoCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -343,16 +416,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FC92CF72AA5FC8A000C4B2E /* DetailPageViewController.swift in Sources */,
+				D87C7EFC2AA9C87300BA51C0 /* DataManager.swift in Sources */,
 				7FC92CF12AA5FC6E000C4B2E /* TimerPageViewController.swift in Sources */,
+				E2DD3D8D2AA8A35F00198F04 /* VideoCollectionViewCell.swift in Sources */,
 				7FC92CEB2AA5FC2C000C4B2E /* HomePageViewController.swift in Sources */,
 				7FC7786B2AA5C61B00A5CE0F /* AppDelegate.swift in Sources */,
 				7FC92CF52AA5FC80000C4B2E /* LikePageViewController.swift in Sources */,
 				7FC92CEF2AA5FC62000C4B2E /* SignUpPageViewController.swift in Sources */,
 				7FC92CED2AA5FC52000C4B2E /* LoginPageViewController.swift in Sources */,
 				7FC7786D2AA5C61B00A5CE0F /* SceneDelegate.swift in Sources */,
+				D87C7EF52AA9C6FC00BA51C0 /* UserModel.swift in Sources */,
+				D87C7EF12AA9BFA300BA51C0 /* User.swift in Sources */,
 				D80BAAF92AA880FF00B49628 /* CustomTableViewCell.swift in Sources */,
+				E2DD3D922AA9BE2400198F04 /* VideoLengthSegmentedControl.swift in Sources */,
 				D80BAAF72AA864E400B49628 /* MainTabBarController.swift in Sources */,
+				D87C7EE82AA95CD200BA51C0 /* DataManager.swift in Sources */,
 				7FC92CF32AA5FC77000C4B2E /* MyPageViewController.swift in Sources */,
+				D87C7EF82AA9C72100BA51C0 /* User.swift in Sources */,
+				D87C7EFA2AA9C77000BA51C0 /* Video.swift in Sources */,
+				D87C7EF32AA9BFAE00BA51C0 /* Video.swift in Sources */,
+				D87C7EEF2AA9832600BA51C0 /* NavigationUtil.swift in Sources */,
 				E22A50CF2AA8984900092365 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

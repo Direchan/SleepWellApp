@@ -9,9 +9,8 @@ import UIKit
 
 
 class TimerPageViewController: UIViewController {
-
     
-    // MARK: - UI Elements
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "슬립웰 타이머"
@@ -94,19 +93,21 @@ class TimerPageViewController: UIViewController {
     }()
     
     
-    // MARK: - Properties
     private var timer: Timer?
     private var seconds: Int = 0
     
-    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .indigo
+        NavigationUtil.currentViewController = self
+        NavigationUtil.setupNavigationBar(for: self)
 
         
-        // Set up UI elements
+        self.view.backgroundColor = .indigo
+        
         setupConstraint()
     }
+    
+ 
     
     private func setupConstraint() {
         view.addSubview(titleLabel)
@@ -129,12 +130,12 @@ class TimerPageViewController: UIViewController {
         timerHeadView.translatesAutoresizingMaskIntoConstraints = false
         
         
-
         
-
+        
+        
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+                titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             
             subTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
@@ -173,7 +174,6 @@ class TimerPageViewController: UIViewController {
         ])
     }
     
-    // MARK: - Actions
     @objc private func setTime() {
         timePicker.addTarget(self, action: #selector(timeChanged(_:)), for: .valueChanged)
         
@@ -214,7 +214,6 @@ class TimerPageViewController: UIViewController {
         timer?.invalidate()
     }
     
-    // MARK: - Helper Functions
     @objc private func updateTimer() {
         if seconds < 1 {
             timer?.invalidate()
