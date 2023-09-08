@@ -37,7 +37,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
 
     let nicknameRuleLabel: UILabel = {
         let label = UILabel()
-        label.text = "5글자 이내"
+        label.text = "5글자 이내, 추후 변경 가능"
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -202,7 +202,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         present(alert, animated: true, completion: nil)
     }
     
-    func showEmptyFieldAlert() {
+    private func showEmptyFieldAlert() {
         let alert = UIAlertController(title: "안내", message: "입력되지 않은 항목이 있습니다.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         alert.addAction(okAction)

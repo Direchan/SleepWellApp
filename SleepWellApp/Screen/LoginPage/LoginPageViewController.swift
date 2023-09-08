@@ -197,34 +197,51 @@ class LoginPageViewController: UIViewController {
             회원가입버튼.heightAnchor.constraint(equalToConstant: 입력창높이)
         ])
     }
+
     
-    // 미래님이 노션에 작성해주신 추가요청 코드
-//    @objc func loginButtonTapped() {
-//        // 입력한 아이디와 비밀번호
-//        guard let enteredUserId = 아이디입력필드.text, let enteredPassword = 비밀번호입력필드.text else {
-//            // 에러 메시지 표시
-//            return
-//        }
-//
-//        // 아이디와 비밀번호 검증
-//        if DataManager.shared.validateUser(userId: enteredUserId, password: enteredPassword) {
-//            // 로그인 성공, 현재 사용자 설정
-//            DataManager.shared.setCurrentUser(userId: enteredUserId)
-//
-//            // 로그인 성공 후 동작 (MainTabBarController로 이동 등)
-//            let tabBarVC = MainTabBarController()
-//            tabBarVC.modalPresentationStyle = .fullScreen
-//            present(tabBarVC, animated: true)
-//        } else {
-//            // 로그인 실패, 에러 메시지 표시
-//        }
-//    }
-//
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    private func showEmptyFieldAlert() {
+        let alert = UIAlertController(title: "안내", message: "입력되지 않은 항목이 있습니다.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
     
     @objc func loginButtonTapped() {
-        // 로그인 로직 (성공 시)
-        let tabBarVC = MainTabBarController()
-        tabBarVC.modalPresentationStyle = .fullScreen
-        present(tabBarVC, animated: true)
+        
+        
+        if
+            아이디입력필드.text?.isEmpty == true ||
+            비밀번호입력필드.text?.isEmpty == true {
+            // 하나 이상의 필드가 비어있다면 경고 메시지
+            showEmptyFieldAlert()
+            return
+        }
+        
+        guard let enteredUserId = 아이디입력필드.text, let enteredPassword = 비밀번호입력필드.text else {
+            showAlert(message: "ID/비밀번호가 잘못되었습니다.") // 에러 메시지 표시
+            return
+        }
+        
+        // 아이디와 비밀번호 검증
+        if DataManager.shared.validateUser(userId: enteredUserId, password: enteredPassword) {
+            // 로그인 성공, 현재 사용자 설정
+            DataManager.shared.setCurrentUser(userId: enteredUserId)
+            
+            // 로그인 성공 후 동작 (MainTabBarController로 이동 등)
+            let tabBarVC = MainTabBarController()
+            tabBarVC.modalPresentationStyle = .fullScreen
+            present(tabBarVC, animated: true)
+        } else {
+            showAlert(message: "ID/비밀번호가 잘못되었습니다.")// 로그인 실패, 에러 메시지 표시
+        }
     }
+    
 }
+
