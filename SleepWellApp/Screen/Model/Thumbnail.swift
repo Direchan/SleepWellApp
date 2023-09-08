@@ -10,7 +10,7 @@ import UIKit
 
 struct Thumbnail {
     var url: String
-    var image: UIImage
+    var image: UIImage?
     var width: Int
     var height: Int
 }

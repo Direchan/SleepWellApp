@@ -13,6 +13,6 @@ struct Video {
     var title: String
     var channelTitle: String
     var publishedAt: String
-    var viewCount: Int
+    var viewCount: String
     var duration: String
 }
