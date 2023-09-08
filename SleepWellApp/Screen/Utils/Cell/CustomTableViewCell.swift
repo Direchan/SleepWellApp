@@ -11,6 +11,14 @@ class CustomTableViewCell: UITableViewCell {
     
     static let identifier = "CustomTableViewCell"
     
+    private let heartButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "heart"), for: .normal)  // System image for heart
+        button.tintColor = .pastelYellow  // 버튼 색상을 노랑색으로 설정
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     private let cellBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white.withAlphaComponent(0.1)
@@ -53,8 +61,15 @@ class CustomTableViewCell: UITableViewCell {
         return label
     }()
     
+    private lazy var infoStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [infoLabel, heartButton])
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
+    
     private lazy var textStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, infoLabel])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, infoStackView])
         stackView.axis = .vertical
         stackView.spacing = 10
         return stackView
@@ -65,7 +80,7 @@ class CustomTableViewCell: UITableViewCell {
         
         self.backgroundColor = UIColor.clear // Setting the cell background to clear
         self.selectionStyle = .none
-
+        
         contentView.addSubview(cellBackgroundView)
         cellBackgroundView.addSubview(thumbnailImageView)
         cellBackgroundView.addSubview(textStackView)
