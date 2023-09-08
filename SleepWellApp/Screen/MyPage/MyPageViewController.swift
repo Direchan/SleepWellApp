@@ -84,6 +84,8 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = .indigo
         setupUI()
         setupConstraints()
+        logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+
         
         if let currentUserID = DataManager.shared.getCurrentUser(),
                let user = DataManager.shared.getUser(userId: currentUserID) {
@@ -96,6 +98,8 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
     @objc private func changeNicknameButtonTapped() {
         promptForNewNickname()
     }
+    
+    
     
     
     private func promptForNewNickname() {
@@ -129,11 +133,22 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text ?? ""
         let prospectiveText = (currentText as NSString).replacingCharacters(in: range, with: string)
         return prospectiveText.count <= 5
     }
+    
+    @objc func logoutButtonTapped() {
+        DataManager.shared.logout()
+        let loginVC = LoginPageViewController()
+        loginVC.modalPresentationStyle = .fullScreen
+        present(loginVC, animated: true)
+    }
+
+    
+    
     
     private func setupUI() {
         view.addSubview(bigBox)
