@@ -30,7 +30,7 @@ class MainTabBarController: UITabBarController {
         tabBar.standardAppearance = appearance //기본 모양 설정
         tabBar.scrollEdgeAppearance = appearance //스크롤시 모양 설정
         tabBar.tintColor = .pastelYellow //아이콘 색
-
+        
         setupInitialTab() // 초기 화면 설정
         setupViewControllers() //탭바 아이템 설정
         setupTabBarItemAppearance() //탭바 폰트

@@ -253,6 +253,7 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
     @objc func signUpButtonTapped() {
         // SignUpPageViewController로 이동하는 코드 추가
         let signUpVC = SignUpPageViewController()
+        self.navigationController?.navigationBar.tintColor = .pastelYellow
         self.navigationController?.pushViewController(signUpVC, animated: true)
     }
     
