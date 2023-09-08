@@ -10,10 +10,13 @@ import UIKit
 class CustomTableViewCell: UITableViewCell {
     
     static let identifier = "CustomTableViewCell"
+    private var isHeartFilled: Bool = false
+    
+    
     
     private let heartButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "heart"), for: .normal)  // System image for heart
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.tintColor = .pastelYellow  // 버튼 색상을 노랑색으로 설정
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -22,7 +25,7 @@ class CustomTableViewCell: UITableViewCell {
     private let cellBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white.withAlphaComponent(0.1)
-        view.layer.cornerRadius = 5 // Optional: To add rounded corners
+        view.layer.cornerRadius = 5
         return view
     }()
     
@@ -41,7 +44,7 @@ class CustomTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 15)
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 8  // 행 간격을 설정
+        paragraphStyle.lineSpacing = 8  //행 간격 설정
         
         let attributedString = NSMutableAttributedString(string: "이 영상의 제목이 보이는 곳 어쩌구 저쩌구 글자수 제한이 영상의 제목이 보이는 곳 어쩌구 저쩌구 글자수 제한")
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
@@ -78,7 +81,7 @@ class CustomTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.backgroundColor = UIColor.clear // Setting the cell background to clear
+        self.backgroundColor = UIColor.clear
         self.selectionStyle = .none
         
         contentView.addSubview(cellBackgroundView)
@@ -106,6 +109,16 @@ class CustomTableViewCell: UITableViewCell {
             textStackView.topAnchor.constraint(equalTo: thumbnailImageView.topAnchor, constant: 5),
             textStackView.trailingAnchor.constraint(equalTo: cellBackgroundView.trailingAnchor, constant: -10)
         ])
+        heartButton.addTarget(self, action: #selector(didTapHeartButton), for: .touchUpInside)
+        
+    }
+    
+    // 하트 버튼이 눌렸을 때 호출
+    @objc private func didTapHeartButton() {
+        isHeartFilled.toggle()  //상태 토글
+        
+        let imageName = isHeartFilled ? "heart.fill" : "heart"  //상태에 따라 다른 이미지 넣기
+        heartButton.setImage(UIImage(systemName: imageName), for: .normal)  //이미지 변경
     }
     
     required init?(coder: NSCoder) {
