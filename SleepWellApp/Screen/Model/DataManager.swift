@@ -29,6 +29,10 @@ class DataManager {
         return UserModel(userId: userId, password: password, nickname: nickname)
     }
     
+    func logout() {
+        UserDefaults.standard.removeObject(forKey: "currentUser")
+    }
+    
     
     
     // 아이디와 비밀번호를 검증하는 메서드
