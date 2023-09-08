@@ -27,20 +27,6 @@ class HomePageViewController: UIViewController {
     
     //MARK: - UI Properties
     
-    private let logoImageView: UIImageView = {
-        $0.image = UIImage(named: "Logo")
-        return $0
-    }(UIImageView())
-    
-    private let myProfileButton: UIButton = {
-        $0.tintColor = .pastelYellow
-        var config = UIButton.Configuration.plain()
-        config.preferredSymbolConfigurationForImage = .init(font: UIFont.systemFont(ofSize: 20))
-        config.image = UIImage(systemName: "person.fill")
-        $0.configuration = config
-        return $0
-    }(UIButton())
-    
     private let recommendedMessageLabel: UILabel = {
         $0.text = "힘내조님의 숙면을 위한"
         $0.font = .systemFont(ofSize: 14, weight: .regular)
@@ -130,10 +116,14 @@ class HomePageViewController: UIViewController {
         setupCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        NavigationUtil.currentViewController = self
+        NavigationUtil.setupNavigationBar(for: self)
+    }
+    
     // MARK: - InitUI
     
     private func configUI() {
-        navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .indigo
         
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
@@ -148,8 +138,7 @@ class HomePageViewController: UIViewController {
     }
     
     private func setupLayout() {
-        [logoImageView, myProfileButton, recommendStackView, asmrCollectionView,
-         videoLengthStackView, segmentedControl, videoLengthTableView].forEach {
+        [recommendStackView, asmrCollectionView, videoLengthStackView, segmentedControl, videoLengthTableView].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -163,13 +152,7 @@ class HomePageViewController: UIViewController {
         }
         
         NSLayoutConstraint.activate([
-            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
-            logoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            
-            myProfileButton.topAnchor.constraint(equalTo: logoImageView.topAnchor, constant: -5),
-            myProfileButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            
-            recommendStackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 25),
+            recommendStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
             recommendStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             
             asmrCollectionView.topAnchor.constraint(equalTo: recommendedVideoLabel.bottomAnchor, constant: 15),
