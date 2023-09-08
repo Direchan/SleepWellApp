@@ -120,7 +120,7 @@ class DetailPageViewController: UIViewController, UITableViewDelegate, UITableVi
             playerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             playerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             playerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            playerView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 9.0/16.0), // 16:9 aspect ratio
+            playerView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 9.0/16.0), //
             
             
             titleLabel.topAnchor.constraint(equalTo: playerView.bottomAnchor, constant: 20),
