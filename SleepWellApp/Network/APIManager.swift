@@ -20,13 +20,13 @@ class APIManager {
     // 여기서 찾은 영상의 id를 저장해 영상 정보를 다시 불러와야됨
     // 영상 올린 날짜는 snippet의 publishedAt 필드에서 알 수 있음
     // items.id.videoId / items.snippet.publishedAt, title / items.snippet.thumbnails / items.snippet.channelTitle
-    func getVideos(searchKeyword: String , completion: @escaping ([String:Any]?, AFError?) -> Void) {
+    func getVideos(searchKeyword: String, maxResults: Int, completion: @escaping ([String:Any]?, AFError?) -> Void) {
         let url = API.baseUrl + "search"
         let body = [
             "part": "snippet",
             "type": "video",
             "q": "\(searchKeyword)",
-            "maxResults": 10,
+            "maxResults": maxResults,
             "regionCode": "KR",
             "key": API.key
         ] as [String: Any]
@@ -52,12 +52,11 @@ class APIManager {
     // part -> contentDetails일 때 영상 길이를 알 수 있음 (duration 필드: ISO 8601 문자열 형식으로 지정되어 있음)
     // part -> statistics일 때 조회수를 알 수 있음 (viewCount 필드)
     // 여러 영상의 정보를 얻고 싶다면 여러 id를 &로 구분해서 넣으면 됨
-    func getVideoInfo(id: [String], part: String, completion: @escaping (Any?, AFError?) -> Void) {
+    func getVideoInfo(id: String, part: String, completion: @escaping ([String:Any]?, AFError?) -> Void) {
         let url = API.baseUrl + "videos"
-        let videoId: String = id.joined(separator: "&")
         
         let body = [
-            "id": videoId,
+            "id": id,
             "part": part,
             "maxResults": 10,
             "regionCode": "KR",

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class CustomTableViewCell: UITableViewCell {
     
@@ -95,5 +96,11 @@ class CustomTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func bind(video: Video) {
+        thumbnailImageView.image = video.thumbnail.image
+        titleLabel.text = video.title
+        infoLabel.text = "조회수 \(VideoCollectionViewCell.formatCount(video.viewCount))"
     }
 }

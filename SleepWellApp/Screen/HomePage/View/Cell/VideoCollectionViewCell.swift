@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class VideoCollectionViewCell: UICollectionViewCell {
     
@@ -49,15 +50,6 @@ class VideoCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        // cell 확인용 데이터
-        titleLabel.text = "제목이다"
-        channelName = "채널명"
-        views = "10만"
-        date = "1개월전"
-        thumbnailImageView.backgroundColor = .deepIndigo
-        profileImageView.backgroundColor = .pastelYellow
-        
         configUI()
         setupLayout()
     }
@@ -73,8 +65,11 @@ class VideoCollectionViewCell: UICollectionViewCell {
     private func configUI() {
         contentView.backgroundColor = .black
         contentView.layer.cornerRadius = 8
+        thumbnailImageView.backgroundColor = .deepIndigo
+        thumbnailImageView.clipsToBounds = true
         thumbnailImageView.layer.cornerRadius = 8
         thumbnailImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        profileImageView.backgroundColor = .pastelYellow
         profileImageView.layer.cornerRadius = 15
     }
     
@@ -121,5 +116,61 @@ class VideoCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Custom Method
     
+    func calculateTimeAgo(date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        
+        if let date = dateFormatter.date(from: date) {
+            // 현재 시간 가져오기
+            let currentDate = Date()
+            
+            // Calendar를 사용하여 시간 차이 계산
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date, to: currentDate)
+            
+            if let years = components.year, years > 0 {
+                return "\(years)년 전"
+            } else if let months = components.month, months > 0 {
+                return "\(months)개월 전"
+            } else if let days = components.day, days > 0 {
+                return "\(days)일 전"
+            } else if let hours = components.hour, hours > 0 {
+                return "\(hours)시간 전"
+            } else if let minutes = components.minute, minutes > 0 {
+                return "\(minutes)분 전"
+            } else {
+                return "방금 전"
+            }
+        } else {
+            print("날짜를 파싱할 수 없습니다.")
+            return ""
+        }
+    }
+    
+    static func formatCount(_ viewCount: String) -> String {
+        guard let count = Int(viewCount) else { return "" }
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+
+        if count >= 10000 { // 1만 이상
+            let dividedCount = count / 10000
+            let formattedCount = formatter.string(from: NSNumber(value: dividedCount)) ?? "\(dividedCount)"
+            return "\(formattedCount)만회"
+        } else if count >= 1000 { // 1천 이상
+            let dividedCount = count / 1000
+            let formattedCount = formatter.string(from: NSNumber(value: dividedCount)) ?? "\(dividedCount)"
+            return "\(formattedCount)천회"
+        } else { // 1천 미만
+            return "\(count)회"
+        }
+    }
+
+    
+    func bind(video: Video) {
+        thumbnailImageView.image = video.thumbnail.image
+        titleLabel.text = video.title
+        videoDescriptionLabel.text = "\(video.channelTitle) · 조회수 \(VideoCollectionViewCell.formatCount(video.viewCount)) · \(calculateTimeAgo(date: video.publishedAt))"
+    }
     
 }
