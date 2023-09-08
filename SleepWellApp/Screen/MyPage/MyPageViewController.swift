@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyPageViewController: UIViewController {
+class MyPageViewController: UIViewController, UITextFieldDelegate {
     
     private lazy var bigBox: UIView = {
         let view = UIView()
@@ -18,19 +18,18 @@ class MyPageViewController: UIViewController {
     }()
     
     
-    private lazy var titleLabel: UILabel = {
+    private lazy var nicknameLabel: UILabel = {
         let label = UILabel()
-        label.text = "말하는감자"
         label.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
         label.textAlignment = .center
         label.textColor = .pastelYellow
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     
-    private lazy var subtitleLabel: UILabel = {
+    private lazy var idLabel: UILabel = {
         let label = UILabel()
-        label.text = "@test123"
         label.font = UIFont.systemFont(ofSize: 14)
         label.textAlignment = .center
         label.textColor = .pastelYellow
@@ -85,15 +84,65 @@ class MyPageViewController: UIViewController {
         view.backgroundColor = .indigo
         setupUI()
         setupConstraints()
+        
+        if let currentUserID = DataManager.shared.getCurrentUser(),
+               let user = DataManager.shared.getUser(userId: currentUserID) {
+                idLabel.text = "@\(user.userId)"
+                nicknameLabel.text = user.nickname
+            }
+        
+    }
+    
+    @objc private func changeNicknameButtonTapped() {
+        promptForNewNickname()
+    }
+    
+    
+    private func promptForNewNickname() {
+        let alertController = UIAlertController(title: "별명 변경", message: "새로운 별명을 입력하세요.", preferredStyle: .alert)
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "새로운 별명"
+            textField.delegate = self
+        }
+        
+        let confirmAction = UIAlertAction(title: "변경", style: .default) { [weak self] (_) in
+            if let newNickname = alertController.textFields?.first?.text, !newNickname.isEmpty {
+                // 새로운 별명을 저장합니다.
+                if let currentUserID = DataManager.shared.getCurrentUser() {
+                    var user = DataManager.shared.getUser(userId: currentUserID)!
+                    user.nickname = newNickname
+                    DataManager.shared.saveUser(user: user)
+                    
+                    // 변경된 별명을 화면에 표시합니다.
+                    self?.nicknameLabel.text = newNickname
+                }
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        let prospectiveText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        return prospectiveText.count <= 5
     }
     
     private func setupUI() {
         view.addSubview(bigBox)
         view.addSubview(logoutButton)
-        stackView.addArrangedSubview(titleLabel)
-        stackView.addArrangedSubview(subtitleLabel)
+        stackView.addArrangedSubview(nicknameLabel)
+        stackView.addArrangedSubview(idLabel)
         stackView.addArrangedSubview(spacerView)  // Spacer view
         stackView.addArrangedSubview(changeNicknameButton)
+        changeNicknameButton.addTarget(self, action: #selector(changeNicknameButtonTapped), for: .touchUpInside)
         
         bigBox.addSubview(stackView)
     }
