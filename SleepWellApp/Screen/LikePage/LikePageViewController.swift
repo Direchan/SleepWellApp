@@ -33,15 +33,18 @@ class LikePageViewController: UIViewController {
         return tableView
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        NavigationUtil.currentViewController = self
+        NavigationUtil.setupNavigationBar(for: self)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NavigationUtil.setupNavigationBar(for: self)
-
         self.view.backgroundColor = .indigo
         tableView.delegate = self
         tableView.dataSource = self
-        
         setupConstraint()
     }
 

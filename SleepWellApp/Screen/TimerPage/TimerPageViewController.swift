@@ -96,17 +96,21 @@ class TimerPageViewController: UIViewController {
     private var timer: Timer?
     private var seconds: Int = 0
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         NavigationUtil.currentViewController = self
         NavigationUtil.setupNavigationBar(for: self)
-
-        
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.view.backgroundColor = .indigo
-        
         setupConstraint()
     }
     
+ 
  
     
     private func setupConstraint() {
