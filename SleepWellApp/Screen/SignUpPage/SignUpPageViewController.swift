@@ -263,7 +263,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
     
     
     private func showEmptyFieldAlert() {
-        let alert = UIAlertController(title: "안내", message: "입력되지 않은 항목이 있습니다.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "입력되지 않은 항목이 있습니다.", message: "", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
