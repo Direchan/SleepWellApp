@@ -21,17 +21,21 @@ class VideoCollectionViewCell: UICollectionViewCell {
     //MARK: - UI Propertied
     
     private let thumbnailImageView: UIImageView = UIImageView()
-    private let profileImageView: UIImageView = UIImageView()
-    
-    private let heartButton: UIButton = {
-        var config = UIButton.Configuration.plain()
-        config.preferredSymbolConfigurationForImage = .init(font: UIFont.systemFont(ofSize: 18))
-        config.image = UIImage(systemName: "heart")
-        config.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 0)
-        $0.configuration = config
-        $0.tintColor = .pastelYellow
+    private let profileImageView: UIImageView = {
+        $0.backgroundColor = .pastelYellow
+        $0.layer.cornerRadius = 15
+        $0.clipsToBounds = true
         return $0
-    }(UIButton())
+    }(UIImageView())
+    //    private let heartButton: UIButton = {
+    //        var config = UIButton.Configuration.plain()
+    //        config.preferredSymbolConfigurationForImage = .init(font: UIFont.systemFont(ofSize: 18))
+    //        config.image = UIImage(systemName: "heart")
+    //        config.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 0)
+    //        $0.configuration = config
+    //        $0.tintColor = .pastelYellow
+    //        return $0
+    //    }(UIButton())
     
     private let titleLabel: UILabel = {
         $0.textColor = .pastelYellow
@@ -74,7 +78,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupLayout() {
-        [thumbnailImageView, profileImageView, heartButton, titleLabel, videoDescriptionLabel].forEach {
+        [thumbnailImageView, profileImageView, titleLabel, videoDescriptionLabel].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -87,10 +91,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
             thumbnailImageView.widthAnchor.constraint(equalToConstant: 310)
         ])
         
-        NSLayoutConstraint.activate([
-            heartButton.topAnchor.constraint(equalTo: thumbnailImageView.topAnchor, constant: 10),
-            heartButton.trailingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: -10)
-        ])
+        
         
         NSLayoutConstraint.activate([
             profileImageView.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 10),
@@ -152,7 +153,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
         guard let count = Int(viewCount) else { return "" }
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-
+        
         if count >= 10000 { // 1만 이상
             let dividedCount = count / 10000
             let formattedCount = formatter.string(from: NSNumber(value: dividedCount)) ?? "\(dividedCount)"
@@ -165,12 +166,21 @@ class VideoCollectionViewCell: UICollectionViewCell {
             return "\(count)회"
         }
     }
-
+    
     
     func bind(video: Video) {
         thumbnailImageView.image = video.thumbnail.image
+        thumbnailImageView.contentMode = .scaleAspectFill
         titleLabel.text = video.title
         videoDescriptionLabel.text = "\(video.channelTitle) · 조회수 \(VideoCollectionViewCell.formatCount(video.viewCount)) · \(calculateTimeAgo(date: video.publishedAt))"
+        
+        if let channelThumbnailImage = video.channelThumbnail?.image {
+            profileImageView.image = channelThumbnailImage
+            profileImageView.contentMode = .scaleAspectFill
+        } else {
+            profileImageView.image = nil
+        }
     }
+    
     
 }

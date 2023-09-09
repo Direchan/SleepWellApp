@@ -15,4 +15,7 @@ struct Video {
     var publishedAt: String
     var viewCount: String
     var duration: String
+    var channelThumbnail: Thumbnail?
+    var channelId: String
+
 }

@@ -9,11 +9,15 @@ import Foundation
 import Alamofire
 
 enum API {
-
+    
     static let baseUrl: String = "https://youtube.googleapis.com/youtube/v3/"
     static let key: String = "AIzaSyCDrHPlc_iwEnPoV0wL9kzc6cwbRZ5Rjgw"
+<<<<<<< HEAD
 //    static let key: String = "AIzaSyArLP_uYpYk83gX8s_6F25NCVH9-7k--a0"
 
+=======
+    //AIzaSyCDrHPlc_iwEnPoV0wL9kzc6cwbRZ5Rjgw
+>>>>>>> 30f714636dac7c359a93e19604bd69dc81c6d202
 }
 //AIzaSyDwk1EAb0wsVr7w4XxGEby6gmj2FSG4tYU
 class APIManager {
@@ -24,6 +28,42 @@ class APIManager {
     // 영상 올린 날짜는 snippet의 publishedAt 필드에서 알 수 있음
     // items.id.videoId / items.snippet.publishedAt, title / items.snippet.thumbnails / items.snippet.channelTitle
     
+    func getChannelInfo(channelId: String, completion: @escaping((_ thumbnailUrl: String?) -> ())) {
+        let url = API.baseUrl + "channels"
+        
+        let parameters: [String: Any] = [
+            "part": "snippet",
+            "id": channelId,
+            "key": API.key
+        ]
+        
+        AF.request(url, method: .get, parameters: parameters)
+            .validate()
+            .responseData { response in
+                switch response.result {
+                case .success(let response):
+                    do {
+                        let data = try JSONSerialization.jsonObject(with: response, options: []) as? [String: Any]
+                        if let items = data?["items"] as? [[String: Any]],
+                           let snippet = items.first?["snippet"] as? [String: Any],
+                           let thumbnails = snippet["thumbnails"] as? [String: Any],
+                           let defaultThumbnail = thumbnails["default"] as? [String: Any],
+                           let thumbnailUrl = defaultThumbnail["url"] as? String {
+                            
+                            completion(thumbnailUrl)
+                        } else {
+                            completion(nil)
+                        }
+                    } catch(let error) {
+                        print(error)
+                        completion(nil)
+                    }
+                case .failure(let error):
+                    print("Error: \(error)")
+                    completion(nil)
+                }
+            }
+    }
     
     
     func getVideos(searchKeyword: String, maxResults: Int, completion: @escaping ([String:Any]?, AFError?) -> Void) {
@@ -36,7 +76,7 @@ class APIManager {
             "regionCode": "KR",
             "key": API.key
         ] as [String: Any]
-
+        
         AF.request(url, method: .get, parameters: body)
             .validate()
             .responseData { response in
