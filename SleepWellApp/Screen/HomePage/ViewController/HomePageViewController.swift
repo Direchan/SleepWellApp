@@ -104,7 +104,7 @@ class HomePageViewController: UIViewController {
     private lazy var segmentedControl: UISegmentedControl = {
         $0.addTarget(self, action: #selector(didChangeValue(segment:)), for: .valueChanged)
         return $0
-    }(VideoLengthSegmentedControl(items: ["30분", "1시간", "2시간", "그 이상"]))
+    }(VideoLengthSegmentedControl(items: ["1시간 이하", "1시간", "2시간", "그 이상"]))
     
     private lazy var videoLengthTableView: UITableView = {
         $0.backgroundColor = .clear
@@ -204,6 +204,51 @@ class HomePageViewController: UIViewController {
     
     // MARK: - Custom Method
     
+    private func filterByHour(video: Video) {
+        
+        let timeString = String(video.duration.suffix(from: "PT".endIndex))
+        
+        // DateComponents를 사용하여 시간 추출
+        var components = DateComponents()
+        let scanner = Scanner(string: timeString)
+        var value: Int = 0
+        var unit: NSString? = ""
+        while scanner.scanInt(&value), scanner.scanCharacters(from: CharacterSet.letters, into: &unit) {
+            guard let unit = unit as String? else {
+                continue
+            }
+            
+            switch unit {
+            case "H":
+                components.hour = value
+            case "M":
+                components.minute = value
+            case "S":
+                components.second = value
+            default:
+                break
+            }
+        }
+        if let hours = components.hour, hours > 0 {
+            switch hours {
+            case 1:
+                oneHourVideos.append(video)
+                return
+            case 2:
+                twoHourVideos.append(video)
+                return
+            default:
+                moreTimeVideos.append(video)
+                return
+            }
+        }
+        
+        if let minutes = components.minute, minutes > 0 {
+            halfAnHourVideos.append(video)
+            return
+        }
+    }
+    
 }
 
 //MARK: - UICollectionViewDataSource
@@ -264,7 +309,18 @@ extension HomePageViewController: UITableViewDataSource {
         guard let cell = videoLengthTableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as? CustomTableViewCell
         else { return UITableViewCell() }
         
-        cell.bind(video: sleepVideos[indexPath.row])
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            cell.bind(video: halfAnHourVideos[indexPath.row])
+        case 1:
+            cell.bind(video: oneHourVideos[indexPath.row])
+        case 2:
+            cell.bind(video: twoHourVideos[indexPath.row])
+        case 3:
+            cell.bind(video: moreTimeVideos[indexPath.row])
+        default:
+            cell.bind(video: sleepVideos[indexPath.row])
+        }
         
         return cell
     }
@@ -280,10 +336,10 @@ extension HomePageViewController: UITableViewDelegate {
 
 extension HomePageViewController {
     func requestVideo() {
-        getVideos(searchKeyword: "에이에스엠알", maxResults: 10) { video, index in
+        HomeAPI.shared.getVideos(searchKeyword: "에이에스엠알 asmr ASMR", maxResults: 20) { video, index in
             self.asmrVideos.append(video)
             
-            self.getVideoInfo(id: video.id, index: index) { duration, viewCount in
+            HomeAPI.shared.getVideoInfo(id: video.id, index: index) { duration, viewCount in
                 
                 if let duration = duration {
                     self.asmrVideos[index].duration = duration
@@ -302,11 +358,16 @@ extension HomePageViewController {
                 self.asmrVideos[index].thumbnail.image = image
             }
         }
-        getVideos(searchKeyword: "수면", maxResults: 100) { video, index in
+        
+        HomeAPI.shared.getVideos(searchKeyword: "숙면 수면 asmr 잠 sleep", maxResults: 800) { video, index in
             self.sleepVideos.append(video)
-            self.getVideoInfo(id: video.id, index: index) { duration, viewCount in
+            HomeAPI.shared.getVideoInfo(id: video.id, index: index) { duration, viewCount in
                 if let duration = duration {
                     self.sleepVideos[index].duration = duration
+                    self.requestImage(thumbnailUrl: video.thumbnail.url) { image in
+                        self.sleepVideos[index].thumbnail.image = image
+                        self.filterByHour(video: self.sleepVideos[index])
+                    }
                 }
                 
                 if let viewCount = viewCount {
@@ -315,67 +376,6 @@ extension HomePageViewController {
                 
                 DispatchQueue.main.async {
                     self.videoLengthTableView.reloadData()
-                }
-            }
-            
-            self.requestImage(thumbnailUrl: video.thumbnail.url) { image in
-                self.sleepVideos[index].thumbnail.image = image
-            }
-        }
-    }
-    
-    func getVideos(searchKeyword: String, maxResults: Int, completion: @escaping ((_ video: Video, _ index: Int) -> ())) {
-        // items.id.videoId / items.snippet.publishedAt, title / items.snippet.thumbnails / items.snippet.channelTitle
-        APIManager.shared.getVideos(searchKeyword: searchKeyword, maxResults: maxResults) { data, error in
-            if let data = data, let items = data["items"] as? [[String:Any]] {
-                for (index, item) in items.enumerated() {
-                    if let id = item["id"] as? [String:Any],
-                       let videoId = id["videoId"] as? String,
-                       let snippet = item["snippet"] as? [String:Any],
-                       let title = snippet["title"] as? String,
-                       let thumbnails = snippet["thumbnails"] as? [String:Any],
-                       let standard = thumbnails["default"] as? [String:Any],
-                       let thumbnailUrl = standard["url"] as? String,
-                       let width = standard["width"] as? Int,
-                       let height = standard["height"] as? Int,
-                       let publishedAt = snippet["publishedAt"] as? String,
-                       let channelTitle = snippet["channelTitle"] as? String {
-                        
-                        completion(Video(id: videoId,
-                                         thumbnail: Thumbnail(url: thumbnailUrl, image: nil, width: width, height: height),
-                                         title: title,
-                                         channelTitle: channelTitle,
-                                         publishedAt: publishedAt,
-                                         viewCount: "",
-                                         duration: ""),
-                                    index)                    }
-                }
-            }
-        }
-    }
-    
-    func getVideoInfo(id: String, index: Int, completion: @escaping((_ duration: String?, _ viewCount: String?) -> ())) {
-        
-        // 영상 길이
-        APIManager.shared.getVideoInfo(id: id, part: "contentDetails") { data, error in
-            if let data = data, let items = data["items"] as? [[String:Any]] {
-                for item in items {
-                    if let content = item["contentDetails"] as? [String:Any],
-                       let duration = content["duration"] as? String {
-                        completion(duration, nil)
-                    }
-                }
-            }
-        }
-        
-        // 조회수
-        APIManager.shared.getVideoInfo(id: id, part: "statistics") { data, error in
-            if let data = data, let items = data["items"] as? [[String:Any]] {
-                for item in items {
-                    if let statistics = item["statistics"] as? [String:Any],
-                       let viewCount = statistics["viewCount"] as? String {
-                        completion(nil, viewCount)
-                    }
                 }
             }
         }

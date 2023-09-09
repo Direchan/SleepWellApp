@@ -10,7 +10,7 @@ import Alamofire
 
 enum API {
     static let baseUrl: String = "https://youtube.googleapis.com/youtube/v3/"
-    static let key: String = "AIzaSyDwk1EAb0wsVr7w4XxGEby6gmj2FSG4tYU"
+    static let key: String = "AIzaSyCCdqO610N0WfSIRpGJwHnyvhZyotlviJI"
 }
 
 class APIManager {

@@ -26,6 +26,7 @@
 		D87C7EFA2AA9C77000BA51C0 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EF92AA9C77000BA51C0 /* Video.swift */; };
 		D87C7EFC2AA9C87300BA51C0 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EFB2AA9C87300BA51C0 /* DataManager.swift */; };
 		E22A50CF2AA8984900092365 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A50CE2AA8984900092365 /* UIColor+.swift */; };
+		E236CC742AAC4D3D00ED1543 /* HomeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E236CC732AAC4D3D00ED1543 /* HomeAPI.swift */; };
 		E2AA64142AAACC630009A481 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AA64132AAACC630009A481 /* APIManager.swift */; };
 		E2AA64172AAB1A940009A481 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AA64162AAB1A940009A481 /* Thumbnail.swift */; };
 		E2DD3D8D2AA8A35F00198F04 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD3D8C2AA8A35F00198F04 /* VideoCollectionViewCell.swift */; };
@@ -56,6 +57,7 @@
 		D87C7EFB2AA9C87300BA51C0 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		DB74C7C44FD272586BCB4B57 /* Pods-SleepWellApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWellApp.debug.xcconfig"; path = "Target Support Files/Pods-SleepWellApp/Pods-SleepWellApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E22A50CE2AA8984900092365 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		E236CC732AAC4D3D00ED1543 /* HomeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPI.swift; sourceTree = "<group>"; };
 		E2AA64132AAACC630009A481 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		E2AA64162AAB1A940009A481 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		E2DD3D8C2AA8A35F00198F04 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				E2AA64132AAACC630009A481 /* APIManager.swift */,
+				E236CC732AAC4D3D00ED1543 /* HomeAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				E2DD3D8D2AA8A35F00198F04 /* VideoCollectionViewCell.swift in Sources */,
 				7FC92CEB2AA5FC2C000C4B2E /* HomePageViewController.swift in Sources */,
 				7FC7786B2AA5C61B00A5CE0F /* AppDelegate.swift in Sources */,
+				E236CC742AAC4D3D00ED1543 /* HomeAPI.swift in Sources */,
 				7FC92CF52AA5FC80000C4B2E /* LikePageViewController.swift in Sources */,
 				7FC92CEF2AA5FC62000C4B2E /* SignUpPageViewController.swift in Sources */,
 				7FC92CED2AA5FC52000C4B2E /* LoginPageViewController.swift in Sources */,
