@@ -8,12 +8,17 @@
 import UIKit
 import Alamofire
 
+
+protocol CustomTableViewCellDelegate: AnyObject {
+    func didTapHeartButton(onCell cell: CustomTableViewCell)
+}
+
 class CustomTableViewCell: UITableViewCell {
     
     static let identifier = "CustomTableViewCell"
     private var isHeartFilled: Bool = false
     
-    
+    weak var delegate: CustomTableViewCellDelegate?
     
     private let heartButton: UIButton = {
         let button = UIButton()
@@ -119,7 +124,9 @@ class CustomTableViewCell: UITableViewCell {
         isHeartFilled.toggle()  //상태 토글
         
         let imageName = isHeartFilled ? "heart.fill" : "heart"  //상태에 따라 다른 이미지 넣기
-        heartButton.setImage(UIImage(systemName: imageName), for: .normal)  //이미지 변경
+        heartButton.setImage(UIImage(systemName: imageName), for: .normal)
+        
+        delegate?.didTapHeartButton(onCell: self)//이미지 변경
     }
     
     required init?(coder: NSCoder) {
@@ -130,5 +137,11 @@ class CustomTableViewCell: UITableViewCell {
         thumbnailImageView.image = video.thumbnail.image
         titleLabel.text = video.title
         infoLabel.text = "조회수 \(VideoCollectionViewCell.formatCount(video.viewCount))"
+        
+        if LikedVideosManager.shared.isLiked(video: video) {
+                heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            } else {
+                heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            }
     }
 }

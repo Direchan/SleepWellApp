@@ -20,7 +20,6 @@ class LikePageViewController: UIViewController {
     
     private lazy var countListLabel: UILabel = {
         let label = UILabel()
-        label.text = "n개"
         label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         label.textColor = .pastelYellow?.withAlphaComponent(0.6)
         return label
@@ -46,8 +45,17 @@ class LikePageViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         setupConstraint()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleLikedVideosUpdated), name: Notification.Name("LikedVideosUpdated"), object: nil)
     }
 
+    
+    @objc private func handleLikedVideosUpdated() {
+        tableView.reloadData()
+        
+        let count = LikedVideosManager.shared.likedVideos.count
+        countListLabel.text = "\(count)개"
+    }
+    
     
     private func setupConstraint() {
         view.addSubview(tableView)
@@ -75,19 +83,36 @@ class LikePageViewController: UIViewController {
 
 extension LikePageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10 // 예시로 10개의 셀을 표시
+        return LikedVideosManager.shared.likedVideos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CustomTableViewCell
+        let video = LikedVideosManager.shared.likedVideos[indexPath.row]
+        cell.bind(video: video)
+        cell.delegate = self
         return cell
     }
 }
 
-// MARK: - TableView Delegate
 
 extension LikePageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110 // 셀의 높이를 100으로 설정
+        return 110
+    }
+}
+
+extension LikePageViewController: CustomTableViewCellDelegate {
+    func didTapHeartButton(onCell cell: CustomTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let video = LikedVideosManager.shared.likedVideos[indexPath.row]
+        
+        if LikedVideosManager.shared.isLiked(video: video) {
+            LikedVideosManager.shared.remove(video: video)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            // 찜하기 개수 업데이트
+            let count = LikedVideosManager.shared.likedVideos.count
+            countListLabel.text = "\(count)개"
+        }
     }
 }

@@ -283,67 +283,68 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = .indigo
         view.addSubview(logoImageView)
         
-        
+        setupLayout()
+    }
         
         // ---------------------------레이아웃 설정 시작--------------------------------
         
+        private func setupLayout() {
+            let guide = view.safeAreaLayoutGuide // 상단 영역에서 safeArea설정
+            
+            
+            
+            NSLayoutConstraint.activate([
+                
+                
+                //로고이미지 위치
+                logoImageView.topAnchor.constraint(equalTo: guide.topAnchor, constant: 30),
+                logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor), //가로위치
+                logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -280), //세로위치
+                logoImageView.widthAnchor.constraint(equalToConstant: 132),  // 원하는 너비로 설정
+                logoImageView.heightAnchor.constraint(equalToConstant: 45),  // 원하는 높이로 설정
+                
+                
+                
+                //텍스트필드 위치
+                nicknameField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                nicknameField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 100),
+                nicknameField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+                
+                idField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                idField.topAnchor.constraint(equalTo: nicknameField.bottomAnchor, constant: 50),
+                idField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+                
+                passwordField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                passwordField.topAnchor.constraint(equalTo: idField.bottomAnchor, constant: 50),
+                passwordField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+                
+                
+                //텍스트레이블 위치
+                nicknameLabel.bottomAnchor.constraint(equalTo: nicknameField.topAnchor, constant: -4),
+                nicknameLabel.leftAnchor.constraint(equalTo: nicknameField.leftAnchor),
+                nicknameRuleLabel.leftAnchor.constraint(equalTo: nicknameLabel.rightAnchor, constant: 5),
+                nicknameRuleLabel.centerYAnchor.constraint(equalTo: nicknameLabel.centerYAnchor),
+                
+                idLabel.bottomAnchor.constraint(equalTo: idField.topAnchor, constant: -4),
+                idLabel.leftAnchor.constraint(equalTo: idField.leftAnchor),
+                idRuleLabel.leftAnchor.constraint(equalTo: idLabel.rightAnchor, constant: 5),
+                idRuleLabel.centerYAnchor.constraint(equalTo: idLabel.centerYAnchor),
+                
+                passwordLabel.bottomAnchor.constraint(equalTo: passwordField.topAnchor, constant: -4),
+                passwordLabel.leftAnchor.constraint(equalTo: passwordField.leftAnchor),
+                passwordRuleLabel.leftAnchor.constraint(equalTo: passwordLabel.rightAnchor, constant: 5),
+                passwordRuleLabel.centerYAnchor.constraint(equalTo: passwordLabel.centerYAnchor),
+                
+                signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                signUpButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 40),
+                signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+                signUpButton.heightAnchor.constraint(equalToConstant: 40) // 원하는 높이로 설정합니다.
+                
+            ])
+        }
         
-        let guide = view.safeAreaLayoutGuide // 상단 영역에서 safeArea설정
-        
-        
-        
-        NSLayoutConstraint.activate([
-            
-            
-            //로고이미지 위치
-            logoImageView.topAnchor.constraint(equalTo: guide.topAnchor, constant: 30),
-            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor), //가로위치
-            logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -280), //세로위치
-            logoImageView.widthAnchor.constraint(equalToConstant: 132),  // 원하는 너비로 설정
-            logoImageView.heightAnchor.constraint(equalToConstant: 45),  // 원하는 높이로 설정
-            
-            
-            
-            //텍스트필드 위치
-            nicknameField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nicknameField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 100),
-            nicknameField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            
-            idField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            idField.topAnchor.constraint(equalTo: nicknameField.bottomAnchor, constant: 50),
-            idField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            
-            passwordField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            passwordField.topAnchor.constraint(equalTo: idField.bottomAnchor, constant: 50),
-            passwordField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            
-            
-            //텍스트레이블 위치
-            nicknameLabel.bottomAnchor.constraint(equalTo: nicknameField.topAnchor, constant: -4),
-            nicknameLabel.leftAnchor.constraint(equalTo: nicknameField.leftAnchor),
-            nicknameRuleLabel.leftAnchor.constraint(equalTo: nicknameLabel.rightAnchor, constant: 5),
-            nicknameRuleLabel.centerYAnchor.constraint(equalTo: nicknameLabel.centerYAnchor),
-            
-            idLabel.bottomAnchor.constraint(equalTo: idField.topAnchor, constant: -4),
-            idLabel.leftAnchor.constraint(equalTo: idField.leftAnchor),
-            idRuleLabel.leftAnchor.constraint(equalTo: idLabel.rightAnchor, constant: 5),
-            idRuleLabel.centerYAnchor.constraint(equalTo: idLabel.centerYAnchor),
-            
-            passwordLabel.bottomAnchor.constraint(equalTo: passwordField.topAnchor, constant: -4),
-            passwordLabel.leftAnchor.constraint(equalTo: passwordField.leftAnchor),
-            passwordRuleLabel.leftAnchor.constraint(equalTo: passwordLabel.rightAnchor, constant: 5),
-            passwordRuleLabel.centerYAnchor.constraint(equalTo: passwordLabel.centerYAnchor),
-            
-            signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            signUpButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 40),
-            signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
-            signUpButton.heightAnchor.constraint(equalToConstant: 40) // 원하는 높이로 설정합니다.
-            
-        ])
     }
-    
-    
     // ---------------------------레이아웃 설정 끝-----------------------------------
-}
+
 
 
