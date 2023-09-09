@@ -85,13 +85,13 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
         setupUI()
         setupConstraints()
         logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
-
+        
         
         if let currentUserID = DataManager.shared.getCurrentUser(),
-               let user = DataManager.shared.getUser(userId: currentUserID) {
-                idLabel.text = "@\(user.userId)"
-                nicknameLabel.text = user.nickname
-            }
+           let user = DataManager.shared.getUser(userId: currentUserID) {
+            idLabel.text = "@\(user.userId)"
+            nicknameLabel.text = user.nickname
+        }
         
     }
     
@@ -143,9 +143,9 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
     @objc func logoutButtonTapped() {
         DataManager.shared.logout()
         NotificationCenter.default.post(name: NSNotification.Name("UserDidLogout"), object: nil)
-
+        
     }
-
+    
     
     
     
