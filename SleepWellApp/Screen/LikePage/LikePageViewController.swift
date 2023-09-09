@@ -47,6 +47,7 @@ class LikePageViewController: UIViewController {
         super.viewWillAppear(true)
         NavigationUtil.currentViewController = self
         NavigationUtil.setupNavigationBar(for: self)
+        setupEmptyListLabel()
     }
     
     
