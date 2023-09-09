@@ -36,12 +36,8 @@ class HomePageViewController: UIViewController {
     //MARK: - UI Properties
     
     private let recommendedMessageLabel: UILabel = {
-<<<<<<< HEAD
-        $0.text = DataManager.shared.getUser(userId: DataManager.shared.getCurrentUser() ?? "힘내조")?.nickname
-=======
         let nickname = DataManager.shared.getUser(userId: DataManager.shared.getCurrentUser() ?? "힘내조")?.nickname ?? "힘내조"
         $0.text = "\(nickname)님의 숙면을 위한"
->>>>>>> 30f714636dac7c359a93e19604bd69dc81c6d202
         $0.font = .systemFont(ofSize: 14, weight: .regular)
         $0.textColor = .pastelYellow
         return $0
@@ -133,8 +129,6 @@ class HomePageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         NavigationUtil.currentViewController = self
         NavigationUtil.setupNavigationBar(for: self)
-        self.recommendedMessageLabel.text = DataManager.shared.getUser(userId: DataManager.shared.getCurrentUser() ?? "힘내조")?.nickname
-        
     }
     
     // InitUI

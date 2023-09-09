@@ -22,7 +22,6 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
     lazy var nicknameField: UITextField = {
         let textField = UITextField()
         configureTextField(for: textField)
-        textField.delegate = self //방금 추가
         return textField
     }()
     
@@ -113,52 +112,8 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
-
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-<<<<<<< HEAD
-            let prospectiveText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
-
-            let lengthOfCompletedText = prospectiveText.utf16.count
-
-            //닉네임
-            if textField == nicknameField {
-                if lengthOfCompletedText <= 5 {
-                    nicknameRuleLabel.textColor = .green //충족! 초록색으로
-                } else {
-                    nicknameRuleLabel.textColor = .red //미충족! 빨간색으로
-                }
-                return lengthOfCompletedText <= 5
-            }
-
-            
-            //아이디
-            if textField == idField || textField == passwordField {
-                let containsLetter = prospectiveText.rangeOfCharacter(from: .letters) != nil
-                let containsNumber = prospectiveText.rangeOfCharacter(from: .decimalDigits) != nil
-                let isValidLength = (prospectiveText.count >= 6 && prospectiveText.count <= 12)
-
-                if containsLetter && containsNumber && isValidLength {
-                    if textField == idField {
-                        idRuleLabel.textColor = .green //충족!초록색으로
-                    } else {
-                        passwordRuleLabel.textColor = .green //충족!초록색으로
-                    }
-                } else {
-                    if textField == idField {
-                        idRuleLabel.textColor = .red //미충족!빨간색으로
-                    } else {
-                        passwordRuleLabel.textColor = .red //미충족!빨간색으로
-                    }
-                }
-                return prospectiveText.count <= 12
-            }
-
-            return true
-        }
-
-        
-
-=======
         let prospectiveText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
         
         let lengthOfCompletedText = prospectiveText.utf16.count
@@ -219,7 +174,6 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
->>>>>>> 30f714636dac7c359a93e19604bd69dc81c6d202
     
     @objc func signUpButtonTapped() {
         //비어 있는지 확인
@@ -271,8 +225,6 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-<<<<<<< HEAD
-=======
     
     //    @objc func signUpButtonTapped() {
     //        if nicknameField.text?.isEmpty == true ||
@@ -302,7 +254,6 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
     //    }
     
     
->>>>>>> 30f714636dac7c359a93e19604bd69dc81c6d202
     func showAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
@@ -418,4 +369,6 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
     
 }
 // ---------------------------레이아웃 설정 끝-----------------------------------
+
+
 
