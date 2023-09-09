@@ -285,7 +285,12 @@ extension HomePageViewController: UITableViewDelegate {
 
 
 extension HomePageViewController {
+    
+    
+    
     func requestVideo() {
+        
+        
         getVideos(searchKeyword: "에이에스엠알", maxResults: 5) { video, index in
             self.asmrVideos.append(video)
             
@@ -307,7 +312,18 @@ extension HomePageViewController {
             self.requestImage(thumbnailUrl: video.thumbnail.url) { image in
                 self.asmrVideos[index].thumbnail.image = image
             }
-        }
+            APIManager.shared.getChannelInfo(channelId: video.channelId) { thumbnailUrl in
+                        if let thumbnailUrl = thumbnailUrl {
+                            self.requestImage(thumbnailUrl: thumbnailUrl) { image in
+                                self.asmrVideos[index].channelThumbnail = Thumbnail(url: thumbnailUrl, image: image, width: 0, height: 0)
+                                DispatchQueue.main.async {
+                                    self.asmrCollectionView.reloadData()
+                                }
+                            }
+                        }
+                    }
+                }
+        
         getVideos(searchKeyword: "수면", maxResults: 5) { video, index in
             self.sleepVideos.append(video)
             self.getVideoInfo(id: video.id, index: index) { duration, viewCount in
@@ -327,6 +343,7 @@ extension HomePageViewController {
             self.requestImage(thumbnailUrl: video.thumbnail.url) { image in
                 self.sleepVideos[index].thumbnail.image = image
             }
+            
         }
     }
     
@@ -345,6 +362,7 @@ extension HomePageViewController {
                        let width = standard["width"] as? Int,
                        let height = standard["height"] as? Int,
                        let publishedAt = snippet["publishedAt"] as? String,
+                       let channelId = snippet["channelId"] as? String,
                        let channelTitle = snippet["channelTitle"] as? String {
                         
                         completion(Video(id: videoId,
@@ -353,7 +371,7 @@ extension HomePageViewController {
                                          channelTitle: channelTitle,
                                          publishedAt: publishedAt,
                                          viewCount: "",
-                                         duration: ""),
+                                         duration: "", channelId: channelId),
                                     index)                    }
                 }
             }
@@ -387,6 +405,10 @@ extension HomePageViewController {
         }
     }
     
+  
+
+    
+    
     func requestImage(thumbnailUrl: String, completion: @escaping ((_ image: UIImage) -> ())) {
         AF.request(thumbnailUrl).responseData { response in
             switch response.result {
@@ -401,5 +423,7 @@ extension HomePageViewController {
             }
         }
     }
+    
+    
 }
 
