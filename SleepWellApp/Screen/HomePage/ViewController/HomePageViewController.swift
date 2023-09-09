@@ -231,10 +231,12 @@ extension HomePageViewController: UICollectionViewDelegate {
         
         let detailVC = DetailPageViewController()
         detailVC.selectedVideo = video
+        if let channelThumbnail = video.channelThumbnail?.image {
+            detailVC.channelImage = channelThumbnail
+        }
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
-
 
 
 extension HomePageViewController: UICollectionViewDelegateFlowLayout {

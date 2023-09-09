@@ -3,6 +3,8 @@ import youtube_ios_player_helper
 
 class DetailPageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
+    
     private var isHeartFilled: Bool = false
     private let heartButton: UIButton = {
         let button = UIButton()
@@ -77,7 +79,8 @@ class DetailPageViewController: UIViewController, UITableViewDelegate, UITableVi
     }()
     
     var selectedVideo: Video?
-    
+    var channelImage: UIImage?
+
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,7 +112,10 @@ class DetailPageViewController: UIViewController, UITableViewDelegate, UITableVi
             authorLabel.text = video.channelTitle
             playerView.load(withVideoId: video.id)
         }
-
+        
+        if let channelImage = channelImage {
+                profileImageView.image = channelImage
+            }
 
     
         func setupUI() {
