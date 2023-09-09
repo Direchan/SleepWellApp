@@ -149,7 +149,7 @@ class DetailPageViewController: UIViewController, UITableViewDelegate, UITableVi
         return nil
     }
 
-//
+//  홈페이지 시간대별 나누기, 프로필채널 이미지,
     func setupTableView() {
         otherVideoCell.delegate = self
         otherVideoCell.dataSource = self

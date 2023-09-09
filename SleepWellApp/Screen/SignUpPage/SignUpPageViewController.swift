@@ -22,6 +22,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
     lazy var nicknameField: UITextField = {
         let textField = UITextField()
         configureTextField(for: textField)
+        textField.delegate = self //방금 추가
         return textField
     }()
     
@@ -112,50 +113,49 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
-    
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let prospectiveText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
+            let prospectiveText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
 
-        let lengthOfCompletedText = prospectiveText.utf16.count
+            let lengthOfCompletedText = prospectiveText.utf16.count
 
-        //닉네임
-        if textField == nicknameField {
-            if lengthOfCompletedText <= 5 {
-                nicknameRuleLabel.textColor = .green //충족! 초록색으로
-            } else {
-                nicknameRuleLabel.textColor = .red //미충족! 빨간색으로
+            //닉네임
+            if textField == nicknameField {
+                if lengthOfCompletedText <= 5 {
+                    nicknameRuleLabel.textColor = .green //충족! 초록색으로
+                } else {
+                    nicknameRuleLabel.textColor = .red //미충족! 빨간색으로
+                }
+                return lengthOfCompletedText <= 5
             }
-            return lengthOfCompletedText <= 5
+
+            
+            //아이디
+            if textField == idField || textField == passwordField {
+                let containsLetter = prospectiveText.rangeOfCharacter(from: .letters) != nil
+                let containsNumber = prospectiveText.rangeOfCharacter(from: .decimalDigits) != nil
+                let isValidLength = (prospectiveText.count >= 6 && prospectiveText.count <= 12)
+
+                if containsLetter && containsNumber && isValidLength {
+                    if textField == idField {
+                        idRuleLabel.textColor = .green //충족!초록색으로
+                    } else {
+                        passwordRuleLabel.textColor = .green //충족!초록색으로
+                    }
+                } else {
+                    if textField == idField {
+                        idRuleLabel.textColor = .red //미충족!빨간색으로
+                    } else {
+                        passwordRuleLabel.textColor = .red //미충족!빨간색으로
+                    }
+                }
+                return prospectiveText.count <= 12
+            }
+
+            return true
         }
 
         
-        //아이디
-        if textField == idField || textField == passwordField {
-            let containsLetter = prospectiveText.rangeOfCharacter(from: .letters) != nil
-            let containsNumber = prospectiveText.rangeOfCharacter(from: .decimalDigits) != nil
-            let isValidLength = (prospectiveText.count >= 6 && prospectiveText.count <= 12)
-
-            if containsLetter && containsNumber && isValidLength {
-                if textField == idField {
-                    idRuleLabel.textColor = .green //충족!초록색으로
-                } else {
-                    passwordRuleLabel.textColor = .green //충족!초록색으로
-                }
-            } else {
-                if textField == idField {
-                    idRuleLabel.textColor = .red //미충족!빨간색으로
-                } else {
-                    passwordRuleLabel.textColor = .red //미충족!빨간색으로
-                }
-            }
-            return prospectiveText.count <= 12
-        }
-
-        return true
-    }
-
-
-    
 
     
     @objc func signUpButtonTapped() {
@@ -194,6 +194,12 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
             let newUser = UserModel(userId: userId, password: userPassword, nickname: nickname)
             DataManager.shared.saveUser(user: newUser)
             
+            
+            nicknameField.text = ""
+            idField.text = ""
+            passwordField.text = ""
+            // 가입 후 필드 초기화
+            
             //회원가입 완료 메시지
             showAlert(message: "회원가입이 완료되었습니다!")
         } else {
@@ -202,34 +208,6 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    
-//    @objc func signUpButtonTapped() {
-//        if nicknameField.text?.isEmpty == true ||
-//            idField.text?.isEmpty == true ||
-//            passwordField.text?.isEmpty == true {
-//            // 하나 이상의 필드가 비어있다면 경고 메시지
-//            showEmptyFieldAlert()
-//            return
-//        }
-//
-//        let userId = idField.text ?? ""
-//        let userPassword = passwordField.text ?? ""
-//        let nickname = nicknameField.text ?? ""
-//
-//        // 이미 존재하는 아이디인지 확인
-//        if UserDefaults.standard.string(forKey: userId) != nil {
-//            showAlert(message: "이미 존재하는 아이디입니다.")
-//            return
-//        }
-//
-//        // 아이디와 비밀번호를 UserDefaults에 저장
-//        UserDefaults.standard.setValue(userPassword, forKey: userId)
-//        UserDefaults.standard.setValue(nickname, forKey: "nickname_\(userId)")
-//
-//        // 회원가입 완료 메시지
-//        showAlert(message: "회원가입이 완료되었습니다!")
-//    }
-    
     
     func showAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -345,6 +323,4 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         
     }
     // ---------------------------레이아웃 설정 끝-----------------------------------
-
-
 
