@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class HomePageViewController: UIViewController {
     
@@ -22,6 +23,13 @@ class HomePageViewController: UIViewController {
     }
     
     // MARK: - Properties
+    
+    var asmrVideos: [Video] = []
+    var sleepVideos: [Video] = []
+    var halfAnHourVideos: [Video] = []
+    var oneHourVideos: [Video] = []
+    var twoHourVideos: [Video] = []
+    var moreTimeVideos: [Video] = []
     
     var previousIndex = 0
     
@@ -114,6 +122,7 @@ class HomePageViewController: UIViewController {
         configUI()
         setupLayout()
         setupCollectionView()
+        requestVideo()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -128,11 +137,11 @@ class HomePageViewController: UIViewController {
         
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         segmentedControl.setTitleTextAttributes(
-          [
-            NSAttributedString.Key.foregroundColor: UIColor.pastelYellow  ?? UIColor(),
-            .font: UIFont.systemFont(ofSize: 13, weight: .bold)
-          ],
-          for: .selected
+            [
+                NSAttributedString.Key.foregroundColor: UIColor.pastelYellow  ?? UIColor(),
+                .font: UIFont.systemFont(ofSize: 13, weight: .bold)
+            ],
+            for: .selected
         )
         segmentedControl.selectedSegmentIndex = 0
     }
@@ -201,12 +210,14 @@ class HomePageViewController: UIViewController {
 
 extension HomePageViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return asmrVideos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = asmrCollectionView.dequeueReusableCell(withReuseIdentifier: VideoCollectionViewCell.identifier, for: indexPath) as? VideoCollectionViewCell
         else { return UICollectionViewCell() }
+        
+        cell.bind(video: asmrVideos[indexPath.item])
         
         return cell
     }
@@ -235,12 +246,25 @@ extension HomePageViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomePageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            return halfAnHourVideos.count
+        case 1:
+            return oneHourVideos.count
+        case 2:
+            return twoHourVideos.count
+        case 3:
+            return moreTimeVideos.count
+        default:
+            return sleepVideos.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = videoLengthTableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as? CustomTableViewCell
         else { return UITableViewCell() }
+        
+        cell.bind(video: sleepVideos[indexPath.row])
         
         return cell
     }
@@ -250,5 +274,126 @@ extension HomePageViewController: UITableViewDataSource {
 
 extension HomePageViewController: UITableViewDelegate {
     
+}
+
+//MARK: - Network
+
+extension HomePageViewController {
+    func requestVideo() {
+        getVideos(searchKeyword: "에이에스엠알", maxResults: 10) { video, index in
+            self.asmrVideos.append(video)
+            
+            self.getVideoInfo(id: video.id, index: index) { duration, viewCount in
+                
+                if let duration = duration {
+                    self.asmrVideos[index].duration = duration
+                }
+                
+                if let viewCount = viewCount {
+                    self.asmrVideos[index].viewCount = viewCount
+                }
+                
+                DispatchQueue.main.async {
+                    self.asmrCollectionView.reloadData()
+                }
+            }
+            
+            self.requestImage(thumbnailUrl: video.thumbnail.url) { image in
+                self.asmrVideos[index].thumbnail.image = image
+            }
+        }
+        getVideos(searchKeyword: "수면", maxResults: 100) { video, index in
+            self.sleepVideos.append(video)
+            self.getVideoInfo(id: video.id, index: index) { duration, viewCount in
+                if let duration = duration {
+                    self.sleepVideos[index].duration = duration
+                }
+                
+                if let viewCount = viewCount {
+                    self.sleepVideos[index].viewCount = viewCount
+                }
+                
+                DispatchQueue.main.async {
+                    self.videoLengthTableView.reloadData()
+                }
+            }
+            
+            self.requestImage(thumbnailUrl: video.thumbnail.url) { image in
+                self.sleepVideos[index].thumbnail.image = image
+            }
+        }
+    }
+    
+    func getVideos(searchKeyword: String, maxResults: Int, completion: @escaping ((_ video: Video, _ index: Int) -> ())) {
+        // items.id.videoId / items.snippet.publishedAt, title / items.snippet.thumbnails / items.snippet.channelTitle
+        APIManager.shared.getVideos(searchKeyword: searchKeyword, maxResults: maxResults) { data, error in
+            if let data = data, let items = data["items"] as? [[String:Any]] {
+                for (index, item) in items.enumerated() {
+                    if let id = item["id"] as? [String:Any],
+                       let videoId = id["videoId"] as? String,
+                       let snippet = item["snippet"] as? [String:Any],
+                       let title = snippet["title"] as? String,
+                       let thumbnails = snippet["thumbnails"] as? [String:Any],
+                       let standard = thumbnails["default"] as? [String:Any],
+                       let thumbnailUrl = standard["url"] as? String,
+                       let width = standard["width"] as? Int,
+                       let height = standard["height"] as? Int,
+                       let publishedAt = snippet["publishedAt"] as? String,
+                       let channelTitle = snippet["channelTitle"] as? String {
+                        
+                        completion(Video(id: videoId,
+                                         thumbnail: Thumbnail(url: thumbnailUrl, image: nil, width: width, height: height),
+                                         title: title,
+                                         channelTitle: channelTitle,
+                                         publishedAt: publishedAt,
+                                         viewCount: "",
+                                         duration: ""),
+                                    index)                    }
+                }
+            }
+        }
+    }
+    
+    func getVideoInfo(id: String, index: Int, completion: @escaping((_ duration: String?, _ viewCount: String?) -> ())) {
+        
+        // 영상 길이
+        APIManager.shared.getVideoInfo(id: id, part: "contentDetails") { data, error in
+            if let data = data, let items = data["items"] as? [[String:Any]] {
+                for item in items {
+                    if let content = item["contentDetails"] as? [String:Any],
+                       let duration = content["duration"] as? String {
+                        completion(duration, nil)
+                    }
+                }
+            }
+        }
+        
+        // 조회수
+        APIManager.shared.getVideoInfo(id: id, part: "statistics") { data, error in
+            if let data = data, let items = data["items"] as? [[String:Any]] {
+                for item in items {
+                    if let statistics = item["statistics"] as? [String:Any],
+                       let viewCount = statistics["viewCount"] as? String {
+                        completion(nil, viewCount)
+                    }
+                }
+            }
+        }
+    }
+    
+    func requestImage(thumbnailUrl: String, completion: @escaping ((_ image: UIImage) -> ())) {
+        AF.request(thumbnailUrl).responseData { response in
+            switch response.result {
+            case .success(let data):
+                if let image = UIImage(data: data) {
+                    completion(image)
+                } else {
+                    print("Failed to convert data to UIImage")
+                }
+            case .failure(let error):
+                print("Image download error: \(error)")
+            }
+        }
+    }
 }
 
