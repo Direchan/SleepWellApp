@@ -219,7 +219,7 @@ class DetailPageViewController: UIViewController, UITableViewDelegate, UITableVi
             
             
             heartButton.centerYAnchor.constraint(equalTo: authorLabel.centerYAnchor),
-            heartButton.leadingAnchor.constraint(equalTo: authorLabel.trailingAnchor, constant: 210),
+            heartButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             heartButton.widthAnchor.constraint(equalToConstant: 24),
             heartButton.heightAnchor.constraint(equalToConstant: 24)
             
