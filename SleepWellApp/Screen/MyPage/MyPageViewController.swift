@@ -9,6 +9,9 @@ import UIKit
 
 class MyPageViewController: UIViewController, UITextFieldDelegate {
     
+    
+    // MARK: - UI 요소 & 각 요소의 속성 설정
+    //프로필 정보 배경 박스
     private lazy var bigBox: UIView = {
         let view = UIView()
         view.backgroundColor = .pastelYellow?.withAlphaComponent(0.05)
@@ -17,7 +20,7 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
         return view
     }()
     
-    
+    //닉네임 라벨
     private lazy var nicknameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
@@ -27,7 +30,7 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
         return label
     }()
     
-    
+    //아이디라벨
     private lazy var idLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
@@ -36,7 +39,7 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
         return label
     }()
     
-    
+    //닉네임 수정 버튼
     private lazy var changeNicknameButton: UIButton = {
         let button = UIButton()
         button.setTitle("닉네임변경", for: .normal)
@@ -45,17 +48,18 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
         button.backgroundColor = .deepIndigo
         button.layer.cornerRadius = 17.5
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(promptForNewNickname), for: .touchUpInside)
         return button
     }()
     
-    
+    //빈 공백(스택뷰에서 간격 조정 위해 만들어둔 요소)
     private lazy var spacerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    
+    //닉네임+아이디+빈공백+닉네임수정버튼
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -64,7 +68,7 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
         return stack
     }()
     
-    
+    //로그아웃 버튼
     private lazy var logoutButton: UIButton = {
         let button = UIButton()
         button.setTitle("로그아웃", for: .normal)
@@ -78,91 +82,83 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
     }()
     
     
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        updateUserInformation()
+    }
+
+    //MARK: - MyPage 함수 모음
+    //ui 세팅
+    private func setupUI() {
         self.title = "마이페이지"
         view.backgroundColor = .indigo
-        setupUI()
         setupConstraints()
         logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+    }
 
-        
-        if let currentUserID = DataManager.shared.getCurrentUser(),
-               let user = DataManager.shared.getUser(userId: currentUserID) {
-                idLabel.text = "@\(user.userId)"
-                nicknameLabel.text = user.nickname
-            }
-        
+    //유저 정보 업데이트하고, UI에도 업데이트
+    private func updateUserInformation() {
+        guard let currentUserID = DataManager.shared.getCurrentUser(),
+              let user = DataManager.shared.getUser(userId: currentUserID) else { return }
+        idLabel.text = "@\(user.userId)"
+        nicknameLabel.text = user.nickname
     }
-    
-    @objc private func changeNicknameButtonTapped() {
-        promptForNewNickname()
-    }
-    
-    
-    
-    
+
+    //알럿뷰
     private func promptForNewNickname() {
         let alertController = UIAlertController(title: "별명 변경", message: "새로운 별명을 입력하세요.", preferredStyle: .alert)
-        
-        alertController.addTextField { (textField) in
+        alertController.addTextField { textField in
             textField.placeholder = "새로운 별명"
             textField.delegate = self
         }
         
-        let confirmAction = UIAlertAction(title: "변경", style: .default) { [weak self] (_) in
-            if let newNickname = alertController.textFields?.first?.text, !newNickname.isEmpty {
-                // 새로운 별명을 저장합니다.
-                if let currentUserID = DataManager.shared.getCurrentUser() {
-                    var user = DataManager.shared.getUser(userId: currentUserID)!
-                    user.nickname = newNickname
-                    DataManager.shared.saveUser(user: user)
-                    
-                    // 변경된 별명을 화면에 표시합니다.
-                    self?.nicknameLabel.text = newNickname
-                }
-            }
+        let confirmAction = UIAlertAction(title: "변경", style: .default) { [weak self] _ in
+            guard let newNickname = alertController.textFields?.first?.text,
+                  !newNickname.isEmpty,
+                  let currentUserID = DataManager.shared.getCurrentUser(),
+                  var user = DataManager.shared.getUser(userId: currentUserID) else { return }
+                  
+            user.nickname = newNickname
+            DataManager.shared.saveUser(user: user)
+            self?.nicknameLabel.text = newNickname
         }
         
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        
         alertController.addAction(confirmAction)
-        alertController.addAction(cancelAction)
+        alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
         
         present(alertController, animated: true, completion: nil)
     }
     
     
-    
+    //텍스트필드
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text ?? ""
         let prospectiveText = (currentText as NSString).replacingCharacters(in: range, with: string)
         return prospectiveText.count <= 5
     }
     
+    
+    //로그아웃
     @objc func logoutButtonTapped() {
         DataManager.shared.logout()
-        let loginVC = LoginPageViewController()
-        loginVC.modalPresentationStyle = .fullScreen
-        present(loginVC, animated: true)
+        NotificationCenter.default.post(name: NSNotification.Name("UserDidLogout"), object: nil) //로그아웃 이벤트를 알리기 위해 노티피케이션을 발송 (로그인 페이지로 가기 위한 과정1)
     }
-
     
     
     
-    private func setupUI() {
+    // MARK: - 오토레이아웃
+    private func setupConstraints() {
         view.addSubview(bigBox)
         view.addSubview(logoutButton)
         stackView.addArrangedSubview(nicknameLabel)
         stackView.addArrangedSubview(idLabel)
         stackView.addArrangedSubview(spacerView)  // Spacer view
         stackView.addArrangedSubview(changeNicknameButton)
-        changeNicknameButton.addTarget(self, action: #selector(changeNicknameButtonTapped), for: .touchUpInside)
-        
+      
         bigBox.addSubview(stackView)
-    }
-    
-    private func setupConstraints() {
+        
         NSLayoutConstraint.activate([
             bigBox.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             bigBox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -181,6 +177,5 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
             logoutButton.widthAnchor.constraint(equalToConstant: 115),
             logoutButton.heightAnchor.constraint(equalToConstant: 35)
         ])
-        
     }
 }

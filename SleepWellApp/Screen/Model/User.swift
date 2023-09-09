@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct UserModel {
+struct UserModel: Codable {
     var userId: String
     var password: String
     var nickname: String
