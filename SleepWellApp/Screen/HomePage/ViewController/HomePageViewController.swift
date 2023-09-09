@@ -36,7 +36,8 @@ class HomePageViewController: UIViewController {
     //MARK: - UI Properties
     
     private let recommendedMessageLabel: UILabel = {
-        $0.text = DataManager.shared.getUser(userId: DataManager.shared.getCurrentUser() ?? "힘내조")?.nickname
+        let nickname = DataManager.shared.getUser(userId: DataManager.shared.getCurrentUser() ?? "힘내조")?.nickname ?? "힘내조"
+        $0.text = "\(nickname)님의 숙면을 위한"
         $0.font = .systemFont(ofSize: 14, weight: .regular)
         $0.textColor = .pastelYellow
         return $0
