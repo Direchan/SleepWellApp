@@ -1,4 +1,3 @@
-![찜목록](https://github.com/Direchan/SleepWellApp/assets/85066307/1f4d3780-a8e8-45c3-a2c9-d2120d36e8bb)
 <img width="90" alt="Group 46" src="https://github.com/Direchan/SleepWellApp/assets/85066307/97ee50a8-8556-4f9b-b9e7-ef5c35fbc4ce">
 
 
@@ -38,7 +37,7 @@
 - 회원가입 실패 유형에 따라 안내 문구가 달라집니다.
 <img src="https://github.com/Direchan/SleepWellApp/assets/85066307/63ffb384-8faf-4cb7-a8d3-2055f7c0bb86" width="200"/>
 <img src="https://github.com/Direchan/SleepWellApp/assets/85066307/5e264620-8c31-4035-82b7-99959a1bc4e5" width="200"/>
-<img src="https://github.com/Direchan/SleepWellApp/assets/85066307/d1037472-10e9-4397-b98c-d895d93a8576" width="200"/>
+<img src="https://github.com/Direchan/SleepWellApp/assets/85066307/f21d0e5d-55d4-44d3-b1b9-c4917f094eb3" width="200"/>
 <img src="https://github.com/Direchan/SleepWellApp/assets/85066307/d8a4fa71-f242-45dd-9578-7b94caf448f9" width="200"/>
 
 ### **<메인 페이지>**
