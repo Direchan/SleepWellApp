@@ -131,6 +131,8 @@ class HomePageViewController: UIViewController {
         NavigationUtil.setupNavigationBar(for: self)
         let nickname = DataManager.shared.getUser(userId: DataManager.shared.getCurrentUser() ?? "힘내조")?.nickname ?? "힘내조"
         recommendedMessageLabel.text = "\(nickname)님의 숙면을 위한"
+//        asmrCollectionView.reloadData()
+            videoLengthTableView.reloadData()
     }
     
     // InitUI
@@ -272,6 +274,37 @@ extension HomePageViewController: UICollectionViewDataSource {
     }
 }
 
+extension HomePageViewController: CustomTableViewCellDelegate {
+    func didTapHeartButton(onCell cell: CustomTableViewCell) {
+        guard let indexPath = videoLengthTableView.indexPath(for: cell) else { return }
+        
+        var video: Video
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            video = halfAnHourVideos[indexPath.row]
+        case 1:
+            video = oneHourVideos[indexPath.row]
+        case 2:
+            video = twoHourVideos[indexPath.row]
+        case 3:
+            video = moreTimeVideos[indexPath.row]
+        default:
+            video = sleepVideos[indexPath.row]
+        }
+
+        if LikedVideosManager.shared.isLiked(video: video) {
+            LikedVideosManager.shared.remove(video: video)
+        } else {
+            LikedVideosManager.shared.add(video: video)
+        }
+        
+        // NotificationCenter를 사용하여 LikePageViewController에 알림을 보냅니다.
+        NotificationCenter.default.post(name: Notification.Name("LikedVideosUpdated"), object: nil)
+    }
+}
+
+
+
 
 extension HomePageViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -342,13 +375,40 @@ extension HomePageViewController: UITableViewDataSource {
             cell.bind(video: sleepVideos[indexPath.row])
         }
         
+        cell.delegate = self
+//        tableView.reloadRows(at: [indexPath], with: .none)
         return cell
     }
 }
 
 
+
+
+
+
 extension HomePageViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            var video: Video
+            switch segmentedControl.selectedSegmentIndex {
+            case 0:
+                video = halfAnHourVideos[indexPath.row]
+            case 1:
+                video = oneHourVideos[indexPath.row]
+            case 2:
+                video = twoHourVideos[indexPath.row]
+            case 3:
+                video = moreTimeVideos[indexPath.row]
+            default:
+                video = sleepVideos[indexPath.row]
+            }
+            
+            let detailVC = DetailPageViewController()
+            detailVC.selectedVideo = video
+            if let channelThumbnail = video.channelThumbnail?.image {
+                detailVC.channelImage = channelThumbnail
+            }
+            navigationController?.pushViewController(detailVC, animated: true)
+        }
 }
 
 

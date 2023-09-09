@@ -121,27 +121,29 @@ class CustomTableViewCell: UITableViewCell {
     
     // 하트 버튼이 눌렸을 때 호출
     @objc private func didTapHeartButton() {
-        isHeartFilled.toggle()  //상태 토글
-        
-        let imageName = isHeartFilled ? "heart.fill" : "heart"  //상태에 따라 다른 이미지 넣기
-        heartButton.setImage(UIImage(systemName: imageName), for: .normal)
-        
-        delegate?.didTapHeartButton(onCell: self)//이미지 변경
-    }
+        isHeartFilled.toggle()
+                
+            let imageName = isHeartFilled ? "heart.fill" : "heart"
+            heartButton.setImage(UIImage(systemName: imageName), for: .normal)
+                
+            self.setNeedsLayout()
+            self.layoutIfNeeded()
+                
+            delegate?.didTapHeartButton(onCell: self)
+        }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func bind(video: Video) {
-        thumbnailImageView.image = video.thumbnail.image
-        titleLabel.text = video.title
-        infoLabel.text = "조회수 \(VideoCollectionViewCell.formatCount(video.viewCount))"
-        
-        if LikedVideosManager.shared.isLiked(video: video) {
-                heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            } else {
-                heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
-            }
-    }
+            thumbnailImageView.image = video.thumbnail.image
+            titleLabel.text = video.title
+            infoLabel.text = "조회수 \(VideoCollectionViewCell.formatCount(video.viewCount))"
+            
+            isHeartFilled = LikedVideosManager.shared.isLiked(video: video) // 상태 업데이트
+            
+            let imageName = isHeartFilled ? "heart.fill" : "heart"
+            heartButton.setImage(UIImage(systemName: imageName), for: .normal)
+        }
 }

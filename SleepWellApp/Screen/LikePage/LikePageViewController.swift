@@ -119,9 +119,13 @@ extension LikePageViewController: CustomTableViewCellDelegate {
         if LikedVideosManager.shared.isLiked(video: video) {
             LikedVideosManager.shared.remove(video: video)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            // 찜하기 개수 업데이트
-            let count = LikedVideosManager.shared.likedVideos.count
-            countListLabel.text = "\(count)개"
+        } else {
+            LikedVideosManager.shared.add(video: video)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         }
+        
+        // 찜하기 개수 업데이트
+        let count = LikedVideosManager.shared.likedVideos.count
+        countListLabel.text = "\(count)개"
     }
 }
