@@ -129,6 +129,8 @@ class HomePageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         NavigationUtil.currentViewController = self
         NavigationUtil.setupNavigationBar(for: self)
+        let nickname = DataManager.shared.getUser(userId: DataManager.shared.getCurrentUser() ?? "힘내조")?.nickname ?? "힘내조"
+        recommendedMessageLabel.text = "\(nickname)님의 숙면을 위한"
     }
     
     // InitUI
