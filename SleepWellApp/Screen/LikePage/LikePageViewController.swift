@@ -47,7 +47,7 @@ class LikePageViewController: UIViewController {
         setupConstraint()
         NotificationCenter.default.addObserver(self, selector: #selector(handleLikedVideosUpdated), name: Notification.Name("LikedVideosUpdated"), object: nil)
     }
-
+    
     
     @objc private func handleLikedVideosUpdated() {
         tableView.reloadData()
@@ -99,6 +99,15 @@ extension LikePageViewController: UITableViewDataSource {
 extension LikePageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
+    }
+    
+    //셀 누르면 해당 영상 디테일 페이지 열리도록
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let video = LikedVideosManager.shared.likedVideos[indexPath.row]
+        let detailVC = DetailPageViewController()
+        detailVC.selectedVideo = video
+        
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 

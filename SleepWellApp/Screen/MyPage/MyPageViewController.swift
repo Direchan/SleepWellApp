@@ -107,7 +107,7 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
     }
 
     //알럿뷰
-    private func promptForNewNickname() {
+    @objc private func promptForNewNickname() {
         let alertController = UIAlertController(title: "별명 변경", message: "새로운 별명을 입력하세요.", preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "새로운 별명"

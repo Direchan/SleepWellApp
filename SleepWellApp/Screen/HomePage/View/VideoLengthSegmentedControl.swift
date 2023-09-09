@@ -46,6 +46,9 @@ class VideoLengthSegmentedControl: UISegmentedControl {
         )
     }
     
+ 
+
+    
     private func removeBackgroundAndDivider() {
         let image = UIImage()
         self.setBackgroundImage(image, for: .normal, barMetrics: .default)
