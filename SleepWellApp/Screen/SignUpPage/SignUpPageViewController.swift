@@ -154,6 +154,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    
     //닉네임
     @objc func textDidChange(noti: NSNotification) {
         if let textField = noti.object as? UITextField {
@@ -259,6 +260,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
     
     private func showEmptyFieldAlert() {
         let alert = UIAlertController(title: "안내", message: "입력되지 않은 항목이 있습니다.", preferredStyle: .alert)

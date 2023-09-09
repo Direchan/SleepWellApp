@@ -112,6 +112,7 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
         alertController.addTextField { textField in
             textField.placeholder = "새로운 별명"
             textField.delegate = self
+            NotificationCenter.default.addObserver(self, selector: #selector(self.textDidChange(noti:)), name: UITextField.textDidChangeNotification, object: textField)
         }
         
         let confirmAction = UIAlertAction(title: "변경", style: .default) { [weak self] _ in
@@ -132,12 +133,27 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    //텍스트필드
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = textField.text ?? ""
-        let prospectiveText = (currentText as NSString).replacingCharacters(in: range, with: string)
-        return prospectiveText.count <= 5
+    @objc func textDidChange(noti: NSNotification) {
+        if let textField = noti.object as? UITextField {
+            if let text = textField.text {
+                if text.count > 5 {
+                    let fixedText = String(text.prefix(5))
+                    textField.text = fixedText + " "
+                    
+                    let when = DispatchTime.now() + 0.01
+                    DispatchQueue.main.asyncAfter(deadline: when) {
+                        textField.text = fixedText
+                    }
+                    // 이 뷰에 규칙 레이블이 있다면 여기에서도 업데이트할 수 있습니다.
+                    // nicknameRuleLabel.textColor = .green
+                } else {
+                    // 이 뷰에 규칙 레이블이 있다면 여기에서도 업데이트할 수 있습니다.
+                    // nicknameRuleLiabel.textColor = .green
+                }
+            }
+        }
     }
+    
     
     
     //로그아웃
