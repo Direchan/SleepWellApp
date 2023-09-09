@@ -280,7 +280,7 @@ extension HomePageViewController: UITableViewDelegate {
 
 extension HomePageViewController {
     func requestVideo() {
-        getVideos(searchKeyword: "에이에스엠알", maxResults: 10) { video, index in
+        getVideos(searchKeyword: "에이에스엠알", maxResults: 5) { video, index in
             self.asmrVideos.append(video)
             
             self.getVideoInfo(id: video.id, index: index) { duration, viewCount in
@@ -302,7 +302,7 @@ extension HomePageViewController {
                 self.asmrVideos[index].thumbnail.image = image
             }
         }
-        getVideos(searchKeyword: "수면", maxResults: 100) { video, index in
+        getVideos(searchKeyword: "수면", maxResults: 5) { video, index in
             self.sleepVideos.append(video)
             self.getVideoInfo(id: video.id, index: index) { duration, viewCount in
                 if let duration = duration {

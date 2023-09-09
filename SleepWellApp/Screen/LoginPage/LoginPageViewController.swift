@@ -25,6 +25,8 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
         view.addSubview(아이디안내문구)
         return view
     }()
+    
+    
     private var 아이디안내문구: UILabel = {
         let label = UILabel()
         label.text = "아이디"
@@ -32,6 +34,8 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
         label.textColor = .pastelYellow
         return label
     }()
+    
+    
     private lazy var 아이디입력필드 : UITextField = {
         var tf = UITextField()
         tf.frame.size.height = 48
@@ -46,6 +50,8 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
         //        .editingChanged)
         return tf
     }()
+    
+    
     private lazy var 비밀번호텍스트뷰 :UIView = {
         let view = UIView()
         view.backgroundColor = .deepIndigo
@@ -56,6 +62,8 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
         view.addSubview(비밀번호표시버튼)
         return view
     }()
+    
+    
     private var 비밀번호안내문구 : UILabel = {
         let label = UILabel()
         label.text = "비밀번호"
@@ -63,6 +71,8 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
         label.textColor = .pastelYellow
         return label
     }()
+    
+    
     private lazy var 비밀번호입력필드 : UITextField = {
         var tf = UITextField()
         tf.frame.size.height = 48
@@ -78,6 +88,8 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
         //        .editingChanged)
         return tf
     }()
+    
+    
     private let 비밀번호표시버튼: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("표시", for: .normal)
@@ -86,6 +98,8 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
         button.addTarget(self, action: #selector(passwordSecureModeSetting), for: .touchUpInside)
         return button
     }()
+    
+    
     private lazy var 로그인버튼: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = .pastelYellow
@@ -107,17 +121,18 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
     }()
     
     private var 회원가입안내문구: UILabel = {
-            let label = UILabel()
-            label.text = "\"아직 회원이 아니신가요?\""
-            label.font = UIFont.systemFont(ofSize: 14)
-            label.textColor = .pastelYellow
-            return label
-        }()
-        
+        let label = UILabel()
+        label.text = "\"아직 회원이 아니신가요?\""
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .pastelYellow
+        return label
+    }()
+    
     // 회원가입 버튼
     private lazy var 회원가입버튼: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
+        button.isEnabled = true
         button.layer.cornerRadius = 20
         button.clipsToBounds = true
         button.layer.borderWidth = 1
@@ -136,7 +151,6 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
     
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(이미지뷰)
@@ -145,6 +159,8 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
         비밀번호입력필드.delegate = self
         ui만들기()
     }
+    
+    
     func ui만들기() {
         view.backgroundColor = .indigo
         view.addSubview(스택뷰)
@@ -195,7 +211,7 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
             스택뷰.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             스택뷰.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             스택뷰.heightAnchor.constraint(equalToConstant: 입력창높이*3 + 36),
-        
+            
             회원가입안내문구.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             회원가입안내문구.bottomAnchor.constraint(equalTo: 회원가입버튼.topAnchor, constant: -15),
             
@@ -203,14 +219,8 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
             회원가입버튼.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
             회원가입버튼.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
             회원가입버튼.heightAnchor.constraint(equalToConstant: 입력창높이)
-            
-
         ])
     }
-    
-    
-    
-    
     
     
     
@@ -219,12 +229,16 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
         alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
+    
     private func showEmptyFieldAlert() {
         let alert = UIAlertController(title: "안내", message: "입력되지 않은 항목이 있습니다.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    
     @objc func loginButtonTapped() {
         if
             아이디입력필드.text?.isEmpty == true ||
@@ -250,12 +264,14 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
+    
     @objc func signUpButtonTapped() {
         // SignUpPageViewController로 이동하는 코드 추가
         let signUpVC = SignUpPageViewController()
         self.navigationController?.navigationBar.tintColor = .pastelYellow
         self.navigationController?.pushViewController(signUpVC, animated: true)
     }
+    
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == 아이디입력필드 || textField == 비밀번호입력필드 {
@@ -270,6 +286,7 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
         return true
     }
     
+    
     @objc func passwordSecureModeSetting() {
         비밀번호입력필드.isSecureTextEntry.toggle()
     }
@@ -281,20 +298,18 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
             // 오토레이아웃 업데이트
             loginInfoLabelCenterYConstraint.constant = -13
         }
-        
         if textField == 비밀번호입력필드 {
             비밀번호안내문구.font = UIFont.systemFont(ofSize: 11)
             // 오토레이아웃 업데이트
             passwordInfoLabelCenterYConstraint.constant = -13
         }
-        
         UIView.animate(withDuration: 0.3){
             self.스택뷰.layoutIfNeeded()
         }
     }
     
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
         if textField == 아이디입력필드 {
             // 빈칸이면 원래로 되돌리기
             if 아이디입력필드.text == "" {
@@ -308,16 +323,10 @@ class LoginPageViewController: UIViewController,UITextFieldDelegate {
                 비밀번호안내문구.font = UIFont.systemFont(ofSize: 18)
                 passwordInfoLabelCenterYConstraint.constant = 0
             }
-            
         }
-        
         UIView.animate(withDuration: 0.3){
             self.스택뷰.layoutIfNeeded()
         }
-        
-        
-        
-        
     }}
-    
-    
+
+

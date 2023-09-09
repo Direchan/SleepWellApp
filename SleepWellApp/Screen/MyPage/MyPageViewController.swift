@@ -142,9 +142,8 @@ class MyPageViewController: UIViewController, UITextFieldDelegate {
     
     @objc func logoutButtonTapped() {
         DataManager.shared.logout()
-        let loginVC = LoginPageViewController()
-        loginVC.modalPresentationStyle = .fullScreen
-        present(loginVC, animated: true)
+        NotificationCenter.default.post(name: NSNotification.Name("UserDidLogout"), object: nil)
+
     }
 
     
