@@ -253,6 +253,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.autocapitalizationType = .none //앞 대문자 해제
+        textField.tintColor = .pastelYellow //커서 색 변경
     }
     
     
