@@ -14,11 +14,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
           guard let windowScene = (scene as? UIWindowScene) else { return }
+        NotificationCenter.default.addObserver(self, selector: #selector(userDidLogout), name: NSNotification.Name("UserDidLogout"), object: nil)
+
           window = UIWindow(windowScene: windowScene)
 
           window?.rootViewController = UINavigationController(rootViewController: LoginPageViewController())
           window?.makeKeyAndVisible()
       }
+    
+    
+    @objc func userDidLogout() {
+        let loginVC = LoginPageViewController()
+        window?.rootViewController = UINavigationController(rootViewController: loginVC)
+    }
+
     
 //    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 //        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.

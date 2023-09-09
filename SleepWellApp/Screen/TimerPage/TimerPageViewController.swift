@@ -10,7 +10,9 @@ import UIKit
 
 class TimerPageViewController: UIViewController {
     
-
+    
+    // MARK: - UI 요소 & 각 요소의 속성 설정
+    //타이틀 레이블
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "슬립웰 타이머"
@@ -19,6 +21,7 @@ class TimerPageViewController: UIViewController {
         return label
     }()
     
+    //서브 타이틀 레이블
     private lazy var subTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "정해진 시간이 되면 자동으로 앱을 종료해드려요"
@@ -27,6 +30,25 @@ class TimerPageViewController: UIViewController {
         return label
     }()
     
+    //타이머 머리 장식
+    private lazy var timerHeadView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .pastelYellow
+        view.layer.cornerRadius = 8
+        return view
+    }()
+    
+    //타이머 몸체
+    private lazy var circleView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .pastelYellow?.withAlphaComponent(0.1)
+        view.layer.borderColor = UIColor.pastelYellow?.cgColor
+        view.layer.borderWidth = 2.0
+        view.layer.cornerRadius = 150
+        return view
+    }()
+    
+    //타이머 숫자 레이블
     private lazy var timerLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 29)
@@ -36,10 +58,11 @@ class TimerPageViewController: UIViewController {
         return label
     }()
     
+    //시간 설정 버튼
     private lazy var timeSetButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("시간 설정", for: .normal)
-        button.addTarget(self, action: #selector(setTime), for: .touchUpInside)
+        button.addTarget(self, action: #selector(setTime), for: .touchUpInside) //setTime 함수 호출
         button.backgroundColor = .pastelYellow?.withAlphaComponent(1.0)
         button.setTitleColor(.indigo, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
@@ -47,6 +70,14 @@ class TimerPageViewController: UIViewController {
         return button
     }()
     
+    //타임 피커
+    private let timePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .countDownTimer
+        return picker
+    }()
+    
+    //시작 버튼
     private lazy var startButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("START", for: .normal)
@@ -58,6 +89,7 @@ class TimerPageViewController: UIViewController {
         return button
     }()
     
+    //멈춤 버튼
     private lazy var stopButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("STOP", for: .normal)
@@ -69,34 +101,14 @@ class TimerPageViewController: UIViewController {
         return button
     }()
     
-    private let timePicker: UIDatePicker = {
-        let picker = UIDatePicker()
-        picker.datePickerMode = .countDownTimer
-        return picker
-    }()
+    
+    // MARK: - TimerPage 타이머 저장 변수
+    private var timer: Timer? //타이머 객체 저장 변수
+    private var seconds: Int = 0 //시간 저장 변수
     
     
-    private lazy var timerHeadView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .pastelYellow
-        view.layer.cornerRadius = 8
-        return view
-    }()
-    
-    private lazy var circleView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .pastelYellow?.withAlphaComponent(0.1)
-        view.layer.borderColor = UIColor.pastelYellow?.cgColor
-        view.layer.borderWidth = 2.0
-        view.layer.cornerRadius = 150
-        return view
-    }()
-    
-    
-    private var timer: Timer?
-    private var seconds: Int = 0
-    
-    
+    // MARK: - viewWillAppear
+    // viewWillAppear에 다음 코드를 넣지 않으면 마이페이지 이동 로직이 꼬임.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         NavigationUtil.currentViewController = self
@@ -104,15 +116,74 @@ class TimerPageViewController: UIViewController {
     }
     
     
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .indigo
+        self.view.backgroundColor = .indigo //배경색 설정
         setupConstraint()
     }
     
- 
- 
     
+    //MARK: - TimerPage 함수 모음
+    //타이머 시간 설정 (시간 설정 버튼 누르면 호출됨)
+    @objc private func setTime() {
+        timePicker.addTarget(self, action: #selector(timeChanged(_:)), for: .valueChanged)
+        let alert = UIAlertController(title: "타이머 시간 설정", message: "\n\n\n\n\n\n", preferredStyle: .alert) //피커뷰랑 겹치지 않게 공백 추가
+        alert.view.addSubview(timePicker)
+    
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            self.seconds = Int(self.timePicker.countDownDuration)
+            self.timerLabel.text = self.timeString(time: TimeInterval(self.seconds))
+        }
+        alert.addAction(okAction)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        timePicker.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            timePicker.leadingAnchor.constraint(equalTo: alert.view.leadingAnchor, constant: 20),
+            timePicker.trailingAnchor.constraint(equalTo: alert.view.trailingAnchor, constant: -20),
+            timePicker.topAnchor.constraint(equalTo: alert.view.topAnchor, constant: 50),
+            timePicker.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor, constant: -70) // Adjust this value to prevent overlap
+        ])
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    //타이머 시간 변경될 때 호출
+    @objc private func timeChanged(_ sender: UIDatePicker) {
+        seconds = Int(sender.countDownDuration)
+    }
+    
+    //타이머 시작
+    @objc private func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    }
+    
+    //타이머 멈춤
+    @objc private func stopTimer() {
+        timer?.invalidate()
+    }
+    
+    //타이머 1초마다 업데이트
+    @objc private func updateTimer() {
+        if seconds < 1 {
+            timer?.invalidate()
+            exit(0)
+        } else {
+            seconds -= 1
+            timerLabel.text = timeString(time: TimeInterval(seconds))
+        }
+    }
+    
+    //타이머 초를 시:분:초 형태로 변환
+    private func timeString(time: TimeInterval) -> String {
+        let hours = Int(time) / 3600
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
+    }
+    
+    // MARK: - 오토레이아웃
     private func setupConstraint() {
         view.addSubview(titleLabel)
         view.addSubview(subTitleLabel)
@@ -134,12 +205,9 @@ class TimerPageViewController: UIViewController {
         timerHeadView.translatesAutoresizingMaskIntoConstraints = false
         
         
-        
-        
-        
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-                titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             
             subTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
@@ -176,63 +244,5 @@ class TimerPageViewController: UIViewController {
             startButton.topAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 30),
             stopButton.topAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 30)
         ])
-    }
-    
-    @objc private func setTime() {
-        timePicker.addTarget(self, action: #selector(timeChanged(_:)), for: .valueChanged)
-        
-        let alert = UIAlertController(title: "타이머 시간 설정", message: "\n\n\n\n\n\n", preferredStyle: .alert)
-        
-        alert.view.addSubview(timePicker)
-        
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            self.seconds = Int(self.timePicker.countDownDuration)
-            self.timerLabel.text = self.timeString(time: TimeInterval(self.seconds))
-        }
-        
-        alert.addAction(okAction)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        timePicker.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            timePicker.leadingAnchor.constraint(equalTo: alert.view.leadingAnchor, constant: 20),
-            timePicker.trailingAnchor.constraint(equalTo: alert.view.trailingAnchor, constant: -20),
-            timePicker.topAnchor.constraint(equalTo: alert.view.topAnchor, constant: 50),
-            timePicker.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor, constant: -70) // Adjust this value to prevent overlap
-        ])
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
-    
-    @objc private func timeChanged(_ sender: UIDatePicker) {
-        seconds = Int(sender.countDownDuration)
-    }
-    
-    @objc private func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-    }
-    
-    @objc private func stopTimer() {
-        timer?.invalidate()
-    }
-    
-    @objc private func updateTimer() {
-        if seconds < 1 {
-            timer?.invalidate()
-            // Notify user that timer has ended
-            exit(0)
-        } else {
-            seconds -= 1
-            timerLabel.text = timeString(time: TimeInterval(seconds))
-        }
-    }
-    
-    private func timeString(time: TimeInterval) -> String {
-        let hours = Int(time) / 3600
-        let minutes = Int(time) / 60 % 60
-        let seconds = Int(time) % 60
-        return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
     }
 }
