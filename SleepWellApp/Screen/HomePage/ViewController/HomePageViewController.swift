@@ -115,7 +115,7 @@ class HomePageViewController: UIViewController {
         return $0
     }(UITableView())
     
-    // MARK: - Life Cycle
+    // Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,7 +130,7 @@ class HomePageViewController: UIViewController {
         NavigationUtil.setupNavigationBar(for: self)
     }
     
-    // MARK: - InitUI
+    // InitUI
     
     private func configUI() {
         view.backgroundColor = .indigo
@@ -202,11 +202,11 @@ class HomePageViewController: UIViewController {
         }
     }
     
-    // MARK: - Custom Method
+    //
     
 }
 
-//MARK: - UICollectionViewDataSource
+
 
 extension HomePageViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -223,11 +223,18 @@ extension HomePageViewController: UICollectionViewDataSource {
     }
 }
 
-//MARK: - UICollectionViewDelegate
 
 extension HomePageViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let video = asmrVideos[indexPath.item]
+        
+        let detailVC = DetailPageViewController()
+        detailVC.selectedVideo = video
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
+
+
 
 extension HomePageViewController: UICollectionViewDelegateFlowLayout {
     func scrollViewWillEndDragging(
@@ -270,17 +277,15 @@ extension HomePageViewController: UITableViewDataSource {
     }
 }
 
-//MARK: - UITableViewDelegate
 
 extension HomePageViewController: UITableViewDelegate {
-    
+
 }
 
-//MARK: - Network
 
 extension HomePageViewController {
     func requestVideo() {
-        getVideos(searchKeyword: "에이에스엠알", maxResults: 10) { video, index in
+        getVideos(searchKeyword: "에이에스엠알", maxResults: 5) { video, index in
             self.asmrVideos.append(video)
             
             self.getVideoInfo(id: video.id, index: index) { duration, viewCount in
@@ -302,7 +307,7 @@ extension HomePageViewController {
                 self.asmrVideos[index].thumbnail.image = image
             }
         }
-        getVideos(searchKeyword: "수면", maxResults: 100) { video, index in
+        getVideos(searchKeyword: "수면", maxResults: 5) { video, index in
             self.sleepVideos.append(video)
             self.getVideoInfo(id: video.id, index: index) { duration, viewCount in
                 if let duration = duration {

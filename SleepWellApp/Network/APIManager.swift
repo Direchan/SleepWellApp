@@ -10,9 +10,9 @@ import Alamofire
 
 enum API {
     static let baseUrl: String = "https://youtube.googleapis.com/youtube/v3/" // youtube data api v3
-    static let key: String = "AIzaSyDwk1EAb0wsVr7w4XxGEby6gmj2FSG4tYU" // api키
+    static let key: String = "AIzaSyArLP_uYpYk83gX8s_6F25NCVH9-7k--a0" // api키
 }
-
+//AIzaSyDwk1EAb0wsVr7w4XxGEby6gmj2FSG4tYU
 class APIManager {
     static let shared = APIManager()
     private init() {}
@@ -20,6 +20,9 @@ class APIManager {
     // 여기서 찾은 영상의 id를 저장해 영상 정보를 다시 불러와야됨
     // 영상 올린 날짜는 snippet의 publishedAt 필드에서 알 수 있음
     // items.id.videoId / items.snippet.publishedAt, title / items.snippet.thumbnails / items.snippet.channelTitle
+    
+    
+    
     func getVideos(searchKeyword: String, maxResults: Int, completion: @escaping ([String:Any]?, AFError?) -> Void) {
         let url = API.baseUrl + "search"
         let body = [
@@ -30,7 +33,7 @@ class APIManager {
             "regionCode": "KR",
             "key": API.key
         ] as [String: Any]
-        
+
         AF.request(url, method: .get, parameters: body)
             .validate()
             .responseData { response in

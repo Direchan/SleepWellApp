@@ -18,6 +18,7 @@
 		7FC92CF32AA5FC77000C4B2E /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CF22AA5FC77000C4B2E /* MyPageViewController.swift */; };
 		7FC92CF52AA5FC80000C4B2E /* LikePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CF42AA5FC80000C4B2E /* LikePageViewController.swift */; };
 		7FC92CF72AA5FC8A000C4B2E /* DetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC92CF62AA5FC8A000C4B2E /* DetailPageViewController.swift */; };
+		7FFFECFB2AAC107100475F52 /* LikedVideosManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFECFA2AAC107100475F52 /* LikedVideosManager.swift */; };
 		8E5757F00FCCC0EF31AC7A8D /* Pods_SleepWellApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD5FA1450780331446E2F7F /* Pods_SleepWellApp.framework */; };
 		D80BAAF72AA864E400B49628 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF62AA864E400B49628 /* MainTabBarController.swift */; };
 		D80BAAF92AA880FF00B49628 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */; };
@@ -47,6 +48,7 @@
 		7FC92CF22AA5FC77000C4B2E /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		7FC92CF42AA5FC80000C4B2E /* LikePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePageViewController.swift; sourceTree = "<group>"; };
 		7FC92CF62AA5FC8A000C4B2E /* DetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageViewController.swift; sourceTree = "<group>"; };
+		7FFFECFA2AAC107100475F52 /* LikedVideosManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedVideosManager.swift; sourceTree = "<group>"; };
 		BDD5FA1450780331446E2F7F /* Pods_SleepWellApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWellApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80BAAF62AA864E400B49628 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D80BAAF82AA880FF00B49628 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				D87C7EF92AA9C77000BA51C0 /* Video.swift */,
 				D87C7EFB2AA9C87300BA51C0 /* DataManager.swift */,
 				E2AA64162AAB1A940009A481 /* Thumbnail.swift */,
+				7FFFECFA2AAC107100475F52 /* LikedVideosManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				7FC7786D2AA5C61B00A5CE0F /* SceneDelegate.swift in Sources */,
 				D80BAAF92AA880FF00B49628 /* CustomTableViewCell.swift in Sources */,
 				E2DD3D922AA9BE2400198F04 /* VideoLengthSegmentedControl.swift in Sources */,
+				7FFFECFB2AAC107100475F52 /* LikedVideosManager.swift in Sources */,
 				D80BAAF72AA864E400B49628 /* MainTabBarController.swift in Sources */,
 				7FC92CF32AA5FC77000C4B2E /* MyPageViewController.swift in Sources */,
 				D87C7EF82AA9C72100BA51C0 /* User.swift in Sources */,

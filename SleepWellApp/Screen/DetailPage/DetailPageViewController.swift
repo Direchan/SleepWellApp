@@ -3,11 +3,20 @@ import youtube_ios_player_helper
 
 class DetailPageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    private var isHeartFilled: Bool = false
+    private let heartButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.tintColor = .pastelYellow
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(didTapHeartButton), for: .touchUpInside)
+        return button
+    }()
+
     
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22)
-        label.text = "여기는 제목"
         label.numberOfLines = 0
         label.textColor = .pastelYellow
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -17,7 +26,6 @@ class DetailPageViewController: UIViewController, UITableViewDelegate, UITableVi
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.text = "이곳은 ・ 조회수 ・ 날짜"
         label.textColor = .pastelYellow?.withAlphaComponent(0.6)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +35,6 @@ class DetailPageViewController: UIViewController, UITableViewDelegate, UITableVi
     private let authorLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
-        label.text = "채널명 어쩌구"
         label.textColor = .pastelYellow
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -69,7 +76,22 @@ class DetailPageViewController: UIViewController, UITableViewDelegate, UITableVi
         return player
     }()
     
+    var selectedVideo: Video?
     
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // 해당 비디오가 찜 목록에 있는지 확인
+        guard let video = selectedVideo else { return }
+        
+        if LikedVideosManager.shared.isLiked(video: video) {
+            heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,15 +101,17 @@ class DetailPageViewController: UIViewController, UITableViewDelegate, UITableVi
         
         setupTableView()
         
-        // YouTube Player 설정
-        playerView.load(withVideoId: "Qs-ksON0ZRM")
-        //
-        //        let videoId = "lf0IEfvtluU"
-        //            playerView.load(withVideoId: videoId)
-        //            loadVideoDetails(videoId: videoId)
-        //
-        //    }
-        
+        if let video = selectedVideo {
+            titleLabel.text = video.title
+            let formattedViewCount = formatViewCount(Int(video.viewCount) ?? 0)
+            let formattedDate = formatDateToYYYYMMDD(from: video.publishedAt) ?? video.publishedAt
+            descriptionLabel.text = "조회수 ・ \(formattedViewCount) ・ \(formattedDate)"
+            authorLabel.text = video.channelTitle
+            playerView.load(withVideoId: video.id)
+        }
+
+
+    
         func setupUI() {
             view.backgroundColor = .indigo
             view.addSubview(playerView)
@@ -95,63 +119,10 @@ class DetailPageViewController: UIViewController, UITableViewDelegate, UITableVi
             view.addSubview(descriptionLabel)
             view.addSubview(authorLabel)
             view.addSubview(profileImageView)
-            view.addSubview(otherVideoLabel)
-            view.addSubview(otherVideoCell)
+            view.addSubview(heartButton)
             setupConstraints()
         }
-        
-        //
-        //            func loadVideoDetails(videoId: String) {
-        //                APIManager.shared.getVideoInfo(id: [videoId], part: "snippet,statistics,contentDetails") { [weak self] (data, error) in
-        //                    guard let self = self else { return }
-        //                    if let error = error {
-        //                        print("Error fetching video details: \(error.localizedDescription)")
-        //                        return
-        //                    }
-        //
-        //                    guard let data = data as? [String: Any],
-        //                          let items = data["items"] as? [[String: Any]],
-        //                          let item = items.first else {
-        //                        print("Invalid data format")
-        //                        return
-        //                    }
-        //
-        //                    // Parsing video details
-        //                    let snippet = item["snippet"] as? [String: Any]
-        //                    let statistics = item["statistics"] as? [String: Any]
-        //
-        //                    let title = snippet?["title"] as? String
-        //                    let channelTitle = snippet?["channelTitle"] as? String
-        //                    let publishedAtRaw = snippet?["publishedAt"] as? String
-        //                    let viewCountRaw = statistics?["viewCount"] as? String
-        //
-        //                    // Formatting view count with commas
-        //                    let numberFormatter = NumberFormatter()
-        //                    numberFormatter.numberStyle = .decimal
-        //                    let viewCount = numberFormatter.string(from: NSNumber(value: Int(viewCountRaw ?? "0") ?? 0))
-        //
-        //                    // Formatting published date to "년도-월-일" format
-        //                    let dateFormatter = DateFormatter()
-        //                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        //                    let date = dateFormatter.date(from: publishedAtRaw ?? "")
-        //                    dateFormatter.dateFormat = "yyyy-MM-dd"
-        //                    let publishedAt = dateFormatter.string(from: date ?? Date())
-        //
-        //                    let thumbnailData = snippet?["thumbnails"] as? [String: Any]
-        //                    let defaultThumbnail = thumbnailData?["default"] as? [String: Any]
-        //                    let thumbnailUrl = defaultThumbnail?["url"] as? String
-        //
-        //                    // Updating UI on the main thread
-        //                    DispatchQueue.main.async {
-        //                        self.titleLabel.text = title
-        //                        self.descriptionLabel.text = "조회수: \(viewCount ?? "0"), 업로드 날짜: \(publishedAt)"
-        //                        self.authorLabel.text = channelTitle
-        //                        if let thumbnailUrl = thumbnailUrl {
-        //                            // TODO: Load thumbnail image from URL
-        //                        }
-        //                    }
-        //                }
-    }
+}
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5  // 5개의 셀을 반환
@@ -166,11 +137,49 @@ class DetailPageViewController: UIViewController, UITableViewDelegate, UITableVi
         return 110  // 셀의 높이 설정
     }
     
-    
+    func formatDateToYYYYMMDD(from dateString: String) -> String? {
+        print("Received dateString: \(dateString)")  // Check the received dateString value
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        if let date = dateFormatter.date(from: dateString) {
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            return dateFormatter.string(from: date)
+        }
+        return nil
+    }
+
+//
     func setupTableView() {
         otherVideoCell.delegate = self
         otherVideoCell.dataSource = self
         otherVideoCell.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+    }
+    
+    func formatViewCount(_ count: Int) -> String {
+        if count >= 10000 {
+            return "\(count / 10000)만회"
+        } else if count >= 1000 {
+            return "\(count / 1000)천회"
+        } else {
+            return "\(count)회"
+        }
+    }
+
+    
+    
+    @objc private func didTapHeartButton() {
+        guard let video = selectedVideo else { return }
+
+        if LikedVideosManager.shared.isLiked(video: video) {
+            LikedVideosManager.shared.remove(video: video)
+            heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        } else {
+            LikedVideosManager.shared.add(video: video)
+            heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }
+        
+        NotificationCenter.default.post(name: Notification.Name("LikedVideosUpdated"), object: nil)
     }
     
     
@@ -203,15 +212,21 @@ class DetailPageViewController: UIViewController, UITableViewDelegate, UITableVi
             profileImageView.heightAnchor.constraint(equalToConstant: 28),
             
             
-            otherVideoLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 40),
-            otherVideoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            otherVideoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            heartButton.centerYAnchor.constraint(equalTo: authorLabel.centerYAnchor),
+            heartButton.leadingAnchor.constraint(equalTo: authorLabel.trailingAnchor, constant: 210),
+            heartButton.widthAnchor.constraint(equalToConstant: 24),
+            heartButton.heightAnchor.constraint(equalToConstant: 24)
             
             
-            otherVideoCell.topAnchor.constraint(equalTo: otherVideoLabel.bottomAnchor, constant: 20),
-            otherVideoCell.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            otherVideoCell.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            otherVideoCell.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//            otherVideoLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 40),
+//            otherVideoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+//            otherVideoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+//
+//
+//            otherVideoCell.topAnchor.constraint(equalTo: otherVideoLabel.bottomAnchor, constant: 20),
+//            otherVideoCell.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            otherVideoCell.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            otherVideoCell.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             
         ])
     }
