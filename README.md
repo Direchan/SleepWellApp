@@ -1,4 +1,4 @@
-
+![찜목록](https://github.com/Direchan/SleepWellApp/assets/85066307/1f4d3780-a8e8-45c3-a2c9-d2120d36e8bb)
 <img width="90" alt="Group 46" src="https://github.com/Direchan/SleepWellApp/assets/85066307/97ee50a8-8556-4f9b-b9e7-ef5c35fbc4ce">
 
 
@@ -42,11 +42,41 @@
 <img src="https://github.com/Direchan/SleepWellApp/assets/85066307/d8a4fa71-f242-45dd-9578-7b94caf448f9" width="200"/>
 
 ### **<메인 페이지>**
+- 상단부 : 인기 asmr 영상을 보여줍니다.
+- 하단부 : 시간별 추천영상을 보여줍니다.
+<img src="https://github.com/Direchan/SleepWellApp/assets/85066307/5c90b7a8-a9ea-49c3-9c5f-af8d307bab51" width="200"/>
+<img src="https://github.com/Direchan/SleepWellApp/assets/85066307/df217104-18ee-4a09-be7c-7c4d15417334" width="200"/>
+
+
+### **<디테일 페이지>**
+- 영상의 제목, 조회수, 날짜, 채널명, 채널썸네일 등의 정보를 보여줍니다.
+- 찜하기 기능이 있습니다. 찜 기능을 사용하면 찜목록에서 조회 가능합니다.
+<img src="https://github.com/Direchan/SleepWellApp/assets/85066307/2f8eb4d2-b470-42d8-84a2-2969e9979443" width="200"/>
+<img src="https://github.com/Direchan/SleepWellApp/assets/85066307/2bd3301b-a6e2-466d-bb35-4569ce087586" width="200"/>
+
+
+### **<타이머 페이지>**
+- 피커뷰로 타이머 시간을 설정할 수 있습니다.
+- 시간이 되면 자동으로 앱이 종료됩니다.
+<img src="https://github.com/Direchan/SleepWellApp/assets/85066307/23f7156c-d174-429b-933c-f30f88a5f5d5" width="200"/>
+<img src="https://github.com/Direchan/SleepWellApp/assets/85066307/8de322b9-2d83-4464-aa89-204a52aa8f6b" width="200"/>
+
+
+### **<찜목록 페이지>**
+- 비어있을시에는 안내문구가 나옵니다.
+- 찜 해제는 디테일뷰, 홈페이지, 찜목록에서 모두 가능합니다.
+<img src="https://github.com/Direchan/SleepWellApp/assets/85066307/5332989d-a2b0-49b5-a5bc-e9fee0238d97" width="200"/>
+
+
+### **<마이 페이지>**
+- 닉네임 수정을 할 수 있습니다.
+- 로그아웃을 누르면 로그인페이지로 넘어갑니다.
+<img src="https://github.com/Direchan/SleepWellApp/assets/85066307/612bda4a-9c2e-4b34-a4b3-e027dd28382d" width="200"/>
+<img src="https://github.com/Direchan/SleepWellApp/assets/85066307/80909aa3-2ea6-4a77-bb34-4c55c9c755b1" width="200"/>
 
 
 
 
 
-<img src="" width="200"/>
-<img src="" width="200"/>
-<img src="" width="200"/>
+
+
