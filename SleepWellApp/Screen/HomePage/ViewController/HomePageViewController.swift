@@ -280,11 +280,18 @@ extension HomePageViewController: UICollectionViewDelegateFlowLayout {
         withVelocity velocity: CGPoint,
         targetContentOffset: UnsafeMutablePointer<CGPoint>
     ) {
-        let scrolledOffsetX = targetContentOffset.pointee.x + scrollView.contentInset.left
-        let cellWidth = Const.itemSize.width + Const.itemSpacing
-        let index = round(scrolledOffsetX / cellWidth)
-        targetContentOffset.pointee = CGPoint(x: index * cellWidth - scrollView.contentInset.left, y: scrollView.contentInset.top)
+        print("Current Content Offset: \(scrollView.contentOffset)")
+           print("Target Content Offset: \(targetContentOffset.pointee)") //✅디버깅
+//        let scrolledOffsetX = targetContentOffset.pointee.x + scrollView.contentInset.left
+//        let cellWidth = Const.itemSize.width + Const.itemSpacing
+//        let index = round(scrolledOffsetX / cellWidth)
+//        targetContentOffset.pointee = CGPoint(x: index * cellWidth - scrollView.contentInset.left, y: scrollView.contentInset.top)
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("Did Scroll - Content Offset: \(scrollView.contentOffset)")
+    }
+
 }
 
 //MARK: - UITableViewDataSource
@@ -359,7 +366,7 @@ extension HomePageViewController {
             }
         }
         
-        HomeAPI.shared.getVideos(searchKeyword: "숙면 수면 asmr 잠 sleep", maxResults: 800) { video, index in
+        HomeAPI.shared.getVideos(searchKeyword: "숙면 수면 asmr 잠 sleep", maxResults: 10) { video, index in
             self.sleepVideos.append(video)
             HomeAPI.shared.getVideoInfo(id: video.id, index: index) { duration, viewCount in
                 if let duration = duration {
