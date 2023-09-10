@@ -453,7 +453,7 @@ extension HomePageViewController {
             }
         }
         
-        getVideos(searchKeyword: "숙면 수면 asmr 잠 sleep", maxResults: 15) { video, index in
+        getVideos(searchKeyword: "짧은asmr 1시간asmr 2시간asmr 3시간asmr", maxResults: 45) { video, index in
             self.sleepVideos.append(video)
             self.getVideoInfo(id: video.id, index: index) { duration, viewCount in
                 if let duration = duration {

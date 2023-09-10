@@ -69,7 +69,7 @@ class LikePageViewController: UIViewController {
     @objc private func handleLikedVideosUpdated() {
         tableView.reloadData()
                
-               let count = LikedVideosManager.shared.likedVideos.count
+        let count = LikedVideosManager.shared.getLikedVideos().count
                countListLabel.text = "\(count)개"
                emptyListLabel.isHidden = count > 0
     }
@@ -118,12 +118,12 @@ class LikePageViewController: UIViewController {
 
 extension LikePageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return LikedVideosManager.shared.likedVideos.count
+        return LikedVideosManager.shared.getLikedVideos().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CustomTableViewCell
-        let video = LikedVideosManager.shared.likedVideos[indexPath.row]
+        let video = LikedVideosManager.shared.getLikedVideos()[indexPath.row]
         cell.bind(video: video)
         cell.delegate = self
         return cell
@@ -138,7 +138,7 @@ extension LikePageViewController: UITableViewDelegate {
     
     //셀 누르면 해당 영상 디테일 페이지 열리도록
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let video = LikedVideosManager.shared.likedVideos[indexPath.row]
+        let video = LikedVideosManager.shared.getLikedVideos()[indexPath.row]
         let detailVC = DetailPageViewController()
         detailVC.selectedVideo = video
         
@@ -149,7 +149,7 @@ extension LikePageViewController: UITableViewDelegate {
 extension LikePageViewController: CustomTableViewCellDelegate {
     func didTapHeartButton(onCell cell: CustomTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let video = LikedVideosManager.shared.likedVideos[indexPath.row]
+        let video = LikedVideosManager.shared.getLikedVideos()[indexPath.row]
         
         if LikedVideosManager.shared.isLiked(video: video) {
             LikedVideosManager.shared.remove(video: video)
@@ -160,7 +160,7 @@ extension LikePageViewController: CustomTableViewCellDelegate {
         }
         
         // 찜하기 개수 업데이트
-        let count = LikedVideosManager.shared.likedVideos.count
+        let count = LikedVideosManager.shared.getLikedVideos().count
         countListLabel.text = "\(count)개"
     }
 }
