@@ -453,7 +453,7 @@ extension HomePageViewController {
             }
         }
         
-        getVideos(searchKeyword: "숙면 수면 asmr 잠 sleep", maxResults: 15) { video, index in
+        getVideos(searchKeyword: "짧은asmr 1시간asmr 2시간asmr 3시간asmr", maxResults: 45) { video, index in
             self.sleepVideos.append(video)
             self.getVideoInfo(id: video.id, index: index) { duration, viewCount in
                 if let duration = duration {
@@ -511,34 +511,64 @@ extension HomePageViewController {
             }
         }
         
-        func getVideoInfo(id: String, index: Int, completion: @escaping((_ duration: String?, _ viewCount: String?) -> ())) {
-            
-            // 영상 길이
-            APIManager.shared.getVideoInfo(id: id, part: "contentDetails") { data, error in
-                if let data = data, let items = data["items"] as? [[String:Any]] {
-                    for item in items {
-                        if let content = item["contentDetails"] as? [String:Any],
-                           let duration = content["duration"] as? String {
-                            completion(duration, nil)
-                        }
-                    }
-                }
+//        func getVideoInfo(id: String, index: Int, completion: @escaping((_ duration: String?, _ viewCount: String?) -> ())) {
+//
+//            // 영상 길이
+//            APIManager.shared.getVideoInfo(id: id, part: "contentDetails") { data, error in
+//                if let data = data, let items = data["items"] as? [[String:Any]] {
+//                    for item in items {
+//                        if let content = item["contentDetails"] as? [String:Any],
+//                           let duration = content["duration"] as? String {
+//                            completion(duration, nil)
+//                        }
+//                    }
+//                }
+//            }
+//
+//            // 조회수
+//            APIManager.shared.getVideoInfo(id: id, part: "statistics") { data, error in
+//                if let data = data, let items = data["items"] as? [[String:Any]] {
+//                    for item in items {
+//                        if let statistics = item["statistics"] as? [String:Any],
+//                           let viewCount = statistics["viewCount"] as? String {
+//                            completion(nil, viewCount)
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+    
+    //조회수 호출 이슈 : 위의 코드에서는 contentDetails와 statistics의 API호출을 따로 하고 있음. 이런 비동기 호출 때문에 뭐가 먼저 실행될지 모르며, 실행되는 해당 정보만 먼저 반영이 됨. 따라서 아래처럼 동기화를 통해 contentDetails와 statistics의 정보를 모두 받은 후에 completion을 호출할 수 있도록 함.
+    func getVideoInfo(id: String, index: Int, completion: @escaping((_ duration: String?, _ viewCount: String?) -> ())) {
+        let group = DispatchGroup()
+
+        var fetchedDuration: String?
+        var fetchedViewCount: String?
+
+        group.enter()
+        APIManager.shared.getVideoInfo(id: id, part: "contentDetails") { data, error in
+            if let data = data, let items = data["items"] as? [[String:Any]], let content = items.first?["contentDetails"] as? [String:Any],
+               let duration = content["duration"] as? String {
+                fetchedDuration = duration
             }
-            
-            // 조회수
-            APIManager.shared.getVideoInfo(id: id, part: "statistics") { data, error in
-                if let data = data, let items = data["items"] as? [[String:Any]] {
-                    for item in items {
-                        if let statistics = item["statistics"] as? [String:Any],
-                           let viewCount = statistics["viewCount"] as? String {
-                            completion(nil, viewCount)
-                        }
-                    }
-                }
-            }
+            group.leave()
         }
-        
-        
+
+        group.enter()
+        APIManager.shared.getVideoInfo(id: id, part: "statistics") { data, error in
+            if let data = data, let items = data["items"] as? [[String:Any]], let statistics = items.first?["statistics"] as? [String:Any],
+               let viewCount = statistics["viewCount"] as? String {
+                fetchedViewCount = viewCount
+            }
+            group.leave()
+        }
+
+        group.notify(queue: .main) {
+            completion(fetchedDuration, fetchedViewCount)
+        }
+    }
+
         
         
         
