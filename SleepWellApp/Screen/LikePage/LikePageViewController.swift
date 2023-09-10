@@ -148,19 +148,22 @@ extension LikePageViewController: UITableViewDelegate {
 
 extension LikePageViewController: CustomTableViewCellDelegate {
     func didTapHeartButton(onCell cell: CustomTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let video = LikedVideosManager.shared.getLikedVideos()[indexPath.row]
-        
-        if LikedVideosManager.shared.isLiked(video: video) {
-            LikedVideosManager.shared.remove(video: video)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        } else {
-            LikedVideosManager.shared.add(video: video)
-            tableView.reloadRows(at: [indexPath], with: .automatic)
+            guard let indexPath = tableView.indexPath(for: cell) else { return }
+            let video = LikedVideosManager.shared.getLikedVideos()[indexPath.row]
+            
+            if LikedVideosManager.shared.isLiked(video: video) {
+                LikedVideosManager.shared.remove(video: video)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            } else {
+                LikedVideosManager.shared.add(video: video)
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+            
+            // 찜하기 개수 업데이트
+            let count = LikedVideosManager.shared.getLikedVideos().count
+            countListLabel.text = "\(count)개"
+            
+            // 여기에서 알림을 발송합니다.
+            NotificationCenter.default.post(name: Notification.Name("LikedVideosUpdated"), object: nil)
         }
-        
-        // 찜하기 개수 업데이트
-        let count = LikedVideosManager.shared.getLikedVideos().count
-        countListLabel.text = "\(count)개"
-    }
 }
