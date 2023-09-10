@@ -163,7 +163,6 @@ extension LikePageViewController: CustomTableViewCellDelegate {
             let count = LikedVideosManager.shared.getLikedVideos().count
             countListLabel.text = "\(count)개"
             
-            // 여기에서 알림을 발송합니다.
             NotificationCenter.default.post(name: Notification.Name("LikedVideosUpdated"), object: nil)
         }
 }
