@@ -21,7 +21,7 @@
 - placeholder
 
 # 🌛 우리팀만의 심화 도전 과제
-- 길이별로 sorting하여 영상 추천
+- 영상 길이별로 sorting하여 영상 추천
 - 자동으로 앱 종료되는 타이머
 - Carousel Slide
 
