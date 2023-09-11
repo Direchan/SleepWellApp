@@ -26,6 +26,7 @@
 		D87C7EF82AA9C72100BA51C0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EF72AA9C72100BA51C0 /* User.swift */; };
 		D87C7EFA2AA9C77000BA51C0 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EF92AA9C77000BA51C0 /* Video.swift */; };
 		D87C7EFC2AA9C87300BA51C0 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87C7EFB2AA9C87300BA51C0 /* DataManager.swift */; };
+		D8A22D712AAED54600114390 /* TimerPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A22D702AAED54600114390 /* TimerPageView.swift */; };
 		E22A50CF2AA8984900092365 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A50CE2AA8984900092365 /* UIColor+.swift */; };
 		E2AA64142AAACC630009A481 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AA64132AAACC630009A481 /* APIManager.swift */; };
 		E2AA64172AAB1A940009A481 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AA64162AAB1A940009A481 /* Thumbnail.swift */; };
@@ -56,6 +57,7 @@
 		D87C7EF72AA9C72100BA51C0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D87C7EF92AA9C77000BA51C0 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		D87C7EFB2AA9C87300BA51C0 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		D8A22D702AAED54600114390 /* TimerPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPageView.swift; sourceTree = "<group>"; };
 		DB74C7C44FD272586BCB4B57 /* Pods-SleepWellApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWellApp.debug.xcconfig"; path = "Target Support Files/Pods-SleepWellApp/Pods-SleepWellApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E22A50CE2AA8984900092365 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		E2AA64132AAACC630009A481 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -150,6 +152,8 @@
 		7FC92CE52AA5FB6E000C4B2E /* TimerPage */ = {
 			isa = PBXGroup;
 			children = (
+				D8A22D6E2AAED52500114390 /* View */,
+				D8A22D6F2AAED52F00114390 /* ViewController */,
 				7FC92CF02AA5FC6E000C4B2E /* TimerPageViewController.swift */,
 			);
 			path = TimerPage;
@@ -206,6 +210,21 @@
 				7FFFECFA2AAC107100475F52 /* LikedVideosManager.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D8A22D6E2AAED52500114390 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D8A22D702AAED54600114390 /* TimerPageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D8A22D6F2AAED52F00114390 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		E22A50CD2AA8980900092365 /* Extension */ = {
@@ -428,6 +447,7 @@
 				D87C7EFA2AA9C77000BA51C0 /* Video.swift in Sources */,
 				D87C7EEF2AA9832600BA51C0 /* NavigationUtil.swift in Sources */,
 				E2AA64172AAB1A940009A481 /* Thumbnail.swift in Sources */,
+				D8A22D712AAED54600114390 /* TimerPageView.swift in Sources */,
 				E22A50CF2AA8984900092365 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
